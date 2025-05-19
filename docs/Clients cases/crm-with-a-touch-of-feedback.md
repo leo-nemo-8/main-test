@@ -14,29 +14,29 @@ Let's say you use a CRM tool. Let's also say that you are well aware that custom
 
 ## Why use Goodays to enrich your CRM ?
 
-Customer feedback is an amazing source of knowledge. It will not only provide valuable KPI about how your brand is perceived by your customers but it will also help you gather valuable informations about your customers' experience on more precise levels and even _verbatims_.  
-These elements allow a general analysis on your brand and how you do things but they can also be used under the scope of one customer.  
+Customer feedback is an amazing source of knowledge. It will not only provide valuable KPI about how your brand is perceived by your customers but it will also help you gather valuable informations about your customers' experience on more precise levels and even *verbatims*.\
+These elements allow a general analysis on your brand and how you do things but they can also be used under the scope of one customer.\
 With Goodays API, you will be able to add a whole new context facet for your customers. You will not only be aware of their purchases but also how they judge their experiences within your stores or online!
 
 All these new informations may be extremely valuable when : 
 
-- you have to **discuss with a customer** by email or on the phone
-- you want to **create marketing campaigns** given one or more Customer Experience indicators
-- you want to **analyse your customers' database** under the filter of Customer Experience indicators
+* you have to **discuss with a customer** by email or on the phone
+* you want to **create marketing campaigns** given one or more Customer Experience indicators
+* you want to **analyse your customers' database** under the filter of Customer Experience indicators
 
 ## How to - Basics
 
-The process is pretty straightforward.  
-First, you have to retrieve the responses for the period you need.  
-Then, you need to get the details of each response.  
+The process is pretty straightforward.\
+First, you have to retrieve the responses for the period you need.\
+Then, you need to get the details of each response.\
 Finally, you can use the answers to update your CRM profiles.
 
 ## Key takeaways
 
-- Customer Experience is an important part of the customer knowledge.
-- Customer Experience should be a part of your CRM.
-- Customer Experience data could be valuable for customer management, marketing and analysis.
-- Technical integration is simple as pie.
+* Customer Experience is an important part of the customer knowledge.
+* Customer Experience should be a part of your CRM.
+* Customer Experience data could be valuable for customer management, marketing and analysis.
+* Technical integration is simple as pie.
 
 ## How to - Expert
 
@@ -141,6 +141,6 @@ Below, an example of the response :
 You can use the answers to the survey or some context informations to enrich your customers profile.
 
 > 📘 Need to retrieve hundreds of responses at once?
-> 
-> Don't panic!  
+>
+> Don't panic!\
 > There is the [bulk mode](/reference#responses_bulk) which allows you to retrieve responses 20 by 20 (the paging is not customizable here). The GET parameters are the same as described above.
