@@ -22,7 +22,7 @@ This API depends on the **Responses API**. Before querying the **Semantic Classi
 
 ## **Description**
 
-**GET /customers/{customer}/api/semantic/scheme**
+**GET /customers/\{customer}/api/semantic/scheme**
 
 Retrieves your semantic classification scheme.
 
@@ -69,49 +69,139 @@ curl --location 'https://app.goodays.co/customers/{customer}/api/semantic/scheme
 
 ## **Description**
 
-**GET /customers/{customer}/semantic/classification**
+**GET /customers/\{customer}/semantic/classification**
 
 Retrieves categorized end customer feedback and associated sentiment analysis.
 
 ### **Query Parameters**
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "**Parameter**",
-    "h-1": "**Description**",
-    "0-0": "`items_per_page`",
-    "0-1": "(Optional) Pagination, 20 by default up to 100 results.",
-    "1-0": "`scheme`",
-    "1-1": "(Optional) Scheme ID. Defaults to the active scheme.",
-    "2-0": "`start_date`",
-    "2-1": "(Required if no `responses` or `month`)  \nStart of calculation period.  Format: `YYYY-MM-DDThh:mm:ss`",
-    "3-0": "`end_date`",
-    "3-1": "(Required if no `responses` or `month`)  \nEnd of calculation period. Format: `YYYY-MM-DDThh:mm:ss`",
-    "4-0": "`month`",
-    "4-1": "(Optional) Filter by month. Format: `YYYY-MM`",
-    "5-0": "`place`",
-    "5-1": "(Optional) Filter by point of sales ID.",
-    "6-0": "`places`",
-    "6-1": "(Optional) List of point of sales IDs (comma-separated).",
-    "7-0": "`level`",
-    "7-1": "(Optional) Filter by level ID.",
-    "8-0": "`levels`",
-    "8-1": "(Optional) List of level IDs (comma-separated).",
-    "9-0": "`categories`",
-    "9-1": "(Optional) Filter by category IDs (comma-separated).",
-    "10-0": "`responses`",
-    "10-1": "(Optional) Filter by response IDs (comma-separated)."
-  },
-  "cols": 2,
-  "rows": 11,
-  "align": [
-    null,
-    null
-  ]
-}
-[/block]
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
 
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `items_per_page`
+      </td>
+
+      <td>
+        (Optional) Pagination, 20 by default up to 100 results.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `scheme`
+      </td>
+
+      <td>
+        (Optional) Scheme ID. Defaults to the active scheme.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `start_date`
+      </td>
+
+      <td>
+        (Required if no `responses` or `month`)\
+        Start of calculation period.  Format: `YYYY-MM-DDThh:mm:ss`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `end_date`
+      </td>
+
+      <td>
+        (Required if no `responses` or `month`)\
+        End of calculation period. Format: `YYYY-MM-DDThh:mm:ss`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `month`
+      </td>
+
+      <td>
+        (Optional) Filter by month. Format: `YYYY-MM`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `place`
+      </td>
+
+      <td>
+        (Optional) Filter by point of sales ID.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `places`
+      </td>
+
+      <td>
+        (Optional) List of point of sales IDs (comma-separated).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `level`
+      </td>
+
+      <td>
+        (Optional) Filter by level ID.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `levels`
+      </td>
+
+      <td>
+        (Optional) List of level IDs (comma-separated).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `categories`
+      </td>
+
+      <td>
+        (Optional) Filter by category IDs (comma-separated).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `responses`
+      </td>
+
+      <td>
+        (Optional) Filter by response IDs (comma-separated).
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## **Request Example**
 
