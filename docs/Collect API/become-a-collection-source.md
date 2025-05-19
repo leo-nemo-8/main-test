@@ -15,24 +15,24 @@ The Collect API will allow you to become your own collection source by allowing 
 ![](https://files.readme.io/a2dc0e4-Collect_reviews.png "Collect reviews.png")
 
 > 👍 Going further
-> 
+>
 > Consult the [API Collect](/reference#responses_collect) for more.
 
 > 📘 Feel stucked?
-> 
+>
 > Need help with an error? Head to [Troubleshooting and errors](/docs/errors) for more information.
 
 # Presentation
 
-The Collect API allows you to push the collected responses on your side from your own tools, all in real time!  
+The Collect API allows you to push the collected responses on your side from your own tools, all in real time!\
 Our recommendation is to create participation on the Goodays side as soon as you collect it from your tool. This allows the local manager not to lose time on the processing of the customer feedback.
 
 This is very effective if you are using an application, kiosk or terminal that would not be compatible with the SDKs provided by default by Goodays.
 
 ![](https://files.readme.io/23f7c68-Capture_decran_2020-10-01_a_15.56.06.png "Capture d’écran 2020-10-01 à 15.56.06.png")
 
-> ❗️ 
-> 
+> ❗️
+>
 > The survey used is in Goodays format and must respect the **response** formatting rules.
 
 # How to push the responses from my end customer
@@ -41,73 +41,211 @@ This is very effective if you are using an application, kiosk or terminal that w
 
 In order to complete the payload to post a response you must first recover the following Goodays data:
 
-- the **structure** ID of the **[survey](become-a-collection-source#the-survey-part)**
-- the **question** IDs of the **[survey](become-a-collection-source#the-survey-part)**
-- the **[establishment](become-a-collection-source#the-point-of-sales-part)** ID
-- the **[Custom parameters](become-a-collection-source#the-customer-parameters-part)**
+* the **structure** ID of the **[survey](become-a-collection-source#the-survey-part)**
+* the **question** IDs of the **[survey](become-a-collection-source#the-survey-part)**
+* the **[establishment](become-a-collection-source#the-point-of-sales-part)** ID
+* the **[Custom parameters](become-a-collection-source#the-customer-parameters-part)**
 
 And, of course, the data related to the end customer.
 
-You now have all the information you need to post a response to Goodays!  
+You now have all the information you need to post a response to Goodays!\
 For this you must use the [API Collect](/reference#responses_collect).
 
 > ❗️ Unique Response
-> 
+>
 > Be careful to push only one response per end customer's participation: the Collect API records each call you made without deduplication.
 
 For our example, we will send the answer to the survey with the following information (see [prepare the data](become-a-collection-source#prepare-the-data) chapter):
 
-- End customer (the "_user_") : **Mr Miyagi**
-- Establishment (the "_place_") : **VÉLO Antibes** (ID : _ABC123_)
-- Survey : **post_visit** (ID : _mrY4WLpx9w_)
-- Custom Parameters : **Order date** (key : _ordr_dt_)
+* End customer (the "*user*") : **Mr Miyagi**
+* Establishment (the "*place*") : **VÉLO Antibes** (ID : *ABC123*)
+* Survey : **post\_visit** (ID : *mrY4WLpx9w*)
+* Custom Parameters : **Order date** (key : *ordr\_dt*)
 
 Description of the payload:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Attribut",
-    "h-1": "Description",
-    "h-2": "Mandatory",
-    "0-0": "**date**",
-    "0-1": "Date of response from the end customer  \n  \nFormat: 2020-08-07T01:29:30.034195+02:00",
-    "0-2": "**Yes**",
-    "1-0": "**user**",
-    "1-1": "Contains the data of the end customer:  \n  \n- _email_\n- _first_name_\n- _last_name_\n- _phone_\n- _crm_id_",
-    "1-2": "See [The customer parameters part](become-a-collection-source#the-customer-parameters-part).",
-    "2-0": "**context**",
-    "2-1": "The Custom Parameters",
-    "2-2": "See [The customer parameters part](become-a-collection-source#the-customer-parameters-part).",
-    "3-0": "**place**",
-    "3-1": "The establishment ID  \n_Enter your establishment code directly here_",
-    "3-2": "**Yes**",
-    "4-0": "**survey**",
-    "4-1": "The survey ID  \n  \nSee [The survey part](become-a-collection-source#the-survey-part).",
-    "4-2": "**Yes**",
-    "5-0": "**answers** ",
-    "5-1": "List of answers to survey questions.  \n  \nSee [The survey part](become-a-collection-source#the-survey-part).  \n  \nNote: An end customer is not forced to answer all questions, you can send a survey that is not completed in its totality.",
-    "5-2": "**Yes**",
-    "6-0": "**message**",
-    "6-1": "Text message from the end customer:  \n  \n- _created_date_ : format \"2020-08-07T01:29:30.034195+02:00\"\n\n- _type_: \"Idea\", \"Praise\", \"Problem\", \"Question\" or \"NoType\" if no category exists\n\n- _content_: text messageNotes:\n\n- A text message cannot be sent without a survey\n\n- A text message must have all his attributes filled in",
-    "6-2": "**No**",
-    "7-0": "**medium**",
-    "7-1": "Source of feedback collection.  \n  \nHere are the most used mediums:  \n  \n- transactional email: `TE`\n- transactional SMS: `TS`\n- mobile: `MOB`_The value differs according to your collection perimeter: please ask your Goodays technical contact for this information if it does not match the examples above._",
-    "7-2": "**Yes**",
-    "8-0": "**collect_uid**",
-    "8-1": "Allows the management of the **unique participation**.  \n  \nThe `collect_uid` parameter is used to identify the participation in a unique way. This can be a string, a number, a date... You can, for example, concatenate an order ID, a reservation ID, a basket ID... with a timestamp. The most important thing is that this value must be unique.  \n  \nIf the value of the `collect_uid` already exists then a `409 error` is returned and the response is not recorded.  \n  \n_This parameter is not mandatory but strongly recommended._",
-    "8-2": "**No**"
-  },
-  "cols": 3,
-  "rows": 9,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Attribut
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Mandatory
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **date**
+      </td>
+
+      <td>
+        Date of response from the end customer  
+
+        Format: 2020-08-07T01:29:30.034195+02:00
+      </td>
+
+      <td>
+        **Yes**
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **user**
+      </td>
+
+      <td>
+        Contains the data of the end customer:  
+
+        * *email*
+        * *first\_name*
+        * *last\_name*
+        * *phone*
+        * *crm\_id*
+      </td>
+
+      <td>
+        See [The customer parameters part](become-a-collection-source#the-customer-parameters-part).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **context**
+      </td>
+
+      <td>
+        The Custom Parameters
+      </td>
+
+      <td>
+        See [The customer parameters part](become-a-collection-source#the-customer-parameters-part).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **place**
+      </td>
+
+      <td>
+        The establishment ID\
+        *Enter your establishment code directly here*
+      </td>
+
+      <td>
+        **Yes**
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **survey**
+      </td>
+
+      <td>
+        The survey ID  
+
+        See [The survey part](become-a-collection-source#the-survey-part).
+      </td>
+
+      <td>
+        **Yes**
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **answers** 
+      </td>
+
+      <td>
+        List of answers to survey questions.  
+
+        See [The survey part](become-a-collection-source#the-survey-part).  
+
+        Note: An end customer is not forced to answer all questions, you can send a survey that is not completed in its totality.
+      </td>
+
+      <td>
+        **Yes**
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **message**
+      </td>
+
+      <td>
+        Text message from the end customer:  
+
+        * *created\_date* : format "2020-08-07T01:29:30.034195+02:00"
+
+        * *type*: "Idea", "Praise", "Problem", "Question" or "NoType" if no category exists
+
+        * *content*: text messageNotes:
+
+        * A text message cannot be sent without a survey
+
+        * A text message must have all his attributes filled in
+      </td>
+
+      <td>
+        **No**
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **medium**
+      </td>
+
+      <td>
+        Source of feedback collection.  
+
+        Here are the most used mediums:  
+
+        * transactional email: `TE`
+        * transactional SMS: `TS`
+        * mobile: `MOB`*The value differs according to your collection perimeter: please ask your Goodays technical contact for this information if it does not match the examples above.*
+      </td>
+
+      <td>
+        **Yes**
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **collect\_uid**
+      </td>
+
+      <td>
+        Allows the management of the **unique participation**.  
+
+        The `collect_uid` parameter is used to identify the participation in a unique way. This can be a string, a number, a date... You can, for example, concatenate an order ID, a reservation ID, a basket ID... with a timestamp. The most important thing is that this value must be unique.  
+
+        If the value of the `collect_uid` already exists then a `409 error` is returned and the response is not recorded.  
+
+        *This parameter is not mandatory but strongly recommended.*
+      </td>
+
+      <td>
+        **No**
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 The API Call:
 
@@ -151,7 +289,7 @@ curl --location --request POST 'https://api.goodays.co/v2/responses/collect' \
 }'
 ```
 
-If the answer has been recorded, you will get a "_201: created_" back in the header.  
+If the answer has been recorded, you will get a "*201: created*" back in the header.\
 If not, an error will be returned in the endpoint return, for example:
 
 ```json
@@ -205,7 +343,7 @@ You will obtain something like this:
 }
 ```
 
-Take the id corresponding to the survey you wish to push responses to.  
+Take the id corresponding to the survey you wish to push responses to.\
 Request the following endpoint : [`/surveys`](ref:surveys_list) with the "id" as parameter:
 
 ```curl surveys_read call
@@ -376,16 +514,16 @@ You will obtain something like this:
 That's it, you have the structure of the survey! 
 
 > 👍 Types of questions
-> 
+>
 > All of these answer type are compatible with the Collect API :
-> 
-> - `nps`
-> - `csat`
-> - `stars`
-> - `choices`
-> - `multiple_answers`
-> - `text`
-> - `yes/no`
+>
+> * `nps`
+> * `csat`
+> * `stars`
+> * `choices`
+> * `multiple_answers`
+> * `text`
+> * `yes/no`
 
 ### The customer parameters part
 
@@ -449,13 +587,13 @@ You will obtain something like this:
 ```
 
 > 🚧 What Custom Parameters do I have to use?
-> 
+>
 > To find out if a Custom Parameter is mandatory you have to look at the attribute "required ". If it is at "true" then the attribute must be in the payload of the API call.
 
 > 🚧 And for the "user"?
-> 
+>
 > For the `user` object: if a value is optional you must leave the attribute with an empty value.
-> 
+>
 > But the `email` and `first_name` is always mandatory: if you don't have it you must be don't push the `user` object.
 
 # Examples
