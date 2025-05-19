@@ -1,0 +1,15 @@
+---
+title: /levels/{id}
+excerpt: ''
+api:
+  file: goodays-api.json
+  operationId: levels_read
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
