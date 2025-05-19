@@ -18,7 +18,7 @@ To use the Goodays APIs, you need to pass your personal access token in the Auth
 
 ## Access Token
 
-Access tokens are long strings of random characters that look something like this: `943af478d3ff3d4d760020c11af102b79c440513`.  
+Access tokens are long strings of random characters that look something like this: `943af478d3ff3d4d760020c11af102b79c440513`.\
 Your access token is unique to you. We use it to identify you and make sure that only you can access your resources.
 
 ## Get your token
@@ -27,8 +27,8 @@ An access token is unique and belongs to an individual client. If you don't have
 
 ## Authentication format
 
-Now that you have your access token, you can perform requests.  
-Each request to an API have to contain the access token in the Authorization header.  
+Now that you have your access token, you can perform requests.\
+Each request to an API have to contain the access token in the Authorization header.\
 A typical request should look like this:
 
 ```curl
@@ -50,5 +50,5 @@ The information included in the error object varies depending on the error, but 
 | 403              | Invalid authentication credentials | The provided access token is invalid.     | Check if the provided token matches the token sent by Goodays. |
 
 > ❗️ Privacy
-> 
-> Anyone with your access token can read, update and delete your resources, so keep your token **safe**! Also, don't commit to source control with your access token in your code — use a placeholder like ACCESS_TOKEN instead.
+>
+> Anyone with your access token can read, update and delete your resources, so keep your token **safe**! Also, don't commit to source control with your access token in your code — use a placeholder like ACCESS\_TOKEN instead.
