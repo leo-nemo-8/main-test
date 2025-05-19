@@ -11,13 +11,13 @@ next:
   description: ''
 ---
 > 📘 What's that?
-> 
+>
 > A remark is the message left by the End Customer. It can be typed as **Idea**, **Praise**, **Problem** or **Question**.
-> 
+>
 > The discussion between the Local Manager and the End Customer. after the first comment from the End Customer is typed as a "Message".
 
 > 👍 Going further
-> 
+>
 > Consult the [general Metrics API documentation](/docs/exploit-the-full-potential-of-your-data) for more.
 
 ![](https://files.readme.io/ec4c833-Constructive_Conversations.png "Constructive Conversations.png")
@@ -64,7 +64,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/remarks' \
 }
 ```
 
-By default the calculation of the score is done "since always".  
+By default the calculation of the score is done "since always".\
 And the return will always contain:
 
 | Attribute       | Description                                                                                                                             |
@@ -81,8 +81,8 @@ And the return will always contain:
 | **percentage**  | Percentage of responses for the type of remarks observed over the requested periods for the Idea, Praise, Problem, Question or Message. |
 
 > 📘 Zoom on "key" and "description" attribute
-> 
-> This attributes are Only filled in when "by", "by_context" or "by_level_category" is used.  
+>
+> This attributes are Only filled in when "by", "by\_context" or "by\_level\_category" is used.\
 > Otherwise they have the value `null`.
 
 # Add some filters
@@ -93,62 +93,198 @@ It is possible to add GET parameters to refine the calculation of the score over
 
 To calculate a remarks metrics it is possible to combine the following GET parameters:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "GET parameters",
-    "h-1": "Description",
-    "0-0": "**begin**",
-    "0-1": "Start date of the calculation period.  \n_Format : YYYY-MM-DDThh:mm:ssZ_  \nSee [this page](doc:timezone-management) for the timezone management.",
-    "1-0": "**end**",
-    "1-1": "End date of the calculation period.  \n_Format : YYYY-MM-DDThh:mm:ssZ_  \nSee [this page](doc:timezone-management) for the timezone management.",
-    "2-0": "**place** ",
-    "2-1": "Filter on an establishment.  \n_It is necessary to indicate the ID of the establishment from the endpoint [/places](ref:places_list)._",
-    "3-0": "**places** ",
-    "3-1": "Filter on an establishment list.  \n_Format : Establishment IDs separated by commas._",
-    "4-0": "**level** ",
-    "4-1": "Filter on a level.  \n_It is necessary to indicate the ID of the establishment from the endpoint [/levels](ref:levels_list)._",
-    "5-0": "**levels** ",
-    "5-1": "Filter on a level list.  \n_Format : Level IDs separated by commas._",
-    "6-0": "**survey**",
-    "6-1": "filter on a survey.  \n_It is necessary to indicate the ID of the question from the endpoint [/surveys](ref:surveys_list)._",
-    "7-0": "**question** ",
-    "7-1": "Filter on a question.  \n_It is necessary to indicate the ID of the question from the endpoint [/surveys](ref:surveys_list)._",
-    "8-0": "**nps** ",
-    "8-1": "Filter on nps category : \"detractor\", \"passive\", \"promoter\".",
-    "9-0": "**context\\_**",
-    "9-1": "Filter on a value of Additional Information.  \n_To construct this parameter you need to concatenate the prefix \\`context_`and one of the`key\\` attribute returned by the endpoint [/configuration](ref:configuration_list).\\_  \n  \nSee the :information_source: block below.",
-    "10-0": "**remark_type** ",
-    "10-1": "Filter on remark type : \"Idea\", \"Message\",  \"Praise\", \"Problem\", \"Question\".",
-    "11-0": "**source** ",
-    "11-1": "Filter on source : \"critizr\", \"email\", \"facebook\", \"google\", \"sms\", \"tripadvisor\", \"widget\", \"wifi\".",
-    "12-0": "**by** ",
-    "12-1": "Group calculations by.  \nSee chapter [by](remarks#by).",
-    "13-0": "**by_context** ",
-    "13-1": "Group calculations by Additional Information.  \nSee chapter [by Context](remarks#by-context).",
-    "14-0": "**by_level_category** ",
-    "14-1": "Group calculations by level category.  \nSee chapter [by Level Category](remarks#by-level-category)."
-  },
-  "cols": 2,
-  "rows": 15,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        GET parameters
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **begin**
+      </td>
+
+      <td>
+        Start date of the calculation period.\
+        *Format : YYYY-MM-DDThh:mm:ssZ*\
+        See [this page](doc:timezone-management) for the timezone management.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **end**
+      </td>
+
+      <td>
+        End date of the calculation period.\
+        *Format : YYYY-MM-DDThh:mm:ssZ*\
+        See [this page](doc:timezone-management) for the timezone management.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **place** 
+      </td>
+
+      <td>
+        Filter on an establishment.\
+        *It is necessary to indicate the ID of the establishment from the endpoint[/places](ref:places_list).*
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **places** 
+      </td>
+
+      <td>
+        Filter on an establishment list.\
+        *Format : Establishment IDs separated by commas.*
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **level** 
+      </td>
+
+      <td>
+        Filter on a level.\
+        *It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list).*
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **levels** 
+      </td>
+
+      <td>
+        Filter on a level list.\
+        *Format : Level IDs separated by commas.*
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **survey**
+      </td>
+
+      <td>
+        filter on a survey.\
+        *It is necessary to indicate the ID of the question from the endpoint[/surveys](ref:surveys_list).*
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **question** 
+      </td>
+
+      <td>
+        Filter on a question.\
+        *It is necessary to indicate the ID of the question from the endpoint[/surveys](ref:surveys_list).*
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **nps** 
+      </td>
+
+      <td>
+        Filter on nps category : "detractor", "passive", "promoter".
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **context\_**
+      </td>
+
+      <td>
+        Filter on a value of Additional Information.\
+        *To construct this parameter you need to concatenate the prefix\`context*`and one of the`key\` attribute returned by the endpoint [/configuration](ref:configuration_list).\_  
+
+        See the :information_source: block below.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **remark\_type** 
+      </td>
+
+      <td>
+        Filter on remark type : "Idea", "Message",  "Praise", "Problem", "Question".
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **source** 
+      </td>
+
+      <td>
+        Filter on source : "critizr", "email", "facebook", "google", "sms", "tripadvisor", "widget", "wifi".
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **by** 
+      </td>
+
+      <td>
+        Group calculations by.\
+        See chapter [by](remarks#by).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **by\_context** 
+      </td>
+
+      <td>
+        Group calculations by Additional Information.\
+        See chapter [by Context](remarks#by-context).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **by\_level\_category** 
+      </td>
+
+      <td>
+        Group calculations by level category.\
+        See chapter [by Level Category](remarks#by-level-category).
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 > 📘 Get an updated list of values for the "context\_" parameter
-> 
+>
 > "Additional Information" is additional data attached to a response to give a better understanding about the context.
-> 
-> The list of Additional Information available depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). The only 'Additional Information" usable with this parameter are the one with the field _"use_in_stats" = true_.
-> 
+>
+> The list of Additional Information available depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). The only 'Additional Information" usable with this parameter are the one with the field *"use\_in\_stats" = true*.
+>
 > See "[By context of the purchase amount](remarks#by-context-of-the-purchase-amount)" use case.
 
 > 📘 Get an updated list of values for the "source" parameter
-> 
+>
 > The examples listed for the "source" parameter are not exhaustive. To obtain an exhaustive list, the endpoint [/stats/remarks](ref:stats_remarks_list) must be called by indicating an unexpected value. In return the error message will list all possible values.
 
 ## Group calculations
@@ -156,8 +292,8 @@ To calculate a remarks metrics it is possible to combine the following GET param
 The three "by" parameters allow you to retrieve a list of results aggregated according to the value selected in the input.
 
 > 📘 Combine the "by" or not combine the "by" ?
-> 
-> You can combine several other GET parameters with a "by" but you can not combine the filters "by", "by_context" and "by_level_category" in a single request. Only one aggregation parameter is allowed.
+>
+> You can combine several other GET parameters with a "by" but you can not combine the filters "by", "by\_context" and "by\_level\_category" in a single request. Only one aggregation parameter is allowed.
 
 Here are the 3 possibilities :
 
@@ -165,7 +301,7 @@ Here are the 3 possibilities :
 
 Calculate the remarks metrics by grouping elements and return a list.
 
-The distribution of the calculation can be by : "day", "month", "nps_category", "place", "quarter", "remark_type", "source", "survey", "year".
+The distribution of the calculation can be by : "day", "month", "nps\_category", "place", "quarter", "remark\_type", "source", "survey", "year".
 
 See "[By establishment over the month of May 2020](remarks#by-establishment-over-the-month-of-may-2020)" or [By month for one level and a specific source](remarks#by-month-for-one-level-and-a-specific-source) use cases.
 
@@ -175,7 +311,7 @@ Calculate the remarks metrics for each value of the "Additional Information" pas
 
 "Additional Information" is additional data attached to a response to give a better understanding about the context.
 
-The list of Additional Information available depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). The only 'Additional Information" usable with this parameter are the one with the field _"use_in_stats" = true_.
+The list of Additional Information available depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). The only 'Additional Information" usable with this parameter are the one with the field *"use\_in\_stats" = true*.
 
 See "[By context of the purchase amount](remarks#by-context-of-the-purchase-amount)" use case.
 
@@ -187,7 +323,7 @@ The categories represent your hierarchical or geographical organization dependin
 
 From these categories, you can calculate the remarks metrics distributed by region, business unit, brand, etc.
 
-The category ID to be used is returned by the endpoint [/levels](ref:levels_list), in the "category_id" attribute.
+The category ID to be used is returned by the endpoint [/levels](ref:levels_list), in the "category\_id" attribute.
 
 See "[By level category](remarks#by-level-category-1)" use case.
 
@@ -199,9 +335,9 @@ Here are some examples to show you the possibilities of this endpoint. This is o
 
 I have to use the following parameters :
 
-- begin : the first date of the month of May
-- end : the last date of the month of May
-- by : group calculation by "place"
+* begin : the first date of the month of May
+* end : the last date of the month of May
+* by : group calculation by "place"
 
 ```curl Remarks call
 curl --location --request GET 'https://api.goodays.co/v2/stats/remarks? \
@@ -295,14 +431,14 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/remarks? \
 ```
 
 > 📘 Zoom on "by" parameter
-> 
+>
 > Here the "by" distributes the calculation by establishment. The attribute "key" contains the ID of the institution and the "description" its name.
 
 ## For one End Customer
 
 I have to use the following parameters :
 
-- email
+* email
 
 **Tips :** you can add the parameter "by" with the value "place" to get a distribution of this end-customer's scores by establishment.
 
@@ -346,16 +482,16 @@ email=max.guevara@angel.com' \
 ```
 
 > 📘 Zoom on "by" parameter
-> 
+>
 > Here there is no "by". The attribute "key" and "description" contains "null".
 
 ## For one Additional Information
 
 I have to use the following parameters :
 
-- context\_ : "context_service"
+* context\_ : "context\_service"
 
-_Hypothesis: in our configuration we have a "Service" Additional Information with a `service` key_
+*Hypothesis: in our configuration we have a "Service" Additional Information with a`service` key*
 
 ```curl
 curl --location --request GET 'https://api.goodays.co/v2/stats/remarks? /
@@ -415,11 +551,11 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/remarks? /
 
 I have to use the following parameters :
 
-- source : "email"
-- level : level ID
-- by : "month"
+* source : "email"
+* level : level ID
+* by : "month"
 
-_Hypothesis: in our configuration the level ID "Yqxzp5Ad2J" corresponds to your level "South France"_
+*Hypothesis: in our configuration the level ID "Yqxzp5Ad2J" corresponds to your level "South France"*
 
 ```curl Remarks call
 curl --location --request GET 'https://api.goodays.co/v2/stats/remarks? \
@@ -513,16 +649,16 @@ source=email \
 ```
 
 > 📘 Zoom on "by" parameter
-> 
+>
 > The attributes "key" and "description" both contain the relevant year and month.
 
 ## By context of the purchase amount
 
 I have to use the following parameters :
 
-- by_context : "price"
+* by\_context : "price"
 
-_Hypothesis: additional information exists in your configuration and is present in ever response._ 
+*Hypothesis: additional information exists in your configuration and is present in ever response.* 
 
 ```curl Remarks
 curl --location --request GET 'https://api.goodays.co/v2/stats/remarks?by_context=price' \
@@ -612,17 +748,17 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/remarks?by_contex
 }
 ```
 
-> 📘 Zoom on "by_context" parameter
-> 
-> Here the "by_context" distributes the calculation by additional information "price". The attribute "key" contains the ID of the additional information and the "description" its name.
+> 📘 Zoom on "by\_context" parameter
+>
+> Here the "by\_context" distributes the calculation by additional information "price". The attribute "key" contains the ID of the additional information and the "description" its name.
 
 ## By level category
 
 I have to use the following parameters :
 
-- by_level_category : "2"
+* by\_level\_category : "2"
 
-_Hypothesis: in our configuration the level category "2" corresponds to your regions._
+*Hypothesis: in our configuration the level category "2" corresponds to your regions.*
 
 ```curl Remarks call
 curl --location --request GET 'https://api.goodays.co/v2/stats/remarks?by_level_category=2' \
@@ -712,6 +848,6 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/remarks?by_level_
 }
 ```
 
-> 📘 Zoom on "by_level_category" parameter
-> 
-> Here the "by_level_category" distributes the calculation by level category. The attribute "key" contains the ID of the level and the "description" the level name.
+> 📘 Zoom on "by\_level\_category" parameter
+>
+> Here the "by\_level\_category" distributes the calculation by level category. The attribute "key" contains the ID of the level and the "description" the level name.
