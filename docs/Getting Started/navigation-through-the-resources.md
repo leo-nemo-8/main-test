@@ -10,13 +10,13 @@ metadata:
 next:
   description: ''
 ---
-For some endpoints, the Goodays API responds with links in the payload.  
+For some endpoints, the Goodays API responds with links in the payload.\
 It is the implementation of [HATEOAS principle](https://fr.wikipedia.org/wiki/HATEOAS).
 
 ## What is HATEOAS ?
 
-HATEOAS stands for **H**ypermedia **a**s **t**he **E**ngine **o**f **A**pplication **S**tate.  
-The basics of this principle is to allow a server to navigate through resources without having to be aware of the whole API schema.  
+HATEOAS stands for **H**ypermedia **a**s **t**he **E**ngine **o**f **A**pplication **S**tate.\
+The basics of this principle is to allow a server to navigate through resources without having to be aware of the whole API schema.\
 As a user browsing on a web page clicking from links to links, servers may discover resources by following the hypermedia links sent in the payload.
 
 ## Example
@@ -60,7 +60,7 @@ This request gets the following response :
 }
 ```
 
-At this point, you should notice the `detail_url` field. It contains a url to retrieve the details of a specific response.  
+At this point, you should notice the `detail_url` field. It contains a url to retrieve the details of a specific response.\
 Let's try this url!
 
 ## Get a specific response
@@ -116,6 +116,6 @@ We get the full object of this specific response :
 ```
 
 > 📘 Did you notice ?
-> 
-> In the response of the specific Response request, the fields `survey` and `place` also contain a `detail_url` field.  
+>
+> In the response of the specific Response request, the fields `survey` and `place` also contain a `detail_url` field.\
 > We could continue navigating to other resources !
