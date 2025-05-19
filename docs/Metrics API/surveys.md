@@ -11,13 +11,13 @@ next:
   description: ''
 ---
 > 📘 What's that?
-> 
+>
 > Each survey is different and depends on your configuration : it can be composed of different answer type (stars, nps, multiple choices...).
-> 
-> _Please go to [/stats/survey](ref:stats_surveys_list) to obtain the detail of your survey configuration._
+>
+> *Please go to[/stats/survey](ref:stats_surveys_list) to obtain the detail of your survey configuration.*
 
 > 👍 Going further
-> 
+>
 > Consult the [general Metrics API documentation](/docs/exploit-the-full-potential-of-your-data) for more.
 
 ![](https://files.readme.io/119cee5-Question.png "Question.png")
@@ -168,40 +168,106 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/surveys/5gd0vbRYx
 }
 ```
 
-By default the calculation of the score is done "since always".  
+By default the calculation of the score is done "since always".\
 And the return will always contain:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Attribute",
-    "h-1": "Description",
-    "0-0": "**key** ",
-    "0-1": "Survey ID",
-    "1-0": "**description** ",
-    "1-1": "Description of the survey.",
-    "2-0": "**count**",
-    "2-1": "Number of responses.",
-    "3-0": "**average** ",
-    "3-1": "Average score",
-    "4-0": "**answers**",
-    "4-1": "List of questions related to the survey selected.  \nEach question lists the number of answers made on each answer option. The list is presented in the order of the choices proposed to the End Customer.  \nTo know the order of the choices of a survey it is necessary to use the endpoint [/stats/survey/{id}](ref:stats_surveys_read).",
-    "5-0": "**count**",
-    "5-1": "For each _answers_ : number of responses for the answer.",
-    "6-0": "**percentage**",
-    "6-1": "Percentage of responses for the answer.",
-    "7-0": "**value**",
-    "7-1": "Choice wording."
-  },
-  "cols": 2,
-  "rows": 8,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Attribute
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **key** 
+      </td>
+
+      <td>
+        Survey ID
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **description** 
+      </td>
+
+      <td>
+        Description of the survey.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **count**
+      </td>
+
+      <td>
+        Number of responses.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **average** 
+      </td>
+
+      <td>
+        Average score
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **answers**
+      </td>
+
+      <td>
+        List of questions related to the survey selected.\
+        Each question lists the number of answers made on each answer option. The list is presented in the order of the choices proposed to the End Customer.\
+        To know the order of the choices of a survey it is necessary to use the endpoint [/stats/survey/\{id}](ref:stats_surveys_read).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **count**
+      </td>
+
+      <td>
+        For each *answers* : number of responses for the answer.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **percentage**
+      </td>
+
+      <td>
+        Percentage of responses for the answer.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **value**
+      </td>
+
+      <td>
+        Choice wording.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## parameters
 
@@ -217,33 +283,89 @@ It is possible to add GET parameters to refine the calculation of the survey res
 
 To filter the survey results, it is possible to combine the following GET parameters:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "GET parameters",
-    "h-1": "Description",
-    "0-0": "**begin**",
-    "0-1": "Start date of the calculation period.  \n_Format : YYYY-MM-DDThh:mm:ssZ_  \nSee [this page](doc:timezone-management) for the timezone management.",
-    "1-0": "**end**",
-    "1-1": "End date of the calculation period.  \n_Format : YYYY-MM-DDThh:mm:ssZ_  \nSee [this page](doc:timezone-management) for the timezone management.",
-    "2-0": "**place**",
-    "2-1": "Filter on an establishment.  \n_It is necessary to indicate the ID of the establishment from the endpoint [/places](ref:places_list)_",
-    "3-0": "**places**",
-    "3-1": "Filter on an establishment list.  \n_Format : Establishment IDs separated by commas_",
-    "4-0": "**level**",
-    "4-1": "Filter on a level.  \n_It is necessary to indicate the ID of the establishment from the endpoint [/levels](ref:levels_list)_",
-    "5-0": "**levels**",
-    "5-1": "Filter on a level list.  \n_Format : Level IDs separated by commas_"
-  },
-  "cols": 2,
-  "rows": 6,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        GET parameters
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **begin**
+      </td>
+
+      <td>
+        Start date of the calculation period.\
+        *Format : YYYY-MM-DDThh:mm:ssZ*\
+        See [this page](doc:timezone-management) for the timezone management.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **end**
+      </td>
+
+      <td>
+        End date of the calculation period.\
+        *Format : YYYY-MM-DDThh:mm:ssZ*\
+        See [this page](doc:timezone-management) for the timezone management.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **place**
+      </td>
+
+      <td>
+        Filter on an establishment.\
+        *It is necessary to indicate the ID of the establishment from the endpoint[/places](ref:places_list)*
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **places**
+      </td>
+
+      <td>
+        Filter on an establishment list.\
+        *Format : Establishment IDs separated by commas*
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **level**
+      </td>
+
+      <td>
+        Filter on a level.\
+        *It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list)*
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **levels**
+      </td>
+
+      <td>
+        Filter on a level list.\
+        *Format : Level IDs separated by commas*
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 # Use cases
 
@@ -253,9 +375,9 @@ Here are some examples to show you the possibilities of this endpoint. This is o
 
 I have to use the following parameters :
 
-- begin : the first date of the month of October
-- end : the last date of the month of October
-- place : the ID of the establishment
+* begin : the first date of the month of October
+* end : the last date of the month of October
+* place : the ID of the establishment
 
 ```curl
 curl --location --request GET 'https://api.goodays.co/v2/stats/surveys/My4lvMpK8R? \
@@ -336,7 +458,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/surveys/My4lvMpK8
 
  have to use the following parameters :
 
-- level : level ID
+* level : level ID
 
 ```curl
 curl --location --request GET 'https://api.goodays.co/v2/stats/surveys/My4lvMpK8R? \
