@@ -17,11 +17,11 @@ next:
 The **Solicitation API** is the perfect tool to get in touch with your customers. By email or SMS, send your surveys on a regular basis or right after an interaction! Who says "real time"?
 
 > 👍 Going further
-> 
+>
 > Consult the [API Reference](/reference/solicitations_list) for more.
 
 > 📘 Feel stucked?
-> 
+>
 > Need help with an error? Head to [Troubleshooting and errors](/docs/errors) for more information.
 
 # Key Concepts
@@ -30,8 +30,8 @@ The Solicitation API is based on 2 main usages: send and retrieve solicitations.
 
 You can send a solicitation with just a simple POST request. Once the solicitation sent, you can retrieve it by sending a GET request and monitor its status (sent, opened, ...).
 
-Solicitations can be sent one by one or in bulk. These two technics allow to manage your solicitations at your own rhythm.  
-If you are able to perform a request after each payment for example, the single solicitation endpoint is the best fit.  
+Solicitations can be sent one by one or in bulk. These two technics allow to manage your solicitations at your own rhythm.\
+If you are able to perform a request after each payment for example, the single solicitation endpoint is the best fit.\
 On the other hand, if you create a program that sends a lot of solicitations at a given time, the bulk option is your best choice.
 
 # Let's try!
@@ -64,30 +64,30 @@ Let's say you want to get your customers' feedback right after they purchased so
 ```
 
 > 📘 Sender Formatting
-> 
-> If you send an email the format must be "Your name [no-reply@yourdomain.com](mailto:no-reply@yourdomain.com)".  
+>
+> If you send an email the format must be "Your name [no-reply@yourdomain.com](mailto:no-reply@yourdomain.com)".\
 > For SMS the format must be a label of maximum 11 characters containing only numbers, spaces and/or letters without accents.
 
 > 📘 Recipient's phone number format
-> 
+>
 > We recommend using the [E.164](https://www.twilio.com/docs/glossary/what-e164) standard.
-> 
+>
 > E.164 numbers are formatted `[+] [country code] [subscriber number including area code]` and can have a maximum of fifteen digits.
-> 
-> An example of a French phone number in the E.164 format is : _+33612345678_
-> 
-> _For your information, a Goodays script normalizes the received phone numbers to the E.164 format. This means that formats such as 0033 or 06 (for French phone numbers) will be transformed in +33xxxxxxxxx._
-> 
-> :warning: _Be careful though, as normalization is not guaranteed in 100% of cases, especially in border areas. A French number is valid as an Italian or Belgian number, but it's 3 different people behind, impossible to know which one it is without a country code._
+>
+> An example of a French phone number in the E.164 format is : *+33612345678*
+>
+> *For your information, a Goodays script normalizes the received phone numbers to the E.164 format. This means that formats such as 0033 or 06 (for French phone numbers) will be transformed in +33xxxxxxxxx.*
+>
+> :warning: *Be careful though, as normalization is not guaranteed in 100% of cases, especially in border areas. A French number is valid as an Italian or Belgian number, but it's 3 different people behind, impossible to know which one it is without a country code.*
 
 > 🚧 Marketing Pressure
-> 
-> The Solicitation API doesn't support marketing pressure: it sends each request regardless of whether the end customer has already been solicited.  
+>
+> The Solicitation API doesn't support marketing pressure: it sends each request regardless of whether the end customer has already been solicited.\
 > It's your responsibility to set up this marketing pressure on your side.
 
 2. Use the endpoint url `https://api.goodays.co/v2/solicitations` with the POST verb.
 
-3. _Et voilà!_ Now you can send a GET request to see this new solicitation and keep track of its status' evolutions!
+3. *Et voilà!* Now you can send a GET request to see this new solicitation and keep track of its status' evolutions!
 
 ## Send several solicitations at once
 
@@ -135,21 +135,21 @@ With this endpoint, you will be able to send up to 1000 solicitations at a time!
 ```
 
 > 📘 Sender Formatting
-> 
-> If you send an email the format must be "Your name [no-reply@yourdomain.com](mailto:no-reply@yourdomain.com)".  
+>
+> If you send an email the format must be "Your name [no-reply@yourdomain.com](mailto:no-reply@yourdomain.com)".\
 > For SMS the format must be a label of maximum 11 characters containing only numbers, spaces and/or letters without accents.
 
 > 📘 Recipient's phone number format
-> 
+>
 > We recommend using the [E.164](https://www.twilio.com/docs/glossary/what-e164) standard.
-> 
+>
 > E.164 numbers are formatted `[+] [country code] [subscriber number including area code]` and can have a maximum of fifteen digits.
-> 
-> An example of a French phone number in the E.164 format is : _+33612345678_
-> 
-> _For your information, a Goodays script normalizes the received phone numbers to the E.164 format. This means that formats such as 0033 or 06 (for French phone numbers) will be transformed in +33xxxxxxxxx._
-> 
-> :warning: _Be careful though, as normalization is not guaranteed in 100% of cases, especially in border areas. A French number is valid as an Italian or Belgian number, but it's 3 different people behind, impossible to know which one it is without a country code._
+>
+> An example of a French phone number in the E.164 format is : *+33612345678*
+>
+> *For your information, a Goodays script normalizes the received phone numbers to the E.164 format. This means that formats such as 0033 or 06 (for French phone numbers) will be transformed in +33xxxxxxxxx.*
+>
+> :warning: *Be careful though, as normalization is not guaranteed in 100% of cases, especially in border areas. A French number is valid as an Italian or Belgian number, but it's 3 different people behind, impossible to know which one it is without a country code.*
 
 2. Use the endpoint url `https://api.goodays.co/v2/solicitations/bulk` with the POST verb.
 
@@ -157,7 +157,7 @@ With this endpoint, you will be able to send up to 1000 solicitations at a time!
 
 ## Retrieve the "place-id"
 
-- Enter your establishment code directly here
+* Enter your establishment code directly here
 
 ## Retrieve the "survey-id"
 
@@ -173,41 +173,126 @@ With this endpoint, you will be able to send up to 1000 solicitations at a time!
 
 A solicitation can have different status in its lifespan. Here are the possibilities 
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Status",
-    "h-1": "Meaning",
-    "0-0": "Queued",
-    "0-1": "The solicitation is waiting to be send.",
-    "1-0": "Dispatching",
-    "1-1": "The solicitation is being sent.",
-    "2-0": "Sent",
-    "2-1": "The solicitation has been sent.",
-    "3-0": "Delivered",
-    "3-1": "The email or SMS has reached the inbox of the recipient.",
-    "4-0": "Undelivered",
-    "4-1": "The following reasons may explain this status :  \n  \n- Email was rejected by the recipient's server\n- The email address does not exist\n- Emails can be marked as spam by the recipient for various reasons\n- An email was sent to a recipient who is on a suppression list",
-    "5-0": "Failed",
-    "5-1": "The email can not been send due to an internal error.",
-    "6-0": "Opened",
-    "6-1": "The recipient opened the email.",
-    "7-0": "Clicked",
-    "7-1": "The recipient clicked on a link in the email.",
-    "8-0": "Reported",
-    "8-1": "The recipient reported the email as \"Spam\".",
-    "9-0": "Unsubscribed",
-    "9-1": "The recipient unsubscribed. It will not be possible to send new emails to this recipient."
-  },
-  "cols": 2,
-  "rows": 10,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Status
+      </th>
 
+      <th>
+        Meaning
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Queued
+      </td>
+
+      <td>
+        The solicitation is waiting to be send.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Dispatching
+      </td>
+
+      <td>
+        The solicitation is being sent.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Sent
+      </td>
+
+      <td>
+        The solicitation has been sent.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Delivered
+      </td>
+
+      <td>
+        The email or SMS has reached the inbox of the recipient.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Undelivered
+      </td>
+
+      <td>
+        The following reasons may explain this status :  
+
+        * Email was rejected by the recipient's server
+        * The email address does not exist
+        * Emails can be marked as spam by the recipient for various reasons
+        * An email was sent to a recipient who is on a suppression list
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Failed
+      </td>
+
+      <td>
+        The email can not been send due to an internal error.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Opened
+      </td>
+
+      <td>
+        The recipient opened the email.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Clicked
+      </td>
+
+      <td>
+        The recipient clicked on a link in the email.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Reported
+      </td>
+
+      <td>
+        The recipient reported the email as "Spam".
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Unsubscribed
+      </td>
+
+      <td>
+        The recipient unsubscribed. It will not be possible to send new emails to this recipient.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Retrieve sending IDs
 
@@ -217,7 +302,7 @@ A solicitation can have different status in its lifespan. Here are the possibili
 
 ## Check sending status
 
-1. Call the endpoint url `https://api.goodays.co/v2/solicitations/:solicitation_id` with the GET parameter "solicitation_id" filled in with the email ID previously retrieved .
+1. Call the endpoint url `https://api.goodays.co/v2/solicitations/:solicitation_id` with the GET parameter "solicitation\_id" filled in with the email ID previously retrieved .
 2. In return you will get the status of your shipment.
 
 # Ready to start?
