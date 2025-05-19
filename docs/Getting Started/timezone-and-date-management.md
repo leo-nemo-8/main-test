@@ -13,17 +13,17 @@ next:
 An important zoom on the date format: Goodays uses the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) standard for its date formats.
 
 > 📘 Date and time in UTC
-> 
+>
 > We accept the following format for our `start_date` and `end_date` attribute :
-> 
-> - 2021-11-16T15:40:09+00:00
-> - 2021-11-16T15:40:09Z
-> - 20211116T154009Z
+>
+> * 2021-11-16T15:40:09+00:00
+> * 2021-11-16T15:40:09Z
+> * 20211116T154009Z
 
 This means that it is recommended to specify the timezone used in the date formats that you push to us:
 
-- For a UTC+0 format you can add `Z`or `-00:00` to your date
-- For a different UTC format you can add, for example, `-02:00` or `+02:00` depending on the timezone you want to use
+* For a UTC+0 format you can add `Z`or `-00:00` to your date
+* For a different UTC format you can add, for example, `-02:00` or `+02:00` depending on the timezone you want to use
 
 ```curl
 curl --location --request GET 'https://api.goodays.co/v2/responses/bulk? \
@@ -44,5 +44,5 @@ curl --location --request GET 'https://api.goodays.co/v2/responses/bulk? \
 ```
 
 > 📘 Url encode
-> 
+>
 > We recommend to Url encode the value of each date. Especially if you use the `+` character.
