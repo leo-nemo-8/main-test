@@ -16,8 +16,8 @@ In this section, we will cover the most common errors and how to avoid them.
 
 ## Basic principle
 
-As convention at Goodays, we decide to use the HTTP Codes at their fullest.  
-For the most common errors, we send back the most relevant HTTP Code.  
+As convention at Goodays, we decide to use the HTTP Codes at their fullest.\
+For the most common errors, we send back the most relevant HTTP Code.\
 In case of complex errors, we will send an HTTP error code and a payload with a detailed message.
 
 ## Authorization
