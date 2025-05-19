@@ -1,0 +1,281 @@
+---
+title: A response at once
+excerpt: ... or not !
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+  pages:
+    - type: link
+      title: Response API Reference
+      url: /reference/responses_list
+---
+The **Response API** lets you access the data your surveys collect — on demand and in JSON format — without setting up webhooks or third-party integrations.
+
+> 👍 Going further
+> 
+> Consult the [API Reference](/reference/responses_list) for more.
+
+> 📘 Feel stucked ?
+> 
+> Need help with an error? Head to [Troubleshooting and errors](/docs/errors) for more information.
+
+# Key Concepts
+
+With the Response API, you send a GET request each time you want to retrieve your data.
+
+The response includes all the submissions your surveys have received so far, in JSON format. You can also add query parameters to your requests so that responses include only submissions received after a certain date and time or within a certain date range. The [Response API reference](/reference/levels_responses_bulk) lists and describes all of the available query parameters.
+
+The bulk mode allows you to retrieve responses 20 by 20 (the paging is customizable).
+
+# Use query parameters to retrieve specific data
+
+Suppose you expect thousands of responses on your surveys. To keep your Response API requests manageable, you decide to retrieve your survey's data once each day. In other words, you'll retrieve yesterday's data today, today's data tomorrow, and so on. Because you don't want to retrieve every response to your surveys, you'll use the `start_date` and `end_date` query parameters to narrow the scope of your request and limit the API response by date.
+
+Use `start_date` and `end_date` query parameters to retrieve a date range.
+
+Let's assume today is July 10, 2018, and you're going to retrieve the the previous day's data. Here's the walkthrough:
+
+1. You'll still use the `GET https://api.goodays.co/v2/responses/bulk` endpoint, but don't send your request yet!
+
+2. Add the `start_date` query parameter to your request. The `start_date` parameter is a string that uses ISO 8601 format, Coordinated Universal Time (UTC), with "T" as a delimiter between the date and time. July 10, 2018 at 12:00 a.m. UTC is expressed as 2018-07-10T00:00:00. If you want to retrieve responses for yesterday, 2018-07-09, the value for your `start_date` query parameter would be 2019-07-09T00:00:00. This means your response will include responses received since 12:00 a.m. UTC on July 9, 2018.
+
+3. Add the `end_date` query parameter to your request. The `end_date` parameter is also a string in the same format as the `start_date` parameter. The value for your `end_date` query parameter would be 2018-07-10T00:00:00. This means your response will include responses received up until 12:00 a.m. UTC on July 10, 2018.
+
+Here's what the cURL request looks like:
+
+```curl
+curl --location --request GET 'https://api.goodays.co/v2/responses/bulk? \
+	start_date=2019-07-09T00:00:00Z \
+  &end_date=2019-07-10T00:00:00Z' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: {access-token}'
+```
+
+Now, you can send your request. The response will include only the responses that were submitted yesterday, July 9, 2018. Like this sample:
+
+```json
+{
+    "next": "https://api.goodays.co/v2/responses/bulk?cursor=cD0yMDE5LTA3LTA5KzE0JTNBNTklM0E0OS42NTM3NjAlMkIwMCUzQTAw&end_date=2019-07-10T00%3A00%3A00Z&start_date=2019-07-09T00%3A00%3A00Z",
+    "previous": null,
+    "results": [
+        {
+            "id": "gxKrrlok4o",
+            "token": "936d44f4d5a9a95c63b3f0cc7d4642477a9f03836b5efadddd373d114e84c423",
+            "created_date": "2019-07-09T17:48:36.222412+02:00",
+            "updated_date": "2019-07-09T22:48:36.254510+02:00",
+            "source": "email",
+            "survey": {
+                "id": "QOJ85mb8wE",
+                "slug": "post_purchase_pos",
+                "label": "Post purchase point of sale",
+                "enabled": true,
+                "detail_url": "https://api.goodays.co/v2/surveys/QOJ85mb8wE"
+            },
+            "answers": [
+                {
+                    "id": "vdJrLvWQdD",
+                    "value": 8,
+                    "question": {
+                        "id": "1vdOBYlA8l",
+                        "title": "Would you recommend Style to your friends and family?",
+                        "type": "nps",
+                        "enabled": true
+                    }
+                },
+                {
+                    "id": "y8V20vN28G",
+                    "value": 4,
+                    "question": {
+                        "id": "pe8NzypJ8j",
+                        "title": "Are you satisfied with your checkout experience?",
+                        "type": "stars",
+                        "enabled": true
+                    }
+                }
+            ],
+            "message": {
+                "id": "TTT",
+                "created_date": "2021-11-22T15:42:48.691040+01:00",
+                "type": "Problem",
+                "content": "I like this shop!",
+                "attachment": null,
+                "sender": {
+                    "email": "EMAIL",
+                    "first_name": "PRÉNOM",
+                    "last_name": "NOM"
+                }
+            },
+            "reply": null,
+            "user": {
+                "email": "george.abitbol@classe.com",
+                "first_name": "George",
+                "last_name": "Abitbol",
+                "opt_in": {
+                    "newsletter": false,
+                    "email": false,
+                    "sms": false
+                }
+            },
+            "context": {
+                "email": "george.abitbol@classe.com",
+                "phone": "06123456789",
+                "crm_id": "",
+                "last_name": "Abitbol",
+                "first_name": "Georges",
+              	"extra": {
+                    "order_id": "12345",
+		                "title": "Mademoiselle",
+                }
+            },
+            "place": {
+                "id": "5gd0Lz1XdL",
+                "partner_id": "142",
+                "name": "Style Aix-en-Provence",
+                "enabled": true,
+                "detail_url": "https://api.critizr.com/v2/places/5gd0Lz1XdL"
+            },
+            "delegated_to": null,
+            "attached_messages": [],
+            "state": "open",
+            "thread": "6dn1GnXl8E",
+            "actions": {
+                "reply": "https://api.goodays.co/api/v2/responses/gxKrrlok4o/reply",
+                "spam": "https://api.goodays.co/api/v2/responses/gxKrrlok4o/spam",
+                "close": "https://api.goodays.co/api/v2/responses/gxKrrlok4o/close"
+            }
+        },
+        {
+            "id": "p4MZZJJBx2",
+            "token": "ceabc8599d95d926cf617b0fe420c6f975e3f3deb83ced454e22f8e43b87b1b1",
+            "created_date": "2019-07-09T16:59:49.653760+02:00",
+            "updated_date": "2019-07-09T16:59:49.685842+02:00",
+            "source": "email",
+            "survey": {
+                "id": "QOJ85mb8wE",
+                "slug": "post_purchase_pos",
+                "label": "Post purchase point of sale",
+                "enabled": true,
+                "detail_url": "https://api.goodays.co/v2/surveys/QOJ85mb8wE"
+            },
+            "answers": [
+                {
+                    "id": "vdJrLvWQdD",
+                    "value": 8,
+                    "question": {
+                        "id": "1vdOBYlA8l",
+                        "title": "Would you recommend Style to your friends and family?",
+                        "type": "nps",
+                        "enabled": true
+                    }
+                }
+            ],
+            "message": null,
+            "reply": null,
+            "user": null,
+            "context": null,
+            "place": {
+                "id": "okxwBz5B4y",
+                "partner_id": "049",
+                "name": "Style Ajaccio",
+                "enabled": true,
+                "detail_url": "https://api.goodays.co/v2/places/okxwBz5B4y"
+            },
+            "delegated_to": null,
+            "attached_messages": [],
+            "state": "open",
+            "thread": null,
+            "actions": {},
+            "alert_triggered": false
+        }
+    ]
+}
+```
+
+# Add some filters
+
+It is possible to add GET parameters to refine the response list over a defined period, a point of sales...
+
+## GET parameters
+
+To refine the result, it is possible to combine the following GET parameters:
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "GET parameters",
+    "h-1": "Description",
+    "0-0": "**start_date**",
+    "0-1": "Start date of the collection period.  \n_Format : YYYY-MM-DDThh:mm:ssZ_  \nSee [this page](doc:timezone-management) for the timezone management.",
+    "1-0": "**end_date**",
+    "1-1": "End date of the collection period.  \n_Format : YYYY-MM-DDThh:mm:ssZ_  \nSee [this page](doc:timezone-management) for the timezone management.",
+    "2-0": "**date_field**",
+    "2-1": "Choose the date on which the period filter should be set.  \nSee chapter [Choose the date to filter](a-response-at-once#choose-the-date-to-filter)  \n  \n:bulb: _We recommend that you systematically use this parameter in your API calls with the value `updated_date` to retrieve all entries that have been modified over the requested `start_date` / `end_date` period, and not just those created._",
+    "3-0": "**place** ",
+    "3-1": "Filter on a point of sales.  \n_Enter your establishment code directly here._",
+    "4-0": "**survey**",
+    "4-1": "Filter on a survey.  \nSee chapter [Retrieve the \"survey-id\"](a-response-at-once#retrieve-the-survey-id)",
+    "5-0": "**source**",
+    "5-1": "Filter on source : \"critizr\", \"email\", \"facebook\", \"google\", \"sms\", \"tripadvisor\", \"widget\", \"wifi\".",
+    "6-0": "**email** ",
+    "6-1": "Filter on an End Customer email.",
+    "7-0": "**crm_id** ",
+    "7-1": "Filter on a CRM ID (aka End Customer ID).",
+    "8-0": "**first_name**",
+    "8-1": "Filter on first name of the End Customer.",
+    "9-0": "**last_name**",
+    "9-1": "Filter on last name of the End Customer.",
+    "10-0": "**phone**",
+    "10-1": "Filter on phone of the End Customer.",
+    "11-0": "**has_answers**",
+    "11-1": "Filter on responses that have a survey answered (completely or partially) by the End Customer.  \n  \nPossible values: `true` or `false`.",
+    "12-0": "**has_message**",
+    "12-1": "Filter on response that have an initial textual message from the End Customer.  \n  \nPossible values: `true` or `false`.",
+    "13-0": "**has_reply**",
+    "13-1": "Filter on response that have already been replied from the Local Manager.  \n  \nPossible values: `true` or `false`."
+  },
+  "cols": 2,
+  "rows": 14,
+  "align": [
+    "left",
+    "left"
+  ]
+}
+[/block]
+
+
+## Retrieve the "survey-id"
+
+1. Call the endpoint url `https://api.goodays.co/v2/surveys` to obtain the ID corresponding to the right survey.
+2. Then the "id" attribute is the answer.
+
+## Choose the date to filter
+
+A response includes two dates:
+
+- The `created_date`: the date the response was created
+- The`updated_date`: the date the response was last updated because the client continued to complete the survey, the manager responded...
+
+To define on which date to base the date filter you have to use the parameter GET `date_field` with the value `updated_date` or `created_date`.
+
+This is important if you don't want to miss any updates from your end customers!
+
+# Example of filters
+
+Retrieve the end customer's responses with a verbatim that have been answered by the local manager on a specific point of sales and survey and the source is the website:
+
+```curl
+curl --location --request GET 'https://goodays.co/api/v2/responses/bulk \
+   ?survey=gxKrrlok4o \
+   &place=ABC123& \
+   &has_message=true \
+   &has_answers=true \
+   &has_reply=true \
+   &source=widget \
+--header 'Content-Type: application/json' \
+--header 'Authorization: {access-token}'
+```
