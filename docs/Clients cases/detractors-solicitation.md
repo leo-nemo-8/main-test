@@ -10,27 +10,27 @@ metadata:
 next:
   description: ''
 ---
-Having happy customers is obviously a good thing and should be a real goal in your customer experience strategy. However, your customer base is probably not composed 100% by happy clients. As the NPS scale described, there is also some passives and some **detractors**.  
+Having happy customers is obviously a good thing and should be a real goal in your customer experience strategy. However, your customer base is probably not composed 100% by happy clients. As the NPS scale described, there is also some passives and some **detractors**.\
 Even if having detractors seems to be the worst thing, it actually represents a huge lever !
 
-According to the American Express 2017 Customer Service Barometer, "Americans tell an average of 15 people about a poor service experience, versus the 11 people they’ll tell about a good experience.". This statement should create a sense of urgency to deal with your detractors without waiting !  
+According to the American Express 2017 Customer Service Barometer, "Americans tell an average of 15 people about a poor service experience, versus the 11 people they’ll tell about a good experience.". This statement should create a sense of urgency to deal with your detractors without waiting !\
 There are several types of detractors. You can find the detail [in this article](https://business.critizr.com/blog/les-5-profils-de-consommateurs-insatisfaits).
 
 The key insight here is that detractors usually experienced misunderstanding or felt deceived. Interacting to them right after they tell you about their insatisfaction is the perfect way to minimise their impact on other customers, fix their situation and move them from detractors to promoters.
 
 ## How to - Basics
 
-The first steps are actually quite the same as the [article about CRM](docs/crm-with-a-touch-of-feedback).  
-We still need to retrieve responses and get the details of each one to detect detractors.  
+The first steps are actually quite the same as the [article about CRM](docs/crm-with-a-touch-of-feedback).\
+We still need to retrieve responses and get the details of each one to detect detractors.\
 We now add a last step, the solicitation of these detractors.
 
 ## Key takeaways
 
-- Having detractors is bad but ignoring them is worst!
-- Reacting immediately after a detractor sent a review is an excellent way to turn this person in a promoter or at least to minimize his or her negative influence.
-- Retrieving detractors can easily be done.
-- Solicitations can be send one by one or in bluk.
-- Some of our clients choose to create "detractors" surveys to to target those users.
+* Having detractors is bad but ignoring them is worst!
+* Reacting immediately after a detractor sent a review is an excellent way to turn this person in a promoter or at least to minimize his or her negative influence.
+* Retrieving detractors can easily be done.
+* Solicitations can be send one by one or in bluk.
+* Some of our clients choose to create "detractors" surveys to to target those users.
 
 ## How to - Expert
 
@@ -131,10 +131,10 @@ With the details of the participation, you can get the value of the NPS question
 Now that you retrieve the detractors among your respondents, you can send emails or sms to them.
 
 > 📘 Sending mecanisms
-> 
+>
 > Critizr API lets you decide whether you send solicitations one by one or in bulk. The details of each mecanism will be presented below
 
-1. Create the payloads  
+1. Create the payloads\
    When you send solicitations one by one, the payload you have to generate looks like the one below :
 
 ```json
