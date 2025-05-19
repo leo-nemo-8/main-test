@@ -31,9 +31,9 @@ When you make an API request on an endpoint, you usually don't receive all of th
 
 For each "list" endpoint, the Goodays API sends **20 items**.
 
-> 📘 page_size
-> 
-> The pagination is configurable using the "page_size" parameter for up to 1000 results.
+> 📘 page\_size
+>
+> The pagination is configurable using the "page\_size" parameter for up to 1000 results.
 
 ## Cursor-based Pagination
 
@@ -53,9 +53,9 @@ When reading an endpoint that supports cursor pagination, you will see the follo
 
 Each list request will respond with these 3 fields: 
 
-- results
-- next
-- previous
+* results
+* next
+* previous
 
 ### Results
 
@@ -63,21 +63,21 @@ The field `results` contains the actual data sent by the endpoint. It is an arra
 
 ### Next
 
-This field contains a url that will return the next page of data.  
+This field contains a url that will return the next page of data.\
 This field might contain `null`. In this case, this is the last page of data and you can stop paging.
 
 ### Previous
 
-This field contains a url that will return the previous page of data.  
+This field contains a url that will return the previous page of data.\
 This field might contain `null`. In this case, this is the first page of data.
 
 > ❗️ Cursors consistency
-> 
+>
 > Don't store cursors. Cursors can quickly become invalid if items are added or deleted.
 
 ## Sorting
 
-By default, search results are sorted by the best match available. You can change this to a specific field using the `sort` parameter.  
+By default, search results are sorted by the best match available. You can change this to a specific field using the `sort` parameter.\
 You can choose any of the fields' item to sort on. Refer to the [API Reference](/reference) for the resources' schema for each endpoint.
 
 ## Example
@@ -112,28 +112,28 @@ When you send a request to the [Response API](/reference#responses_list), you ob
 
 Since each field can be used to sort the results, you can use the following fields: 
 
-- id 
-- created_date
-- updated_date
-- has_answers
-- has_message
-- detail_url
+* id 
+* created\_date
+* updated\_date
+* has\_answers
+* has\_message
+* detail\_url
 
 If you want to sort the results by `created_date`, you simply have to add `sort=created_date` in the GET parameters of your query.
 
 > 📘 Sort order
-> 
+>
 > You can add a hyphen to inverse the sort order: `sort=-created_date`
 
 ## Filtering
 
-When you retrieve a list of resources, it could be pretty useful to only get the results you really want!  
-This is where the filters come in handy!  
+When you retrieve a list of resources, it could be pretty useful to only get the results you really want!\
+This is where the filters come in handy!\
 For every `GET` request that will respond with a list, filters will be available. The details of these filters are available in the [API Reference](/reference).
 
 ## Example
 
-When you are retrieving a list of solicitations, you may want to only get the one related to a particular place. In this case, you can use the `place` filter.  
+When you are retrieving a list of solicitations, you may want to only get the one related to a particular place. In this case, you can use the `place` filter.\
 The request should look like this:
 
 ```curl
