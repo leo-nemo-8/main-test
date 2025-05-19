@@ -12,15 +12,15 @@ next:
 ---
 **Congratulations**! You made the decision to change your CX partner and chose Goodays! 
 
-Now that the decision has been made, the excitement shifts into questions and how-to meetings. You had a previous partner that collected ratings, user data and contextual information.  
-These precious data hold not go to waste and you wonder if and how all these informations could be transmitted to Goodays.  
+Now that the decision has been made, the excitement shifts into questions and how-to meetings. You had a previous partner that collected ratings, user data and contextual information.\
+These precious data hold not go to waste and you wonder if and how all these informations could be transmitted to Goodays.\
 Well, another congratulations! You reach the right place to learn everything about legacy retrieval !
 
 ## Why are your legacy data worth salvation ?
 
-This question already answers a previous one : Does your legacy data worth salvation? The answer is obviously "**Yes**"!  
-We are in the Data Era so no information is too small or too "irrelevant" not to have its rightful place in your ecosystem.  
-Plus, it probably took some time to gather all these informations.  
+This question already answers a previous one : Does your legacy data worth salvation? The answer is obviously "**Yes**"!\
+We are in the Data Era so no information is too small or too "irrelevant" not to have its rightful place in your ecosystem.\
+Plus, it probably took some time to gather all these informations.\
 Lastly and more importantly, these data are still valuable for their original purpose. They provide a history and ensure continuity for the KPIs you are following.
 
 ## How to - Basics
@@ -30,25 +30,25 @@ The process is actually pretty simple. However, depending on the volume of your 
 The simple part is telling the Goodays API to create new responses based on your previous data. It is a simple API call providing every information you want to have in Goodays.
 
 > 🚧 Warning
-> 
+>
 > One part of this process can be tricky : there is no guarantee that the format of your legacy data will match the Goodays specifications without any transformation. Please make sure you handle the format differencies properly.
 
 ## Key takeaways
 
-In a word : Yes, your legacy data can be integrated to Goodays!  
+In a word : Yes, your legacy data can be integrated to Goodays!\
 The process is simple but an analysis have to happen to detect potential format mismatches.
 
 ## How to - Expert
 
 > 📘 Disclaimer
-> 
+>
 > These steps only covers the part where you create valid new responses to Goodays. Any previous transformation job you might have to do before is taken for granted.
 
-The retrieval simply requires to call the `/responses`endpoint with the `POST` method and the correct payload.  
+The retrieval simply requires to call the `/responses`endpoint with the `POST` method and the correct payload.\
 This payload will contain the list of all the answers of a participation. In order to create this array, you will need to get the surveys and the questions attached to properly match the Goodays questions and the legacy answers.
 
-1. Get the surveys and the questions for each  
-   Request the following endpoint : `/surveys`.  
+1. Get the surveys and the questions for each\
+   Request the following endpoint : `/surveys`.\
    You will obtain something like this : 
 
 ```json
@@ -74,7 +74,7 @@ This payload will contain the list of all the answers of a participation. In ord
 }
 ```
 
-2. For each survey, get the attached questions  
+2. For each survey, get the attached questions\
    Request the following endpoint : `/surveys/{survey-id}` with a survey-id retrieved from the previous requests.
 
 Below, an example of the response : 
@@ -115,7 +115,7 @@ Below, an example of the response :
 
 Now that you have retrieved the surveys ids and the questions ids, you can generate the payload to insert your legacy responses to Goodays.
 
-3. Create payloads  
+3. Create payloads\
    The payload you need to generate looks like the one below :
 
 ```json
@@ -148,15 +148,15 @@ Now that you have retrieved the surveys ids and the questions ids, you can gener
 ```
 
 > ❗️ Participation date
-> 
+>
 > You should fill the `date` field with the date where the participation actually took place!
 
 > 📘 Context
-> 
+>
 > To obtain the value for the context part request the following endpoint : [`/configuration`](ref:configuration_list).
 
-4. Send the request  
-   Once your payload is properly build, you can call the endpoint `/responses`with the POST method.  
+4. Send the request\
+   Once your payload is properly build, you can call the endpoint `/responses`with the POST method.\
    Don't forget to had your previous payload!
 
 ```curl
@@ -194,7 +194,7 @@ curl --location --request POST 'https://api.goodays.co/v2/responses' \
 }'
 ```
 
-If the answer has been recorded, you will get a "_201: created_" back in the header.  
+If the answer has been recorded, you will get a "*201: created*" back in the header.\
 If not, an error will be returned in the endpoint return, for example:
 
 ```json
@@ -205,8 +205,8 @@ If not, an error will be returned in the endpoint return, for example:
 }
 ```
 
-## 
+##
 
-4. Check if everything is ok  
-   Every response you created with this method can be retrieved by call the endpoint `/responses` with the GET method. You can add filters to this request to obtain the results given a user, a place or a survey.  
+4. Check if everything is ok\
+   Every response you created with this method can be retrieved by call the endpoint `/responses` with the GET method. You can add filters to this request to obtain the results given a user, a place or a survey.\
    Then you can retrieve individual response to check if the responses match your expectations.
