@@ -14,8 +14,8 @@ You retrieve responses from our [Response API ](a-response-at-once)and would lik
 
 For example:
 
-- you can display your End Customers' responses in their CRM records,
-- you have an internal dashboard that displays entries using certain filters.
+* you can display your End Customers' responses in their CRM records,
+* you have an internal dashboard that displays entries using certain filters.
 
 **It can be done!**
 
@@ -55,18 +55,18 @@ https://app.goodays.co/pro/open?response_id=gxKrrlok4
 ```
 
 > 👍 Successfully display a response
-> 
+>
 > For the response to be displayed successfully in the Goodays Back Office, it must satisfy three rules:
-> 
-> - the user must have a Goodays account AND the rights to display the response,
-> - the `id` must correspond to an existing response,
-> - the response must contain a verbatim OR have triggered a Dissatisfaction Alert.
+>
+> * the user must have a Goodays account AND the rights to display the response,
+> * the `id` must correspond to an existing response,
+> * the response must contain a verbatim OR have triggered a Dissatisfaction Alert.
 
 > ❗️ In case of error
-> 
+>
 > If the message "The conversation can't be found on our servers." verifies that the response meets one of the following conditions:
-> 
-> - the response has a verbatim `message.content` other than `null`
-> - the response's `alert_triggered` attribute value is `true`
-> 
+>
+> * the response has a verbatim `message.content` other than `null`
+> * the response's `alert_triggered` attribute value is `true`
+>
 > And, of course, the user connected to the Goodays Back Office has the right perimeter to access this response.
