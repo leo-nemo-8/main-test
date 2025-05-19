@@ -17,11 +17,11 @@ next:
 The **Response API** lets you access the data your surveys collect — on demand and in JSON format — without setting up webhooks or third-party integrations.
 
 > 👍 Going further
-> 
+>
 > Consult the [API Reference](/reference/responses_list) for more.
 
 > 📘 Feel stucked ?
-> 
+>
 > Need help with an error? Head to [Troubleshooting and errors](/docs/errors) for more information.
 
 # Key Concepts
@@ -204,49 +204,176 @@ It is possible to add GET parameters to refine the response list over a defined 
 
 To refine the result, it is possible to combine the following GET parameters:
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "GET parameters",
-    "h-1": "Description",
-    "0-0": "**start_date**",
-    "0-1": "Start date of the collection period.  \n_Format : YYYY-MM-DDThh:mm:ssZ_  \nSee [this page](doc:timezone-management) for the timezone management.",
-    "1-0": "**end_date**",
-    "1-1": "End date of the collection period.  \n_Format : YYYY-MM-DDThh:mm:ssZ_  \nSee [this page](doc:timezone-management) for the timezone management.",
-    "2-0": "**date_field**",
-    "2-1": "Choose the date on which the period filter should be set.  \nSee chapter [Choose the date to filter](a-response-at-once#choose-the-date-to-filter)  \n  \n:bulb: _We recommend that you systematically use this parameter in your API calls with the value `updated_date` to retrieve all entries that have been modified over the requested `start_date` / `end_date` period, and not just those created._",
-    "3-0": "**place** ",
-    "3-1": "Filter on a point of sales.  \n_Enter your establishment code directly here._",
-    "4-0": "**survey**",
-    "4-1": "Filter on a survey.  \nSee chapter [Retrieve the \"survey-id\"](a-response-at-once#retrieve-the-survey-id)",
-    "5-0": "**source**",
-    "5-1": "Filter on source : \"critizr\", \"email\", \"facebook\", \"google\", \"sms\", \"tripadvisor\", \"widget\", \"wifi\".",
-    "6-0": "**email** ",
-    "6-1": "Filter on an End Customer email.",
-    "7-0": "**crm_id** ",
-    "7-1": "Filter on a CRM ID (aka End Customer ID).",
-    "8-0": "**first_name**",
-    "8-1": "Filter on first name of the End Customer.",
-    "9-0": "**last_name**",
-    "9-1": "Filter on last name of the End Customer.",
-    "10-0": "**phone**",
-    "10-1": "Filter on phone of the End Customer.",
-    "11-0": "**has_answers**",
-    "11-1": "Filter on responses that have a survey answered (completely or partially) by the End Customer.  \n  \nPossible values: `true` or `false`.",
-    "12-0": "**has_message**",
-    "12-1": "Filter on response that have an initial textual message from the End Customer.  \n  \nPossible values: `true` or `false`.",
-    "13-0": "**has_reply**",
-    "13-1": "Filter on response that have already been replied from the Local Manager.  \n  \nPossible values: `true` or `false`."
-  },
-  "cols": 2,
-  "rows": 14,
-  "align": [
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        GET parameters
+      </th>
 
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **start\_date**
+      </td>
+
+      <td>
+        Start date of the collection period.\
+        *Format : YYYY-MM-DDThh:mm:ssZ*\
+        See [this page](doc:timezone-management) for the timezone management.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **end\_date**
+      </td>
+
+      <td>
+        End date of the collection period.\
+        *Format : YYYY-MM-DDThh:mm:ssZ*\
+        See [this page](doc:timezone-management) for the timezone management.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **date\_field**
+      </td>
+
+      <td>
+        Choose the date on which the period filter should be set.\
+        See chapter [Choose the date to filter](a-response-at-once#choose-the-date-to-filter)  
+
+        :bulb: *We recommend that you systematically use this parameter in your API calls with the value`updated_date` to retrieve all entries that have been modified over the requested `start_date` / `end_date` period, and not just those created.*
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **place** 
+      </td>
+
+      <td>
+        Filter on a point of sales.\
+        *Enter your establishment code directly here.*
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **survey**
+      </td>
+
+      <td>
+        Filter on a survey.\
+        See chapter [Retrieve the "survey-id"](a-response-at-once#retrieve-the-survey-id)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **source**
+      </td>
+
+      <td>
+        Filter on source : "critizr", "email", "facebook", "google", "sms", "tripadvisor", "widget", "wifi".
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **email** 
+      </td>
+
+      <td>
+        Filter on an End Customer email.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **crm\_id** 
+      </td>
+
+      <td>
+        Filter on a CRM ID (aka End Customer ID).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **first\_name**
+      </td>
+
+      <td>
+        Filter on first name of the End Customer.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **last\_name**
+      </td>
+
+      <td>
+        Filter on last name of the End Customer.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **phone**
+      </td>
+
+      <td>
+        Filter on phone of the End Customer.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **has\_answers**
+      </td>
+
+      <td>
+        Filter on responses that have a survey answered (completely or partially) by the End Customer.  
+
+        Possible values: `true` or `false`.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **has\_message**
+      </td>
+
+      <td>
+        Filter on response that have an initial textual message from the End Customer.  
+
+        Possible values: `true` or `false`.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **has\_reply**
+      </td>
+
+      <td>
+        Filter on response that have already been replied from the Local Manager.  
+
+        Possible values: `true` or `false`.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Retrieve the "survey-id"
 
@@ -257,8 +384,8 @@ To refine the result, it is possible to combine the following GET parameters:
 
 A response includes two dates:
 
-- The `created_date`: the date the response was created
-- The`updated_date`: the date the response was last updated because the client continued to complete the survey, the manager responded...
+* The `created_date`: the date the response was created
+* The`updated_date`: the date the response was last updated because the client continued to complete the survey, the manager responded...
 
 To define on which date to base the date filter you have to use the parameter GET `date_field` with the value `updated_date` or `created_date`.
 
