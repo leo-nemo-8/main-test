@@ -10,18 +10,18 @@ metadata:
 next:
   description: ''
 ---
-Core API is a RESTful API that gives you some control over your levels, places, users and surveys.  
+Core API is a RESTful API that gives you some control over your levels, places, users and surveys.\
 For example, you can :
 
-- Consult your places
-- Retrieve responses for a place
+* Consult your places
+* Retrieve responses for a place
 
 > 👍 Going further
-> 
+>
 > Consult the [API Reference](/reference) for more.
 
 > 📘 Feel stucked ?
-> 
+>
 > Need help with an error? Head to [Troubleshooting and errors](/docs/errors) for more information.
 
 # Key Concepts
@@ -34,11 +34,11 @@ If you are not familiar with these concept, don't hesitate to consult the [Gloss
 
 With the Core API, the following actions are available : 
 
-- Consult levels
-- Consult places
-- [Add a response to a place](doc:become-a-collection-source)
-- Consult surveys
-- Consult users
+* Consult levels
+* Consult places
+* [Add a response to a place](doc:become-a-collection-source)
+* Consult surveys
+* Consult users
 
 # Restrictions by conviction
 
