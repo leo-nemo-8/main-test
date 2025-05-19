@@ -1,0 +1,375 @@
+---
+title: Retained Customers
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+> 📘 What's that?
+> 
+> A Retained Customer is a customer who has expressed dissatisfaction and has been identified as "at risk". After the local manager's response, this customer indicated that he was satisfied with the treatment of his dissatisfaction and considered returning to the place. The local manager's action thus prevented this customer from churn.
+
+> 👍 Going further
+> 
+> Consult the [general Metrics API documentation](/docs/exploit-the-full-potential-of-your-data) for more.
+
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/4b2692c-ChurnReduction0.5x.png",
+        "ChurnReduction@0.5x.png",
+        512
+      ],
+      "align": "center",
+      "sizing": "smart"
+    }
+  ]
+}
+[/block]
+
+
+# How do I get my Retained Customers metrics?
+
+With [/stats/stats_retained_customers_list](ref:retained_customers):
+
+```curl Satisfaction call
+curl --location --request GET 'https://api.goodays.co/v2/stats/retained_customers' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
+```
+
+```json Sample Satisfaction
+{
+    "data": [
+        {
+            "key": null,
+            "description": null,
+            "retained_customers_count": 80,
+            "retained_customers_percentage": 66.66666666666666,
+            "customers_responding_count": 120
+        }
+    ]
+}
+```
+
+By default the calculation of the score is done "since always".  
+And the return will always contain:
+
+| Attribute                         | Description                                                                                                                         |
+| :-------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------- |
+| **key**                           | Distribution key ID.                                                                                                                |
+| **description**                   | Description of the distribution key.                                                                                                |
+| **retained_customers_count**      | Total number of End Customers who are satisfied with the Local Manager's response and planned to return to the place.               |
+| **retained_customers_percentage** | Percentage of total number of End Customers who are satisfied with the Local Manager's response and planned to return to the place. |
+| **customers_responding_count**    | Total number of End Customers responding to the question about coming back to the place                                             |
+
+> 📘 Zoom on "key" and "description" attribute
+> 
+> This attributes are only filled in when "by", "by_context" or "by_level_category" is used.  
+> Otherwise they have the value `null`.
+
+# Add some filters
+
+It is possible to add GET parameters to refine the calculation of the dissatisfaction results over a defined period, a place...
+
+## GET parameters
+
+To filter the Retain Customers results, it is possible to combine the following GET parameters:
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "GET parameters",
+    "h-1": "Description",
+    "0-0": "**begin**",
+    "0-1": "Start date of the calculation period.  \n_Format : YYYY-MM-DDThh:mm:ssZ_  \nSee [this page](doc:timezone-management) for the timezone management.",
+    "1-0": "**end**",
+    "1-1": "End date of the calculation period.  \n_Format : YYYY-MM-DDThh:mm:ssZ_  \nSee [this page](doc:timezone-management) for the timezone management.",
+    "2-0": "**place** ",
+    "2-1": "Filter on an establishment.  \n_It is necessary to indicate the ID of the establishment from the endpoint [/places](ref:places_list)_",
+    "3-0": "**places** ",
+    "3-1": "Filter on an establishment list.  \n_Format : Establishment IDs separated by commas_",
+    "4-0": "**level** ",
+    "4-1": "Filter on a level.  \n_It is necessary to indicate the ID of the establishment from the endpoint [/levels](ref:levels_list)_",
+    "5-0": "**levels** ",
+    "5-1": "Filter on a level list.  \n_Format : Level IDs separated by commas_",
+    "6-0": "**survey**",
+    "6-1": "filter on a survey.  \n_It is necessary to indicate the ID of the question from the endpoint [/surveys](ref:surveys_list)_",
+    "7-0": "**question** ",
+    "7-1": "Filter on a question.  \n_It is necessary to indicate the ID of the question from the endpoint [/surveys](ref:surveys_list)_",
+    "8-0": "**nps** ",
+    "8-1": "Filter on nps category : \"detractor\", \"passive\", \"promoter\".",
+    "9-0": "**remark_type** ",
+    "9-1": "Filter on remark type : \"Idea\", \"Message\",  \"Praise\", \"Problem\", \"Question\".",
+    "10-0": "**source** ",
+    "10-1": "Filter on source : \"critizr\", \"email\", \"facebook\", \"google\", \"sms\", \"tripadvisor\", \"widget\", \"wifi\".",
+    "11-0": "**by** ",
+    "11-1": "Group calculations by.  \nSee chapter [by](dissatisfaction#by)",
+    "12-0": "**by_context** ",
+    "12-1": "Group calculations by Additional Information.  \nSee chapter [by Context](dissatisfaction#by-context)",
+    "13-0": "**by_level_category** ",
+    "13-1": "Group calculations by level category.  \nSee chapter [by Level Category](dissatisfaction#by-level-category)"
+  },
+  "cols": 2,
+  "rows": 14,
+  "align": [
+    "left",
+    "left"
+  ]
+}
+[/block]
+
+
+> 📘 Get an updated list of values for the "source" parameter
+> 
+> The examples listed for the "source" parameter are not exhaustive. To obtain an exhaustive list, the endpoint [/stats/retained-customers](ref:dissatisfaction) must be called by indicating an unexpected value. In return the error message will list all possible values.
+
+## Group calculations
+
+The three "by" parameters allow you to retrieve a list of results aggregated according to the value selected in the input.
+
+> 📘 Combine the "by" or not combine the "by" ?
+> 
+> You can combine several other GET parameters with a "by" but you can not combine the filters "by", "by_context" and "by_level_category" in a single request. Only one aggregation parameter is allowed.
+
+Here are the 3 possibilities :
+
+### By
+
+Refine the calculation of the Retained Customers results by grouping elements and return a list.
+
+The distribution of the calculation can be by : "day", "month", "nps_category", "place", "quarter", "remark_type", "source", "survey", "year".
+
+See "[By establishment over the month of May 2020](retained-customers#by-establishment-over-the-month-of-may-2020)" or [By month for one level and a specific source](retained-customers#by-month-for-one-level-and-a-specific-source) use cases.
+
+### By Context
+
+Refine the calculation of the Retained Customers results for each value of the "Additional Information" passed as a parameter and returns a list.
+
+"Additional Information" is additional data attached to a response to give a better understanding about the context.
+
+The list of "Additional Information" available depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). The only 'Additional Information" usable with this parameter are the one with the field _"use_in_stats" = true_.
+
+See "[By context of the purchase amount](dissatisfaction#by-context-of-the-purchase-amount)" use case.
+
+### By Level Category
+
+Refine the calculation of the Retained Customers results by level category and return a list.
+
+The categories represent your hierarchical or geographical organization depending on your Goodays configuration.
+
+From these categories, you can calculate the customer satisfaction score distributed by region, business unit, brand, etc.
+
+The category ID to be used is returned by the endpoint [/levels](ref:levels_list), in the "category_id" attribute.
+
+See "[By level category](retained-customers#by-level-category-1)" use case.
+
+# Use cases
+
+Here are some examples to show you the possibilities of this endpoint. This is obviously not exhaustive, it's up to you to have fun to find the right parameter arrangements :)
+
+## By establishment over the month of May 2020
+
+I have to use the following parameters :
+
+- begin : the first date of the month of May
+- end : the last date of the month of May
+- by : group calculation by "place"
+
+```curl
+curl --location --request GET 'https://api.goodays.co/v2/stats/retained-customers? \
+   begin=2020-05-01T00:00:00Z \
+   &end=2020-05-31T23:59:00Z \
+   &by=place' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
+```
+
+```json Customer-Satisfaction Score by place on the last month
+{
+    "data": [
+        {
+            "key": "mj8133D64R",
+            "description": "VÉLO Annecy (Annecy) - velo-annecy",
+            "retained_customers_count": 2,
+            "retained_customers_percentage": 50.0,
+            "customers_responding_count": 4
+        },
+        {
+            "key": "qz4RZZM94r",
+            "description": "VÉLO Aix-en-Provence (Aix-en-Provence) - velo-aix-en-provence",
+            "retained_customers_count": 2,
+            "retained_customers_percentage": 50.0,
+            "customers_responding_count": 4
+        }
+    ]
+}
+```
+
+> 📘 Zoom on "by" parameter
+> 
+> Here the "by" distributes the calculation by establishment. The attribute "key" contains the ID of the institution and the "description" its name.
+
+## By month for one level and a specific source
+
+I have to use the following parameters :
+
+- source : "email"
+- level : level ID
+- by : "month"
+
+_Hypothesis: in our configuration the level ID "Yqxzp5Ad2J" corresponds to our level "South France"_
+
+```curl Satisfaction call
+curl --location --request GET 'https://api.goodays.co/v2/stats/retained_customers? \
+source=email \
+&level=Yqxzp5Ad2J \
+&by=month' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
+```
+
+```json Customer-Satisfaction Score by month for one one level and a specific source
+{
+    "data": [
+        {
+            "key": "2021-07",
+            "description": "2021-07",
+            "retained_customers_count": 4,
+            "retained_customers_percentage": 36.36363636363637,
+            "customers_responding_count": 11
+        },
+        {
+            "key": "2021-08",
+            "description": "2021-08",
+            "retained_customers_count": 6,
+            "retained_customers_percentage": 75.0,
+            "customers_responding_count": 8
+        },
+        {
+            "key": "2021-09",
+            "description": "2021-09",
+            "retained_customers_count": 8,
+            "retained_customers_percentage": 80.0,
+            "customers_responding_count": 10
+        },
+        {
+            "key": "2021-10",
+            "description": "2021-10",
+            "retained_customers_count": 7,
+            "retained_customers_percentage": 46.666666666666664,
+            "customers_responding_count": 15
+        },
+        {
+            "key": "2021-11",
+            "description": "2021-11",
+            "retained_customers_count": 3,
+            "retained_customers_percentage": 50.0,
+            "customers_responding_count": 6
+        }
+    ]
+}
+```
+
+> 📘 Zoom on "by" parameter
+> 
+> The attributes "key" and "description" both contain the relevant year and month.
+
+## By context of the purchase amount
+
+I have to use the following parameters :
+
+- by_context : "advisor"
+
+_Hypothesis: additional informations exist in your configuration and is present in every response._ 
+
+```curl Satisfaction call
+curl --location --request GET 'https://api.goodays.co/v2/stats/retained-customers?by_context=advisor' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
+```
+
+```json Customer-Satisfaction Score by month for one one level and a specific source
+{
+    "data": [
+        {
+            "key": "ryLdLpdj1e",
+            "description": "Nizar",
+            "retained_customers_count": 60,
+            "retained_customers_percentage": 61.855670103092784,
+            "customers_responding_count": 97
+        },
+        {
+            "key": "ap4MPA1wd2",
+            "description": "Jeanne",
+            "retained_customers_count": 12,
+            "retained_customers_percentage": 92.3076923076923,
+            "customers_responding_count": 13
+        },
+        {
+            "key": "BQe4Zoxprb",
+            "description": "Clémence",
+            "retained_customers_count": 1,
+            "retained_customers_percentage": 100.0,
+            "customers_responding_count": 1
+        }
+    ]
+}
+```
+
+> 📘 Zoom on "by_context" parameter
+> 
+> Here the "by_context" distributes the calculation by additional information "price". The attribute "key" contains the ID of the additional information and the "description" its name.
+
+## By level category
+
+I have to use the following parameters :
+
+- by_level_category : "2"
+
+\_Hypothesis: in our configuration the level category "2" refers to our level "\_regions\*".
+
+```curl Satisfaction call
+curl --location --request GET 'https://api.goodays.co/v2/stats/retained-customers?by_level_category=5' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
+```
+
+```json Customer-Satisfaction Score by level category
+{
+    "data": [
+        {
+            "key": "ryLdLpdj1e",
+            "description": "France",
+            "retained_customers_count": 60,
+            "retained_customers_percentage": 61.855670103092784,
+            "customers_responding_count": 97
+        },
+        {
+            "key": "ap4MPA1wd2",
+            "description": "Germany",
+            "retained_customers_count": 12,
+            "retained_customers_percentage": 92.3076923076923,
+            "customers_responding_count": 13
+        },
+        {
+            "key": "BQe4Zoxprb",
+            "description": "United Kingdom",
+            "retained_customers_count": 1,
+            "retained_customers_percentage": 100.0,
+            "customers_responding_count": 1
+        }
+    ]
+}
+```
+
+> 📘 Zoom on "by_level_category" parameter
+> 
+> Here the "by_level_category" distributes the calculation by level category. The attribute "key" contains the ID of the level and the "description" the level name.
