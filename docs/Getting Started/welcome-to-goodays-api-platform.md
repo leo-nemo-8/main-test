@@ -1,9 +1,9 @@
 ---
 title: Welcome to Goodays API Platform!
 excerpt: >-
-  Goodays APIs help you manage your Goodays environment from the basics like
-  managing your users or adding new places to the most advanced features, like
-  answering a review or retrieving statistics.
+  Goodays APIs help you manage your Goodays environment from the basics like get
+  your users or your places to the most advanced features, like answering a
+  review or retrieving statistics.
 deprecated: false
 hidden: false
 metadata:
