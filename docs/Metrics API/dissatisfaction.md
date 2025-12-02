@@ -20,7 +20,7 @@ next:
 >
 > Consult the [general Metrics API documentation](/docs/exploit-the-full-potential-of-your-data) for more.
 
-<Image align="center" width="smart" src="https://files.readme.io/124eeb3-Product_synthesis.png" />
+<Image align="center" border={false} width="smart" src="https://files.readme.io/124eeb3-Product_synthesis.png" />
 
 # How do I get my Dissatisfaction metrics?
 
@@ -65,7 +65,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/dissatisfaction' 
 }
 ```
 
-By default the calculation of the score is done "since always".\
+By default the calculation of the score is done "since always".  
 And the return will always contain:
 
 <Table align={["left","left"]}>
@@ -84,7 +84,7 @@ And the return will always contain:
   <tbody>
     <tr>
       <td>
-        **key** 
+        **key**
       </td>
 
       <td>
@@ -94,7 +94,7 @@ And the return will always contain:
 
     <tr>
       <td>
-        **description** 
+        **description**
       </td>
 
       <td>
@@ -128,8 +128,8 @@ And the return will always contain:
       </td>
 
       <td>
-        * \*count\*\*: total number of dissatisfaction alert in `pending` status  
-        * \*percentage\*\*: Percentage of dissatisfaction alert with this status
+        * **count**: total number of dissatisfaction alert in `pending` status
+        * **percentage**: Percentage of dissatisfaction alert with this status
       </td>
     </tr>
 
@@ -139,8 +139,8 @@ And the return will always contain:
       </td>
 
       <td>
-        * \*count\*\*: total number of dissatisfaction alert in `spam` status  
-        * \*percentage\*\*: Percentage of dissatisfaction alert with this status
+        * **count**: total number of dissatisfaction alert in `spam` status
+        * **percentage**: Percentage of dissatisfaction alert with this status
       </td>
     </tr>
 
@@ -150,8 +150,8 @@ And the return will always contain:
       </td>
 
       <td>
-        * \*count\*\*: total number of dissatisfaction alert in `ignored` status  
-        * \*percentage\*\*: Percentage of dissatisfaction alert with this status
+        * **count**: total number of dissatisfaction alert in `ignored` status
+        * **percentage**: Percentage of dissatisfaction alert with this status
       </td>
     </tr>
 
@@ -161,8 +161,8 @@ And the return will always contain:
       </td>
 
       <td>
-        * \*count\*\*: total number of dissatisfaction alert in `call` status  
-        * \*percentage\*\*: Percentage of dissatisfaction alerts with this status
+        * **count**: total number of dissatisfaction alert in `call` status
+        * **percentage**: Percentage of dissatisfaction alerts with this status
       </td>
     </tr>
 
@@ -172,8 +172,8 @@ And the return will always contain:
       </td>
 
       <td>
-        * \*count\*\*: total number of dissatisfaction alert in `pending` status  
-        * \*percentage\*\*: Percentage of dissatisfaction alert with this status
+        * **count**: total number of dissatisfaction alert in `pending` status
+        * **percentage**: Percentage of dissatisfaction alert with this status
       </td>
     </tr>
   </tbody>
@@ -191,7 +191,7 @@ And the return will always contain:
 
 > 📘 Zoom on "key" and "description" attribute
 >
-> These attributes are only filled in when filters "by", "by\_context" or "by\_level\_category" are used.\
+> These attributes are only filled in when filters "by", "by_context" or "by_level_category" are used.  
 > Otherwise they have the value `null`.
 
 # Add some filters
@@ -222,8 +222,8 @@ To filter the dissatisfaction results, it is possible to combine the following G
       </td>
 
       <td>
-        Start date of the calculation period.\
-        *Format : YYYY-MM-DDThh:mm:ssZ*\
+        Start date of the calculation period.  
+        _Format : YYYY-MM-DDThh:mm:ssZ_  
         See [this page](doc:timezone-management) for the timezone management.
       </td>
     </tr>
@@ -234,53 +234,53 @@ To filter the dissatisfaction results, it is possible to combine the following G
       </td>
 
       <td>
-        End date of the calculation period.\
-        *Format : YYYY-MM-DDThh:mm:ssZ*\
+        End date of the calculation period.  
+        _Format : YYYY-MM-DDThh:mm:ssZ_  
         See [this page](doc:timezone-management) for the timezone management.
       </td>
     </tr>
 
     <tr>
       <td>
-        **place** 
+        **place**
       </td>
 
       <td>
-        Filter on an establishment.\
-        *It is necessary to indicate the ID of the establishment from the endpoint[/places](ref:places_list)*
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **places** 
-      </td>
-
-      <td>
-        Filter on an establishment list.\
-        *Format : Establishment IDs separated by commas*
+        Filter on an establishment.  
+        _It is necessary to indicate the ID of the establishment from the endpoint[/places](ref:places_list)_
       </td>
     </tr>
 
     <tr>
       <td>
-        **level** 
+        **places**
       </td>
 
       <td>
-        Filter on a level.\
-        *It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list)*
+        Filter on an establishment list.  
+        _Format : Establishment IDs separated by commas_
       </td>
     </tr>
 
     <tr>
       <td>
-        **levels** 
+        **level**
       </td>
 
       <td>
-        Filter on a level list.\
-        *Format : Level IDs separated by commas*
+        Filter on a level.  
+        _It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list)_
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **levels**
+      </td>
+
+      <td>
+        Filter on a level list.  
+        _Format : Level IDs separated by commas_
       </td>
     </tr>
 
@@ -290,25 +290,25 @@ To filter the dissatisfaction results, it is possible to combine the following G
       </td>
 
       <td>
-        filter on a survey.\
-        *It is necessary to indicate the ID of the question from the endpoint[/surveys](ref:surveys_list)*
+        filter on a survey.  
+        _It is necessary to indicate the ID of the question from the endpoint[/surveys](ref:surveys_list)_
       </td>
     </tr>
 
     <tr>
       <td>
-        **question** 
+        **question**
       </td>
 
       <td>
-        Filter on a question.\
-        *It is necessary to indicate the ID of the question from the endpoint[/surveys](ref:surveys_list)*
+        Filter on a question.  
+        _It is necessary to indicate the ID of the question from the endpoint[/surveys](ref:surveys_list)_
       </td>
     </tr>
 
     <tr>
       <td>
-        **nps** 
+        **nps**
       </td>
 
       <td>
@@ -318,7 +318,7 @@ To filter the dissatisfaction results, it is possible to combine the following G
 
     <tr>
       <td>
-        **remark\_type** 
+        **remark_type**
       </td>
 
       <td>
@@ -328,7 +328,7 @@ To filter the dissatisfaction results, it is possible to combine the following G
 
     <tr>
       <td>
-        **source** 
+        **source**
       </td>
 
       <td>
@@ -338,33 +338,33 @@ To filter the dissatisfaction results, it is possible to combine the following G
 
     <tr>
       <td>
-        **by** 
+        **by**
       </td>
 
       <td>
-        Group calculations by.\
+        Group calculations by.  
         See chapter [by](dissatisfaction#by)
       </td>
     </tr>
 
     <tr>
       <td>
-        **by\_context** 
+        **by_context**
       </td>
 
       <td>
-        Group calculations by Additional Information.\
+        Group calculations by Additional Information.  
         See chapter [by Context](dissatisfaction#by-context)
       </td>
     </tr>
 
     <tr>
       <td>
-        **by\_level\_category** 
+        **by_level_category**
       </td>
 
       <td>
-        Group calculations by level category.\
+        Group calculations by level category.  
         See chapter [by Level Category](dissatisfaction#by-level-category)
       </td>
     </tr>
@@ -381,7 +381,7 @@ The three "by" parameters allow you to retrieve a list of results aggregated acc
 
 > 📘 Combine the "by" or not combine the "by" ?
 >
-> You can combine several other GET parameters with an aggregation parameter but you can not combine the filters "by", "by\_context" and "by\_level\_category" in a single request. Only one aggregation parameter is allowed.
+> You can combine several other GET parameters with an aggregation parameter but you can not combine the filters "by", "by_context" and "by_level_category" in a single request. Only one aggregation parameter is allowed.
 
 Here are the 3 possibilities :
 
@@ -389,7 +389,7 @@ Here are the 3 possibilities :
 
 Refine the calculation of the dissatisfaction results by grouping elements and return a list.
 
-The distribution of the calculation can be by : "day", "month", "nps\_category", "place", "quarter", "remark\_type", "source", "survey", "year".
+The distribution of the calculation can be by : "day", "month", "nps_category", "place", "quarter", "remark_type", "source", "survey", "year".
 
 See "[By establishment over the month of May 2020](dissatisfaction#by-establishment-over-the-month-of-may-2020)" or [By month for one level and a specific source](dissatisfaction#by-month-for-one-level-and-a-specific-source) use cases.
 
@@ -399,7 +399,7 @@ Refine the calculation of the dissatisfaction results for each value of the "Add
 
 "Additional Information" is additional data attached to a response to give a better understanding about the context.
 
-The list of "Additional Information" available depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). The only 'Additional Information" usable with this parameter are the one with the field *"use\_in\_stats" = true*.
+The list of "Additional Information" available depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). The only 'Additional Information" usable with this parameter are the one with the field _"use_in_stats" = true_.
 
 See "[By context of the purchase amount](dissatisfaction#by-context-of-the-purchase-amount)" use case.
 
@@ -411,7 +411,7 @@ The categories represent your hierarchical or geographical organization dependin
 
 From these categories, you can calculate the customer satisfaction score distributed by region, business unit, brand, etc.
 
-The category ID to be used is returned by the endpoint [/levels](ref:levels_list), in the "category\_id" attribute.
+The category ID to be used is returned by the endpoint [/levels](ref:levels_list), in the "category_id" attribute.
 
 See "[By level category](dissatisfaction#by-level-category-1)" use case.
 
@@ -424,7 +424,7 @@ Here are some examples to show you the possibilities of this endpoint. This is o
 I have to use the following parameters :
 
 * begin : the first date of the month of May
-* end\_date : the last date of the month of May
+* end_date : the last date of the month of May
 * by : end calculation by "place"
 
 ```curl
@@ -532,7 +532,7 @@ I have to use the following parameters :
 * level : level ID
 * by : "month"
 
-*Hypothesis: in our configuration the level ID "Yqxzp5Ad2J" corresponds to our level "South France"*
+_Hypothesis: in our configuration the level ID "Yqxzp5Ad2J" corresponds to our level "South France"_
 
 ```curl Satisfaction call
 curl --location --request GET 'https://api.goodays.co/v2/stats/dissatisfaction? \
@@ -636,9 +636,9 @@ source=email \
 
 I have to use the following parameters :
 
-* by\_context : "advisor"
+* by_context : "advisor"
 
-*Hypothesis: additional information exists in your configuration and is present in every response.* 
+_Hypothesis: additional information exists in your configuration and is present in every response._
 
 ```curl Satisfaction call
 curl --location --request GET 'https://api.goodays.co/v2/stats/dissatisfaction?by_context=advisor' \
@@ -731,17 +731,17 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/dissatisfaction?b
 }
 ```
 
-> 📘 Zoom on "by\_context" parameter
+> 📘 Zoom on "by_context" parameter
 >
-> Here the "by\_context" distributes the calculation by additional information "price". The attribute "key" contains the ID of the additional information and the "description" its name.
+> Here the "by_context" distributes the calculation by additional information "price". The attribute "key" contains the ID of the additional information and the "description" its name.
 
 ## By level category
 
 I have to use the following parameters :
 
-* by\_level\_category : "2"
+* by_level_category : "2"
 
-*Hypothesis: in our configuration the level category "2" refers to your regions.*
+_Hypothesis: in our configuration the level category "2" refers to your regions._
 
 ```curl Satisfaction call
 curl --location --request GET 'https://api.goodays.co/v2/stats/dissatisfaction?by_level_category=5' \
@@ -834,6 +834,6 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/dissatisfaction?b
 }
 ```
 
-> 📘 Zoom on "by\_level\_category" parameter
+> 📘 Zoom on "by_level_category" parameter
 >
-> Here the "by\_level\_category" distributes the calculation by level category. The attribute "key" contains the ID of the level and the "description" the level name.
+> Here the "by_level_category" distributes the calculation by level category. The attribute "key" contains the ID of the level and the "description" the level name.
