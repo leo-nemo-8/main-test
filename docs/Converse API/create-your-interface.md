@@ -30,10 +30,10 @@ The **Converse API** allows you to delegate the response to Goodays participatio
 
 * Enable you to manage the participations collected by Goodays outside its Back Office:
 
-* In the case of partial delegation from the local to the Customer Service Department\
+* In the case of partial delegation from the local to the Customer Service Department  
   E.g.: the local has the possibility of delegating an End Customer's remark for processing by Customer Service.
 
-* In the case of total delegation to remote Customer Service\
+* In the case of total delegation to remote Customer Service  
   E.g.: Customer Service operates from a Salesforce-type tool.
 
 # Key Concepts
@@ -48,17 +48,13 @@ We can send, through webhook, the participation to your third-party tool and ret
 
 In this solution, the remote Customer Service responds only to customer participations that are within its perimeter from its third-party tool. Customer participations destined for the local area are answered by the local area.
 
-<Image alt="Partial delegation to Remote Customer Service" align="center" src="https://files.readme.io/723ca20-image.png">
-  Partial delegation to Remote Customer Service
-</Image>
+<Image align="center" alt="Partial delegation to Remote Customer Service" border={false} caption="Partial delegation to Remote Customer Service" src="https://files.readme.io/723ca20-image.png" />
 
 ## Total delegation to Remote Customer Service
 
 In this solution, the Remote Customer Service answers to all customer participations collected by Goodays from its third party tools.
 
-<Image alt="Total delegation to Remote Customer Service" align="center" src="https://files.readme.io/3ed9350-image.png">
-  Total delegation to Remote Customer Service
-</Image>
+<Image align="center" alt="Total delegation to Remote Customer Service" border={false} caption="Total delegation to Remote Customer Service" src="https://files.readme.io/3ed9350-image.png" />
 
 # How to - Basics
 
@@ -66,33 +62,33 @@ In this solution, the Remote Customer Service answers to all customer participat
 
 With each new End Customer participation or new message to the Customer Service, the Goodays webhook calls the specific endpoint provided by you.
 
-![](https://files.readme.io/2dbda95-image.png)
+<Image border={false} src="https://files.readme.io/2dbda95-image.png" />
 
 You have to set up, by your side, one endpoint to managed all these events triggered by the different hooks:
 
 * A "response" handler to deal with the End Customer verbatim.
 
-> 📘
->
-> It is the first exchange with the End Customer, it contains the verbatim of the customer, the answers to the questions as well as the personal and additional data collected.
+<Callout icon="📘" theme="info">
+  It is the first exchange with the End Customer, it contains the verbatim of the customer, the answers to the questions as well as the personal and additional data collected.
+</Callout>
 
 * A "message" handler to manage a possible private message from the End Customer in response to the Customer Service response.
 
-> 📘
->
-> Once Customer Service has responded to the End Customer's verbatim, the End Customer can continue the exchange through a "private message" visible only to the End Customer and the Customer Service.
+<Callout icon="📘" theme="info">
+  Once Customer Service has responded to the End Customer's verbatim, the End Customer can continue the exchange through a "private message" visible only to the End Customer and the Customer Service.
+</Callout>
 
 * A "delegate" handler, only needed for the partial delegation mode, to deal with the local delegation to the Customer Service.
 
-> 📘
->
-> If a local establishment considers that it cannot respond to an End Customer verbatim, it can delegate it to Customer Service.
+<Callout icon="📘" theme="info">
+  If a local establishment considers that it cannot respond to an End Customer verbatim, it can delegate it to Customer Service.
+</Callout>
 
 The Converse API will send event to your endpoint every time these actions are triggered.
 
 ## Send actions from the Customer Service to the End Customer
 
-![](https://files.readme.io/2137d4d-image.png)
+<Image border={false} src="https://files.readme.io/2137d4d-image.png" />
 
 The actions that Customer Service can perform on an End Customer return are:
 
@@ -140,14 +136,14 @@ To allow you to make sure that responses come from Goodays we recommend that you
 
 By default we are compatible with the HMAC standard and the SHA256 hash algorithm:
 
-* If this option is chosen we will systematically include in the header `X-HMAC-SHA256` a signature containing the encrypted value generated from the `secret key` -*that we will have agreed upon beforehand (to be defined with your Goodays technical referent)*- and the `body` of the API call.\
+* If this option is chosen we will systematically include in the header `X-HMAC-SHA256` a signature containing the encrypted value generated from the `secret key` -_that we will have agreed upon beforehand (to be defined with your Goodays technical referent)_- and the `body` of the API call.  
   You must then verify that the value of the signature is correct to authenticate the response.
 
-* If no *secret key* is defined then we don't add anything in the header.
+* If no _secret key_ is defined then we don't add anything in the header.
 
 Example:
 
-* The *secret key* is `Goodays`
+* The _secret key_ is `Goodays`
 * The body is:
 
 ```json
@@ -162,9 +158,9 @@ Then we will add in the header of each call:
 X-HMAC-SHA256 = bcf95bdaa6dae4e97a44eb8d65273d3c5459f9a258b68c26f10d6cc69b359b51
 ```
 
-> 📘
->
-> The content of the parameter `X-HMAC-SHA256` will therefore change with each request.
+<Callout icon="📘" theme="info">
+  The content of the parameter `X-HMAC-SHA256` will therefore change with each request.
+</Callout>
 
 ### Receive a "response" from an End Customer
 
@@ -220,7 +216,8 @@ Here is an example of the payload received for this event:
             "opt_in": {
                 "newsletter": false,
                 "email": false,
-                "sms": false
+                "sms": false,
+                "custom": false
             }
         },
         "context": {
@@ -259,7 +256,7 @@ Focus on important attributes:
 
 | Attribute name | Description                                                                                     |
 | :------------- | :---------------------------------------------------------------------------------------------- |
-| event\_type    | The type of event that triggered the transmission: response, message, delegated                 |
+| event_type     | The type of event that triggered the transmission: response, message, delegated                 |
 | survey         | The questionnaire answered by the end customer                                                  |
 | answers        | The final client's answers to the survey                                                        |
 | message        | The end customer's verbatim                                                                     |
@@ -335,7 +332,8 @@ Here is an example of the payload received for this event:
             "opt_in": {
                 "newsletter": false,
                 "email": false,
-                "sms": false
+                "sms": false,
+                "custom": false
             }
         },
         "context": {
@@ -407,11 +405,11 @@ Here is an example of the payload received for this event:
 
 Focus on important new attributes:
 
-| Attribute name     | Description                                                                                |
-| :----------------- | :----------------------------------------------------------------------------------------- |
-| reply              | Contains the Customer Service response to the verbatim of the end customer                 |
-| attached\_messages | The list of past exchanges in the thread between the end customer and the Customer Service |
-| message            | The return (private message) of the end customer to Customer Service                       |
+| Attribute name    | Description                                                                                |
+| :---------------- | :----------------------------------------------------------------------------------------- |
+| reply             | Contains the Customer Service response to the verbatim of the end customer                 |
+| attached_messages | The list of past exchanges in the thread between the end customer and the Customer Service |
+| message           | The return (private message) of the end customer to Customer Service                       |
 
 ### Receive a "delegation" from a Local Manager
 
@@ -467,7 +465,8 @@ Here is an example of the payload received for this event:
             "opt_in": {
                 "newsletter": false,
                 "email": false,
-                "sms": false
+                "sms": false,
+                "custom": false
             }
         },
         "context": {
@@ -512,19 +511,15 @@ Focus on important new attributes:
 
 | Attribute name | Description                                                                                                       |
 | :------------- | :---------------------------------------------------------------------------------------------------------------- |
-| delegated\_to  | Contains the information of the establishment to which the client's response is delegated. Here: Customer Service |
+| delegated_to   | Contains the information of the establishment to which the client's response is delegated. Here: Customer Service |
 
 ## Send actions from the Customer Service to the End Customer
 
 Two Goodays endpoints allows you to process an End Customer's feedback or private message:
 
-<Image alt="Main use case: processing of End Customer's feedback" align="center" src="https://files.readme.io/5a3361e-image.png">
-  Main use case: processing of End Customer's feedback
-</Image>
+<Image align="center" alt="Main use case: processing of End Customer's feedback" border={false} caption="Main use case: processing of End Customer's feedback" src="https://files.readme.io/5a3361e-image.png" />
 
-<Image alt="Secondary Use Case: processing of End Customer's response" align="center" src="https://files.readme.io/3d5a486-image.png">
-  Secondary Use Case: processing of End Customer's response
-</Image>
+<Image align="center" alt="Secondary Use Case: processing of End Customer's response" border={false} caption="Secondary Use Case: processing of End Customer's response" src="https://files.readme.io/3d5a486-image.png" />
 
 > ❗️ The Goodays Back Office management rules apply.
 >
@@ -555,12 +550,12 @@ With [`/responses/{response-id}/reply`](ref:responses_reply):
 
 > 📘 "user" attribute
 >
-> The "user" attribute is your user ID that you can obtain with Users API: `/users?email={your email}`.\
+> The "user" attribute is your user ID that you can obtain with Users API: `/users?email={your email}`.  
 > It is optional when you do processing on a response.
 
-> 📘 "remark\_type" attribute
+> 📘 "remark_type" attribute
 >
-> The "remark\_type" is mandatory when the initial response source is not Goodays.\
+> The "remark_type" is mandatory when the initial response source is not Goodays.  
 > E.g.: a Google feedback.
 >
 > The possible values are:
@@ -570,7 +565,7 @@ With [`/responses/{response-id}/reply`](ref:responses_reply):
 > * Idea
 > * Problem
 >
-> If you can't implement Google reviews typing then you should always push `Message` value.\
+> If you can't implement Google reviews typing then you should always push `Message` value.  
 > i.e. `"remark_type": "Message"`
 
 ### Reply to the End Customer private message
@@ -692,7 +687,8 @@ As a preliminary, we have sent the End Customer's response to your endpoint "res
             "opt_in": {
                 "newsletter": false,
                 "email": false,
-                "sms": false
+                "sms": false,
+                "custom": false
             }
         },
         "context": {
@@ -732,7 +728,7 @@ As a preliminary, we have sent the End Customer's response to your endpoint "res
 
 > 🚧 You need to processed each response send
 >
-> It is important to provide Goodays with a processing status for each response provided.\
+> It is important to provide Goodays with a processing status for each response provided.  
 > The reply rate and processing time are part of the KPIs monitored by our common customer.
 
 Here are, in concrete terms, the possible actions on your side:
@@ -851,7 +847,8 @@ As a preliminary, we have sent the End Customer's message to your endpoint "mess
             "opt_in": {
                 "newsletter": false,
                 "email": false,
-                "sms": false
+                "sms": false,
+                "custom": false
             }
         },
         "context": {
@@ -925,7 +922,7 @@ As a preliminary, we have sent the End Customer's message to your endpoint "mess
 
 > 🚧 Need to process the message
 >
-> It is important to provide Goodays with a processing status for each response provided.\
+> It is important to provide Goodays with a processing status for each response provided.  
 > Even if no answer is needed.
 
 Here are, in concrete terms, the possible actions on your side:
@@ -1011,7 +1008,8 @@ In this case, the payload sent to your endpoint "message" will look like this:
             "opt_in": {
                 "newsletter": false,
                 "email": false,
-                "sms": false
+                "sms": false,
+                "custom": false
             }
         },
         "context": {
@@ -1107,14 +1105,14 @@ In this case, the payload sent to your endpoint "message" will look like this:
 
 ## The Local Manager delegate the response of an End Customer to the Customer Service
 
-It is possible that a response from an End Customer cannot be processed by the Local Manager, in which case it is possible to delegate the End Customer's response (and possible private messages) to Customer Service.\
+It is possible that a response from an End Customer cannot be processed by the Local Manager, in which case it is possible to delegate the End Customer's response (and possible private messages) to Customer Service.  
 In this case the response is moved from his establishment directly to the Customer Service. The Local Manager no longer has access to this response.
 
 > 📘 Possible actions after a Local Manager delegation
 >
 > Once the delegation has been made by the Local Manager, the actions are the same as in the chapter "[Customer Service handles the response of an End Customer](#section-customer-service-handles-the-response-of-an-end-customer)".
 
-Then, we send the response to your endpoint "response" with the "event\_type" on "delegated":
+Then, we send the response to your endpoint "response" with the "event_type" on "delegated":
 
 ```json Delegate the End Customer response
 {
@@ -1164,7 +1162,8 @@ Then, we send the response to your endpoint "response" with the "event\_type" on
             "opt_in": {
                 "newsletter": false,
                 "email": false,
-                "sms": false
+                "sms": false,
+                "custom": false
             }
         },
         "context": {
