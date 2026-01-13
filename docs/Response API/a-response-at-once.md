@@ -118,7 +118,8 @@ Now, you can send your request. The response will include only the responses tha
                 "opt_in": {
                     "newsletter": false,
                     "email": false,
-                    "sms": false
+                    "sms": false,
+                    "custom": false
                 }
             },
             "context": {
@@ -220,49 +221,49 @@ To refine the result, it is possible to combine the following GET parameters:
   <tbody>
     <tr>
       <td>
-        **start\_date**
+        **start_date**
       </td>
 
       <td>
-        Start date of the collection period.\
-        *Format : YYYY-MM-DDThh:mm:ssZ*\
+        Start date of the collection period.  
+        _Format : YYYY-MM-DDThh:mm:ssZ_  
         See [this page](doc:timezone-management) for the timezone management.
       </td>
     </tr>
 
     <tr>
       <td>
-        **end\_date**
+        **end_date**
       </td>
 
       <td>
-        End date of the collection period.\
-        *Format : YYYY-MM-DDThh:mm:ssZ*\
+        End date of the collection period.  
+        _Format : YYYY-MM-DDThh:mm:ssZ_  
         See [this page](doc:timezone-management) for the timezone management.
       </td>
     </tr>
 
     <tr>
       <td>
-        **date\_field**
+        **date_field**
       </td>
 
       <td>
-        Choose the date on which the period filter should be set.\
-        See chapter [Choose the date to filter](a-response-at-once#choose-the-date-to-filter)  
+        Choose the date on which the period filter should be set.  
+        See chapter [Choose the date to filter](a-response-at-once#choose-the-date-to-filter)
 
-        :bulb: *We recommend that you systematically use this parameter in your API calls with the value`updated_date` to retrieve all entries that have been modified over the requested `start_date` / `end_date` period, and not just those created.*
+        :bulb: _We recommend that you systematically use this parameter in your API calls with the value`updated_date` to retrieve all entries that have been modified over the requested `start_date` / `end_date` period, and not just those created._
       </td>
     </tr>
 
     <tr>
       <td>
-        **place** 
+        **place**
       </td>
 
       <td>
-        Filter on a point of sales.\
-        *Enter your establishment code directly here.*
+        Filter on a point of sales.  
+        _Enter your establishment code directly here._
       </td>
     </tr>
 
@@ -272,7 +273,7 @@ To refine the result, it is possible to combine the following GET parameters:
       </td>
 
       <td>
-        Filter on a survey.\
+        Filter on a survey.  
         See chapter [Retrieve the "survey-id"](a-response-at-once#retrieve-the-survey-id)
       </td>
     </tr>
@@ -289,7 +290,7 @@ To refine the result, it is possible to combine the following GET parameters:
 
     <tr>
       <td>
-        **email** 
+        **email**
       </td>
 
       <td>
@@ -299,7 +300,7 @@ To refine the result, it is possible to combine the following GET parameters:
 
     <tr>
       <td>
-        **crm\_id** 
+        **crm_id**
       </td>
 
       <td>
@@ -309,7 +310,7 @@ To refine the result, it is possible to combine the following GET parameters:
 
     <tr>
       <td>
-        **first\_name**
+        **first_name**
       </td>
 
       <td>
@@ -319,7 +320,7 @@ To refine the result, it is possible to combine the following GET parameters:
 
     <tr>
       <td>
-        **last\_name**
+        **last_name**
       </td>
 
       <td>
@@ -339,11 +340,11 @@ To refine the result, it is possible to combine the following GET parameters:
 
     <tr>
       <td>
-        **has\_answers**
+        **has_answers**
       </td>
 
       <td>
-        Filter on responses that have a survey answered (completely or partially) by the End Customer.  
+        Filter on responses that have a survey answered (completely or partially) by the End Customer.
 
         Possible values: `true` or `false`.
       </td>
@@ -351,11 +352,11 @@ To refine the result, it is possible to combine the following GET parameters:
 
     <tr>
       <td>
-        **has\_message**
+        **has_message**
       </td>
 
       <td>
-        Filter on response that have an initial textual message from the End Customer.  
+        Filter on response that have an initial textual message from the End Customer.
 
         Possible values: `true` or `false`.
       </td>
@@ -363,11 +364,11 @@ To refine the result, it is possible to combine the following GET parameters:
 
     <tr>
       <td>
-        **has\_reply**
+        **has_reply**
       </td>
 
       <td>
-        Filter on response that have already been replied from the Local Manager.  
+        Filter on response that have already been replied from the Local Manager.
 
         Possible values: `true` or `false`.
       </td>
