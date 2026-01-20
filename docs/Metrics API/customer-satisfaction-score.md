@@ -259,7 +259,7 @@ To calculate a Customer-Satisfaction Score, it is possible to combine the follow
       </td>
 
       <td>
-        Filter on source : "critizr", "email", "facebook", "google", "sms", "tripadvisor", "widget", "wifi".
+        Filter on source : "email", "facebook", "google", "sms", "tripadvisor", "widget", "wifi".
       </td>
     </tr>
 
