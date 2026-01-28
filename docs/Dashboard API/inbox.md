@@ -118,7 +118,21 @@ curl --location --request GET 'https://api.goodays.co/v2/dashboard? \
 }
 ```
 
-<br />
+## For one establishment
+
+I have to use the following parameters :
+
+* place
+
+```curl Inbox call
+curl --location --request GET 'https://api.goodays.co/v2/dashboard? \
+	place=ABC123' \
+--header 'Authorization: a6d5e8f3917f5220e3d4ce247e7fc3d29a13f244'
+```
 
 ```json Inbox
+{
+    "pending_alert": 2,
+    "pending_reply": 10
+}
 ```
