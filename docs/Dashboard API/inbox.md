@@ -121,8 +121,4 @@ curl --location --request GET 'https://api.goodays.co/v2/dashboard? \
 <br />
 
 ```json Inbox
-{
-    "pending_alert": 2,
-    "pending_reply": 10
-}
 ```
