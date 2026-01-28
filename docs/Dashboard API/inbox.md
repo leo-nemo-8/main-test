@@ -118,7 +118,5 @@ curl --location --request GET 'https://api.goodays.co/v2/dashboard? \
 }
 ```
 
-<br />
-
 ```json Inbox
 ```
