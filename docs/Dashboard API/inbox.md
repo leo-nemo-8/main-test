@@ -19,7 +19,7 @@ next:
 > * dissatisfaction alerts
 > * messages
 
-![](https://files.readme.io/9bfb75a-Product_Messagerie_1.png "Product Messagerie (1).png")
+<Image border={false} src="https://files.readme.io/9bfb75a-Product_Messagerie_1.png" title="Product Messagerie (1).png" />
 
 # How do I get my inbox metrics?
 
@@ -39,10 +39,10 @@ curl --location --request GET 'https://api.goodays.co/v2/dashboard' \
 
 The return will always contain:
 
-| Attribute          | Description                              |
-| :----------------- | :--------------------------------------- |
-| **pending\_alert** | Number of dissatisfaction alerts pending |
-| **pending\_reply** | Number of verbatims awaiting processing  |
+| Attribute         | Description                              |
+| :---------------- | :--------------------------------------- |
+| **pending_alert** | Number of dissatisfaction alerts pending |
+| **pending_reply** | Number of verbatims awaiting processing  |
 
 > 📘 Total items awaiting processing?
 >
@@ -72,35 +72,24 @@ To retrieve the number of items waiting to be processed it is possible to combin
   <tbody>
     <tr>
       <td>
-        **place** 
-      </td>
-
-      <td>
-        Filter on an establishment.\
-        *Enter your establishment code directly here*
-      </td>
-    </tr>
-
-    <tr>
-      <td>
         **level**
       </td>
 
       <td>
-        Filter on a level.\
-        *It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list).*
+        Filter on a level.  
+        _It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list)._
       </td>
     </tr>
 
     <tr>
       <td>
-        **pro\_user** 
+        **pro_user**
       </td>
 
       <td>
-        Filter on the perimeter of a Goodays user.\
-        *Format : email url encoded*\
-        Ex: [*yul.brenner@coolrunnings.com*](mailto:_yul.brenner@coolrunnings.com_) will become *yul.brenner%40coolrunnings.com*
+        Filter on the perimeter of a Goodays user.  
+        _Format : email url encoded_  
+        Ex: [_yul.brenner@coolrunnings.com_](mailto:_yul.brenner@coolrunnings.com_) will become _yul.brenner%40coolrunnings.com_
       </td>
     </tr>
   </tbody>
@@ -114,7 +103,7 @@ Here are some examples to show you the possibilities of this endpoint.
 
 I have to use the following parameters :
 
-* pro\_user
+* pro_user
 
 ```curl Inbox call
 curl --location --request GET 'https://api.goodays.co/v2/dashboard? \
@@ -129,21 +118,7 @@ curl --location --request GET 'https://api.goodays.co/v2/dashboard? \
 }
 ```
 
-## For one establishment
-
-I have to use the following parameters :
-
-* place
-
-```curl Inbox call
-curl --location --request GET 'https://api.goodays.co/v2/dashboard? \
-	place=ABC123' \
---header 'Authorization: a6d5e8f3917f5220e3d4ce247e7fc3d29a13f244'
-```
+<br />
 
 ```json Inbox
-{
-    "pending_alert": 2,
-    "pending_reply": 10
-}
 ```
