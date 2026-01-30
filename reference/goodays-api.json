@@ -3990,7 +3990,7 @@
       }
     }
   },
-  "x-explorer-enabled": true,
+  "x-explorer-enabled": false,
   "servers": [
     {
       "url": "https://api.goodays.co/v2"
