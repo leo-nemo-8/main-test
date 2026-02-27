@@ -1,6 +1,6 @@
 ---
-title: A response at once
-excerpt: ... or not !
+title: Participation retrieval
+excerpt: Access raw participation data in real-time
 deprecated: false
 hidden: false
 metadata:
@@ -20,7 +20,7 @@ The **Response API** lets you access the data your surveys collect — on demand
 >
 > Consult the [API Reference](/reference/responses_list) for more.
 
-> 📘 Feel stucked ?
+> 📘 Feel stuck ?
 >
 > Need help with an error? Head to [Troubleshooting and errors](/docs/errors) for more information.
 
