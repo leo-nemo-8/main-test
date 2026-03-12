@@ -1,5 +1,5 @@
 ---
-title: Surveys & Question Types Deep Dive
+title: Surveys & Question Types
 excerpt: From Resource Management to Structural Logic
 deprecated: false
 hidden: false
