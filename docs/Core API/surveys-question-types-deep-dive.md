@@ -22,7 +22,7 @@ The following guide details every question type available in Goodays and how the
 
 Goodays surveys are highly customizable and support a wide variety of question formats—ranging from simple text inputs to complex, conditional logic (mother-daughter questions).
 
-When querying the [Response API](/doc/) understanding the `type` of question and its configuration in the `options` object is crucial for properly parsing the response data.
+When querying the [Response API](/reference/responses_list) understanding the `type` of question and its configuration in the `options` object is crucial for properly parsing the response data.
 
 ***
 
