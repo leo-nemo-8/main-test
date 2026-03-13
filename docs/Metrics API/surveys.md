@@ -14,7 +14,7 @@ next:
 >
 > Each survey is different and depends on your configuration : it can be composed of different answer type (stars, nps, multiple choices...).
 >
-> *Please go to[/stats/survey](ref:stats_surveys_list) to obtain the detail of your survey configuration.*
+> _Please go to[/stats/survey](ref:stats_surveys_list) to obtain the detail of your survey configuration._
 
 > 👍 Going further
 >
@@ -24,7 +24,7 @@ next:
 
 # How do I get my Survey metrics?
 
-With [/stats/survey](ref:stats_surveys_list) 
+With [/stats/survey](ref:stats_surveys_list)
 
 ```curl Survey call
 curl --location --request GET 'https://api.goodays.co/v2/stats/surveys/5gd0vbRYxL' \
@@ -168,7 +168,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/surveys/5gd0vbRYx
 }
 ```
 
-By default the calculation of the score is done "since always".\
+By default the calculation of the score is done "since always".  
 And the return will always contain:
 
 <Table align={["left","left"]}>
@@ -187,7 +187,7 @@ And the return will always contain:
   <tbody>
     <tr>
       <td>
-        **key** 
+        **key**
       </td>
 
       <td>
@@ -197,7 +197,7 @@ And the return will always contain:
 
     <tr>
       <td>
-        **description** 
+        **description**
       </td>
 
       <td>
@@ -217,7 +217,7 @@ And the return will always contain:
 
     <tr>
       <td>
-        **average** 
+        **average**
       </td>
 
       <td>
@@ -231,8 +231,8 @@ And the return will always contain:
       </td>
 
       <td>
-        List of questions related to the survey selected.\
-        Each question lists the number of answers made on each answer option. The list is presented in the order of the choices proposed to the End Customer.\
+        List of questions related to the survey selected.  
+        Each question lists the number of answers made on each answer option. The list is presented in the order of the choices proposed to the End Customer.  
         To know the order of the choices of a survey it is necessary to use the endpoint [/stats/survey/\{id}](ref:stats_surveys_read).
       </td>
     </tr>
@@ -243,7 +243,7 @@ And the return will always contain:
       </td>
 
       <td>
-        For each *answers* : number of responses for the answer.
+        For each _answers_ : number of responses for the answer.
       </td>
     </tr>
 
@@ -275,6 +275,12 @@ And the return will always contain:
 | :-------- | :---------- |
 | **id**    | Survey ID   |
 
+> 📘 Available Question Types
+>
+> Goodays supports a wide range of question formats, from standard text inputs to Emoji sentiment and nested conditional logic.
+>
+> Head over to the **[Survey Question Types & Structures](doc:survey-question-types)** page to see exactly how each type is configured in the `options` object and how mother-daughter triggers work.
+
 # Add some filters
 
 It is possible to add GET parameters to refine the calculation of the survey results over a defined period, an establishment...
@@ -303,8 +309,8 @@ To filter the survey results, it is possible to combine the following GET parame
       </td>
 
       <td>
-        Start date of the calculation period.\
-        *Format : YYYY-MM-DDThh:mm:ssZ*\
+        Start date of the calculation period.  
+        _Format : YYYY-MM-DDThh:mm:ssZ_  
         See [this page](doc:timezone-management) for the timezone management.
       </td>
     </tr>
@@ -315,8 +321,8 @@ To filter the survey results, it is possible to combine the following GET parame
       </td>
 
       <td>
-        End date of the calculation period.\
-        *Format : YYYY-MM-DDThh:mm:ssZ*\
+        End date of the calculation period.  
+        _Format : YYYY-MM-DDThh:mm:ssZ_  
         See [this page](doc:timezone-management) for the timezone management.
       </td>
     </tr>
@@ -327,8 +333,8 @@ To filter the survey results, it is possible to combine the following GET parame
       </td>
 
       <td>
-        Filter on an establishment.\
-        *It is necessary to indicate the ID of the establishment from the endpoint[/places](ref:places_list)*
+        Filter on an establishment.  
+        _It is necessary to indicate the ID of the establishment from the endpoint[/places](ref:places_list)_
       </td>
     </tr>
 
@@ -338,8 +344,8 @@ To filter the survey results, it is possible to combine the following GET parame
       </td>
 
       <td>
-        Filter on an establishment list.\
-        *Format : Establishment IDs separated by commas*
+        Filter on an establishment list.  
+        _Format : Establishment IDs separated by commas_
       </td>
     </tr>
 
@@ -349,8 +355,8 @@ To filter the survey results, it is possible to combine the following GET parame
       </td>
 
       <td>
-        Filter on a level.\
-        *It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list)*
+        Filter on a level.  
+        _It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list)_
       </td>
     </tr>
 
@@ -360,8 +366,8 @@ To filter the survey results, it is possible to combine the following GET parame
       </td>
 
       <td>
-        Filter on a level list.\
-        *Format : Level IDs separated by commas*
+        Filter on a level list.  
+        _Format : Level IDs separated by commas_
       </td>
     </tr>
   </tbody>
@@ -456,7 +462,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/surveys/My4lvMpK8
 
 ## For two levels
 
- have to use the following parameters :
+have to use the following parameters :
 
 * level : level ID
 
