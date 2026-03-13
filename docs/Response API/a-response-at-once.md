@@ -201,7 +201,7 @@ Now, you can send your request. The response will include only the responses tha
 >
 > The structure of the objects inside the `answers` array depends entirely on the type of question asked (e.g., NPS, CSAT, multiple choice).
 >
-> To properly parse this data and understand advanced behaviors like conditional logic (mother-daughter questions) or alert triggers, please consult our dedicated guide: **[Survey Question Types & Structures](doc:survey-question-types)**.
+> To properly parse this data and understand advanced behaviors like conditional logic (mother-daughter questions) or alert triggers, please consult our dedicated guide: **[Survey Question Types & Structures](doc:surveys-question-types)**.
 
 # Add some filters
 
