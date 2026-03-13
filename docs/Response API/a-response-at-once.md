@@ -197,6 +197,14 @@ Now, you can send your request. The response will include only the responses tha
 }
 ```
 
+<br />
+
+> 📘 Parsing the `answers` array
+>
+> The structure of the objects inside the `answers` array depends entirely on the type of question asked (e.g., NPS, CSAT, multiple choice).
+>
+> To properly parse this data and understand advanced behaviors like conditional logic (mother-daughter questions) or alert triggers, please consult our dedicated guide: **[Survey Question Types & Structures](/docs/survey-question-types)**.
+
 # Add some filters
 
 It is possible to add GET parameters to refine the response list over a defined period, a point of sales...
