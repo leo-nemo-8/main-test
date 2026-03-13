@@ -279,7 +279,7 @@ And the return will always contain:
 >
 > Goodays supports a wide range of question formats, from standard text inputs to Emoji sentiment and nested conditional logic.
 >
-> Head over to the **[Survey Question Types & Structures](doc:survey-question-types)** page to see exactly how each type is configured in the `options` object and how mother-daughter triggers work.
+> Head over to the **[Survey Question Types & Structures](docs:surveys-question-types)** page to see exactly how each type is configured in the `options` object and how mother-daughter triggers work.
 
 # Add some filters
 
