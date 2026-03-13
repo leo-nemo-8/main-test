@@ -197,8 +197,6 @@ Now, you can send your request. The response will include only the responses tha
 }
 ```
 
-<br />
-
 > 📘 Parsing the `answers` array
 >
 > The structure of the objects inside the `answers` array depends entirely on the type of question asked (e.g., NPS, CSAT, multiple choice).
