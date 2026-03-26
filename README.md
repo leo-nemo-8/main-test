@@ -109,12 +109,3 @@ Autrement dit :
 
 - il n'y a pas de `package.json`, `Makefile` ou workflow CI local a utiliser tel quel ;
 - la publication / synchronisation ReadMe est geree en dehors de ce depot, ou via des outils non versionnes ici.
-
-## Workflow Git minimal
-
-```bash
-git status
-git add README.md docs/ reference/ custom_pages/
-git commit -m "Update API docs"
-git push origin v2.0
-```
