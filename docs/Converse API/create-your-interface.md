@@ -132,21 +132,133 @@ Once your endpoint is up and running, you must provide us its URL so we can set 
 
 Or how to make sure that you only receive data from Goodays?
 
-To allow you to make sure that responses come from Goodays we recommend that you implement an authentication in the header of your endpoint.
+To allow you to make sure that requests come from Goodays, we recommend that you verify the signature sent in the header of your endpoint.
 
-By default we are compatible with the HMAC standard and the SHA256 hash algorithm:
+By default, Goodays is compatible with the HMAC standard and the SHA256 hash algorithm.
 
-* If this option is chosen we will systematically include in the header `X-HMAC-SHA256` a signature containing the encrypted value generated from the `secret key` -_that we will have agreed upon beforehand (to be defined with your Goodays technical referent)_- and the `body` of the API call.  
-  You must then verify that the value of the signature is correct to authenticate the response.
+If a secret key is configured, we will systematically include the following header in each webhook request:
 
-* If no _secret key_ is defined then we don't add anything in the header.
+```
+X-HMAC-SHA256
+```
+
+This header contains a signature generated from:
+
+* the `secret key` agreed beforehand with your Goodays technical referent;
+* the raw `body` of the API call.
+
+The signature is calculated as:
+
+```
+hex(HMAC-SHA256(secret_key, raw_request_body))
+```
+
+You must then calculate the same signature on your side and compare it with the value received in the `X-HMAC-SHA256` header.
+
+If no `secret key` is defined, we do not add this header.
+
+> 🚧
+>
+> ### Important
+>
+> The signature must be calculated from the raw HTTP request body, exactly as received by your endpoint, before any JSON parsing.
+>
+> Do not calculate the signature from:
+>
+> * a parsed JSON object;
+> * a re-serialized JSON payload;
+> * a pretty-printed JSON payload;
+> * a payload with sorted keys;
+> * a payload where spaces or line breaks have changed;
+> * a payload where Unicode escapes have been transformed.
+>
+> Even a small change in the body changes the signature.
+
+Python example:
+
+```
+import hmac
+import hashlib
+
+def verify_goodays_signature(secret_key, raw_request_body, received_signature):
+    expected_signature = hmac.new(
+        secret_key.encode("utf-8"),
+        raw_request_body,
+        hashlib.sha256,
+    ).hexdigest()
+
+    return hmac.compare_digest(expected_signature, received_signature)
+```
+
+Example usage:
+
+```
+raw_request_body = request.body
+received_signature = request.headers.get("X-HMAC-SHA256")
+
+is_valid = verify_goodays_signature(
+    secret_key,
+    raw_request_body,
+    received_signature,
+)
+```
+
+Node.js / Express example:
+
+```
+const crypto = require("crypto");
+const express = require("express");
+
+const app = express();
+
+app.use(express.json({
+  verify: (req, res, buf) => {
+    req.rawBody = buf;
+  }
+}));
+
+app.post("/goodays/webhook", (req, res) => {
+  const secretKey = process.env.GOODAYS_WEBHOOK_SECRET;
+  const receivedSignature = req.header("X-HMAC-SHA256");
+
+  const expectedSignature = crypto
+    .createHmac("sha256", secretKey)
+    .update(req.rawBody)
+    .digest("hex");
+
+  if (!receivedSignature || expectedSignature !== receivedSignature) {
+    return res.status(401).send("Invalid signature");
+  }
+
+  return res.status(200).send("OK");
+});
+```
+
+Salesforce Apex example:
+
+```
+Blob mac = Crypto.generateMac(
+    'HmacSHA256',
+    RestContext.request.requestBody,
+    Blob.valueOf(secretKey)
+);
+
+String expectedSignature = EncodingUtil.convertToHex(mac).toLowerCase();
+String receivedSignature = RestContext.request.headers.get('X-HMAC-SHA256');
+
+Boolean isValid = expectedSignature.equalsIgnoreCase(receivedSignature);
+```
+
+In Apex, use `RestContext.request.requestBody` directly. Do not deserialize the JSON before calculating the signature.
 
 Example:
 
-* The _secret key_ is `Goodays`
+* The *secret key* is `Goodays`
 * The body is:
 
-```json
+JSON
+
+```
 {
     "event_type": "response"
 }
@@ -154,13 +266,15 @@ Example:
 
 Then we will add in the header of each call:
 
-```cypher Header
+Header
+
+```
 X-HMAC-SHA256 = bcf95bdaa6dae4e97a44eb8d65273d3c5459f9a258b68c26f10d6cc69b359b51
 ```
 
-<Callout icon="📘" theme="info">
-  The content of the parameter `X-HMAC-SHA256` will therefore change with each request.
-</Callout>
+> 📘
+>
+> The content of the parameter `X-HMAC-SHA256` will therefore change with each request.
 
 ### Receive a "response" from an End Customer
 
