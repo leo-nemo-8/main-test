@@ -38,13 +38,13 @@ Suppose you expect thousands of responses on your surveys. To keep your Response
 
 Use `start_date` and `end_date` query parameters to retrieve a date range.
 
-Let's assume today is July 10, 2018, and you're going to retrieve the the previous day's data. Here's the walkthrough:
+Let's assume today is July 10, 2019, and you're going to retrieve the previous day's data. Here's the walkthrough:
 
 1. You'll still use the `GET https://api.goodays.co/v2/responses/bulk` endpoint, but don't send your request yet!
 
-2. Add the `start_date` query parameter to your request. The `start_date` parameter is a string that uses ISO 8601 format, Coordinated Universal Time (UTC), with "T" as a delimiter between the date and time. July 10, 2018 at 12:00 a.m. UTC is expressed as 2018-07-10T00:00:00. If you want to retrieve responses for yesterday, 2018-07-09, the value for your `start_date` query parameter would be 2019-07-09T00:00:00. This means your response will include responses received since 12:00 a.m. UTC on July 9, 2018.
+2. Add the `start_date` query parameter to your request. The `start_date` parameter is a string that uses ISO 8601 format, Coordinated Universal Time (UTC), with "T" as a delimiter between the date and time. July 10, 2019 at 12:00 a.m. UTC is expressed as 2019-07-10T00:00:00. If you want to retrieve responses for yesterday, 2019-07-09, the value for your `start_date` query parameter would be 2019-07-09T00:00:00. This means your response will include responses received since 12:00 a.m. UTC on July 9, 2019.
 
-3. Add the `end_date` query parameter to your request. The `end_date` parameter is also a string in the same format as the `start_date` parameter. The value for your `end_date` query parameter would be 2018-07-10T00:00:00. This means your response will include responses received up until 12:00 a.m. UTC on July 10, 2018.
+3. Add the `end_date` query parameter to your request. The `end_date` parameter is also a string in the same format as the `start_date` parameter. The value for your `end_date` query parameter would be 2019-07-10T00:00:00. This means your response will include responses received up until 12:00 a.m. UTC on July 10, 2019.
 
 Here's what the cURL request looks like:
 
@@ -56,7 +56,7 @@ curl --location --request GET 'https://api.goodays.co/v2/responses/bulk? \
 --header 'Authorization: {access-token}'
 ```
 
-Now, you can send your request. The response will include only the responses that were submitted yesterday, July 9, 2018. Like this sample:
+Now, you can send your request. The response will include only the responses that were submitted yesterday, July 9, 2019. Like this sample:
 
 ```json
 {
@@ -67,7 +67,8 @@ Now, you can send your request. The response will include only the responses tha
             "id": "gxKrrlok4o",
             "token": "936d44f4d5a9a95c63b3f0cc7d4642477a9f03836b5efadddd373d114e84c423",
             "created_date": "2019-07-09T17:48:36.222412+02:00",
-            "updated_date": "2019-07-09T22:48:36.254510+02:00",
+            "updated_date": "2019-07-09T17:48:36.254510+02:00",
+            "google_review_date": null,
             "source": "email",
             "survey": {
                 "id": "QOJ85mb8wE",
@@ -99,15 +100,15 @@ Now, you can send your request. The response will include only the responses tha
                 }
             ],
             "message": {
-                "id": "TTT",
-                "created_date": "2021-11-22T15:42:48.691040+01:00",
+                "id": "58yj9M7qdw",
+                "created_date": "2019-07-09T17:48:36.222412+02:00",
                 "type": "Problem",
                 "content": "I like this shop!",
                 "attachment": null,
                 "sender": {
-                    "email": "EMAIL",
-                    "first_name": "PRÉNOM",
-                    "last_name": "NOM"
+                    "email": "george.abitbol@classe.com",
+                    "first_name": "George",
+                    "last_name": "Abitbol"
                 }
             },
             "reply": null,
@@ -127,10 +128,10 @@ Now, you can send your request. The response will include only the responses tha
                 "phone": "06123456789",
                 "crm_id": "",
                 "last_name": "Abitbol",
-                "first_name": "Georges",
-              	"extra": {
+                "first_name": "George",
+                "extra": {
                     "order_id": "12345",
-		                "title": "Mademoiselle",
+                    "title": "Mademoiselle"
                 }
             },
             "place": {
@@ -138,7 +139,7 @@ Now, you can send your request. The response will include only the responses tha
                 "partner_id": "142",
                 "name": "Style Aix-en-Provence",
                 "enabled": true,
-                "detail_url": "https://api.critizr.com/v2/places/5gd0Lz1XdL"
+                "detail_url": "https://api.goodays.co/v2/places/5gd0Lz1XdL"
             },
             "delegated_to": null,
             "attached_messages": [],
@@ -148,29 +149,31 @@ Now, you can send your request. The response will include only the responses tha
                 "reply": "https://api.goodays.co/api/v2/responses/gxKrrlok4o/reply",
                 "spam": "https://api.goodays.co/api/v2/responses/gxKrrlok4o/spam",
                 "close": "https://api.goodays.co/api/v2/responses/gxKrrlok4o/close"
-            }
+            },
+            "alert_triggered": false
         },
         {
             "id": "p4MZZJJBx2",
             "token": "ceabc8599d95d926cf617b0fe420c6f975e3f3deb83ced454e22f8e43b87b1b1",
             "created_date": "2019-07-09T16:59:49.653760+02:00",
             "updated_date": "2019-07-09T16:59:49.685842+02:00",
-            "source": "email",
+            "google_review_date": "2019-07-09T14:32:10.000000+02:00",
+            "source": "google",
             "survey": {
-                "id": "QOJ85mb8wE",
-                "slug": "post_purchase_pos",
-                "label": "Post purchase point of sale",
+                "id": "9v8XR0X43o",
+                "slug": "gmb",
+                "label": "Google",
                 "enabled": true,
-                "detail_url": "https://api.goodays.co/v2/surveys/QOJ85mb8wE"
+                "detail_url": "https://api.goodays.co/v2/surveys/9v8XR0X43o"
             },
             "answers": [
                 {
                     "id": "vdJrLvWQdD",
-                    "value": 8,
+                    "value": 5,
                     "question": {
                         "id": "1vdOBYlA8l",
-                        "title": "Would you recommend Style to your friends and family?",
-                        "type": "nps",
+                        "title": "Google rating",
+                        "type": "csat",
                         "enabled": true
                     }
                 }
@@ -178,7 +181,7 @@ Now, you can send your request. The response will include only the responses tha
             "message": null,
             "reply": null,
             "user": null,
-            "context": null,
+            "context": {},
             "place": {
                 "id": "okxwBz5B4y",
                 "partner_id": "049",
@@ -197,11 +200,155 @@ Now, you can send your request. The response will include only the responses tha
 }
 ```
 
+> 📘 The `google_review_date` attribute
+>
+> `google_review_date` is the date the review was actually posted on the Google Business Profile, as returned by Google. It's populated only for participations where `source` is `google`; it's `null` for every other source.
+>
+> Use it instead of `created_date` / `updated_date` when you need dates consistent with Google-side reporting (e.g. to match daily/weekly counts against the Google Score API or the Google statistics screen in the back office), since `created_date` / `updated_date` reflect Goodays' own collection lifecycle, not Google's publication date.
+
 > 📘 Parsing the `answers` array
 >
 > The structure of the objects inside the `answers` array depends entirely on the type of question asked (e.g., NPS, CSAT, multiple choice).
 >
 > To properly parse this data and understand advanced behaviors like conditional logic (mother-daughter questions) or alert triggers, please consult our dedicated guide: **[Survey Question Types & Structures](doc:surveys-question-types)**.
+
+# Response attributes
+
+Each object in the `results` array represents a single participation. Here are the attributes exposed on it:
+
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Attribute
+      </th>
+
+      <th>
+        Type
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>**id**</td>
+      <td>string</td>
+      <td>Unique identifier of the participation.</td>
+    </tr>
+
+    <tr>
+      <td>**token**</td>
+      <td>string</td>
+      <td>Unique token of the participation.</td>
+    </tr>
+
+    <tr>
+      <td>**created_date**</td>
+      <td>datetime</td>
+      <td>Date the participation was created in Goodays.</td>
+    </tr>
+
+    <tr>
+      <td>**updated_date**</td>
+      <td>datetime</td>
+      <td>Date the participation was last updated (survey continued, manager replied...).</td>
+    </tr>
+
+    <tr>
+      <td>**google_review_date**</td>
+      <td>datetime, nullable</td>
+      <td>Date the review was posted on the Google Business Profile, as returned by Google. Populated only when `source` is `google`; `null` for every other source.</td>
+    </tr>
+
+    <tr>
+      <td>**source**</td>
+      <td>string</td>
+      <td>Collection channel: `email`, `sms`, `google`, `facebook`, `widget`, `tripadvisor`, `wifi`, `terminal`...</td>
+    </tr>
+
+    <tr>
+      <td>**survey**</td>
+      <td>object</td>
+      <td>Survey the participation belongs to (`id`, `slug`, `label`, `enabled`, `detail_url`).</td>
+    </tr>
+
+    <tr>
+      <td>**answers**</td>
+      <td>array</td>
+      <td>Answers given to the survey's questions. See [Survey Question Types & Structures](doc:surveys-question-types).</td>
+    </tr>
+
+    <tr>
+      <td>**message**</td>
+      <td>object, nullable</td>
+      <td>Initial verbatim left by the end customer, if any.</td>
+    </tr>
+
+    <tr>
+      <td>**reply**</td>
+      <td>object, nullable</td>
+      <td>Reply sent by the point of sale's manager, if any.</td>
+    </tr>
+
+    <tr>
+      <td>**user**</td>
+      <td>object, nullable</td>
+      <td>End customer identity (`email`, `first_name`, `last_name`, `opt_in`).</td>
+    </tr>
+
+    <tr>
+      <td>**context**</td>
+      <td>object</td>
+      <td>Extra data sent at collection time (`email`, `phone`, `crm_id`, `extra`...).</td>
+    </tr>
+
+    <tr>
+      <td>**place**</td>
+      <td>object</td>
+      <td>Point of sale the participation is attached to (`id`, `partner_id`, `name`, `enabled`, `detail_url`).</td>
+    </tr>
+
+    <tr>
+      <td>**delegated_to**</td>
+      <td>object, nullable</td>
+      <td>Point of sale the handling was delegated to, if any.</td>
+    </tr>
+
+    <tr>
+      <td>**attached_messages**</td>
+      <td>array</td>
+      <td>Additional messages exchanged on the same thread.</td>
+    </tr>
+
+    <tr>
+      <td>**state**</td>
+      <td>string</td>
+      <td>Current state of the participation: `open`, `closed` or `spam`.</td>
+    </tr>
+
+    <tr>
+      <td>**thread**</td>
+      <td>string, nullable</td>
+      <td>Identifier of the conversation thread.</td>
+    </tr>
+
+    <tr>
+      <td>**actions**</td>
+      <td>object</td>
+      <td>URLs of the actions currently available on the participation (`reply`, `spam`, `call`, `close`), depending on its state.</td>
+    </tr>
+
+    <tr>
+      <td>**alert_triggered**</td>
+      <td>boolean</td>
+      <td>Whether the participation triggered an alert.</td>
+    </tr>
+  </tbody>
+</Table>
 
 # Add some filters
 
@@ -403,13 +550,13 @@ This is important if you don't want to miss any updates from your end customers!
 Retrieve the end customer's responses with a verbatim that have been answered by the local manager on a specific point of sales and survey and the source is the website:
 
 ```curl
-curl --location --request GET 'https://goodays.co/api/v2/responses/bulk \
+curl --location --request GET 'https://api.goodays.co/v2/responses/bulk \
    ?survey=gxKrrlok4o \
-   &place=ABC123& \
+   &place=ABC123 \
    &has_message=true \
    &has_answers=true \
    &has_reply=true \
-   &source=widget \
+   &source=widget' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: {access-token}'
 ```

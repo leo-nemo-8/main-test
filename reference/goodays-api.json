@@ -4411,6 +4411,11 @@
             "type": "string",
             "format": "date-time"
           },
+          "google_review_date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "source": {
             "type": "string",
             "enum": [
