@@ -46,3 +46,34 @@ curl --location --request GET 'https://api.goodays.co/v2/responses/bulk? \
 > 📘 Url encode
 >
 > We recommend to Url encode the value of each date. Especially if you use the `+` character.
+
+# Metrics API: how dates and timezones are applied
+
+> 📘 Which date is used?
+>
+> Metrics (`/stats/nps`, `/stats/satisfaction`, `/stats/remarks`, `/stats/surveys`, `/stats/dissatisfaction`) are always attached to the **date the customer submitted the response**, never to the date it was processed by the Local Manager.
+
+## Timezone used for `by=day`, `month`, `quarter`, `year`
+
+When you aggregate by a time period, days (and months, quarters, years) are cut using the timezone of your `begin` parameter:
+
+* If `begin` contains a timezone (e.g. `2026-09-01T00:00:00+02:00` or `2026-09-01T00:00:00Z`), this timezone is used.
+* If `begin` is not provided, or has no timezone, **Europe/Paris** is used — the same as in the Goodays Back Office.
+
+For example, with the default timezone, a response received on September 5th at 11:30 pm (Paris time) is counted in the September 5th bucket.
+
+> 🚧 Fixed offsets and daylight saving time
+>
+> A fixed offset such as `+02:00` does not follow daylight saving time changes. After the switch to winter time, your daily buckets will be shifted by one hour compared to the Back Office. To get the same figures as the Back Office, omit the timezone or use Europe/Paris times.
+
+# Metrics API: data freshness and recalculation
+
+Statistics are **not frozen day by day**: they are recalculated on each call, based on the current state of the responses.
+
+* When a response is processed later (e.g. `pending` on September 5th, answered on September 6th), it **stays attached to September 5th** and only its status changes (`pending` → `text`, `call`, `ignored` or `spam`). The statistics of September 5th evolve; the action does not appear in September 6th.
+* There is **no date after which a day's statistics become final**: they can change as long as the responses of that day evolve (processing, reply, requalification…).
+* A modification is usually reflected in the API **between 15 minutes and one hour**, depending on the type of response.
+
+> 👍 Best practice for BI integrations
+>
+> If you store Goodays statistics incrementally, re-import a rolling period (for example the last 30 to 60 days) on a regular basis rather than considering a past day as final.

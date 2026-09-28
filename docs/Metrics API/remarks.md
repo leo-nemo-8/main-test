@@ -115,7 +115,7 @@ To calculate a remarks metrics it is possible to combine the following GET param
       <td>
         Start date of the calculation period.  
         _Format : YYYY-MM-DDThh:mm:ssZ_  
-        See [this page](doc:timezone-management) for the timezone management.
+        See [this page](doc:timezone-and-date-management) for the timezone management.
       </td>
     </tr>
 
@@ -127,7 +127,7 @@ To calculate a remarks metrics it is possible to combine the following GET param
       <td>
         End date of the calculation period.  
         _Format : YYYY-MM-DDThh:mm:ssZ_  
-        See [this page](doc:timezone-management) for the timezone management.
+        See [this page](doc:timezone-and-date-management) for the timezone management.
       </td>
     </tr>
 

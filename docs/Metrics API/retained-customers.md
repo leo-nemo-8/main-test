@@ -90,7 +90,7 @@ To filter the Retain Customers results, it is possible to combine the following 
       <td>
         Start date of the calculation period.  
         _Format : YYYY-MM-DDThh:mm:ssZ_  
-        See [this page](doc:timezone-management) for the timezone management.
+        See [this page](doc:timezone-and-date-management) for the timezone management.
       </td>
     </tr>
 
@@ -102,7 +102,7 @@ To filter the Retain Customers results, it is possible to combine the following 
       <td>
         End date of the calculation period.  
         _Format : YYYY-MM-DDThh:mm:ssZ_  
-        See [this page](doc:timezone-management) for the timezone management.
+        See [this page](doc:timezone-and-date-management) for the timezone management.
       </td>
     </tr>
 

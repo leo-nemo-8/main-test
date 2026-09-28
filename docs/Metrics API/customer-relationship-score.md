@@ -100,7 +100,7 @@ To calculate a Customer-Relationship score it is possible to combine the followi
       <td>
         Start date of the calculation period.\
         *Format : YYYY-MM-DDThh:mm:ss*\
-        See [this page](doc:timezone-management) for the timezone management.
+        See [this page](doc:timezone-and-date-management) for the timezone management.
       </td>
     </tr>
 
@@ -112,7 +112,7 @@ To calculate a Customer-Relationship score it is possible to combine the followi
       <td>
         End date of the calculation period.\
         *Format : YYYY-MM-DDThh:mm:ss*\
-        See [this page](doc:timezone-management) for the timezone management.
+        See [this page](doc:timezone-and-date-management) for the timezone management.
       </td>
     </tr>
 
