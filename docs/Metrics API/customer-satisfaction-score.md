@@ -12,7 +12,7 @@ next:
 ---
 > 📘 What's that?
 >
-> The Customer-Satisfaction score is an average calculated on the basis of the customers’ answers to all the star questions from the published surveys.
+> The Customer-Satisfaction score is an average calculated on the basis of the customers’ answers to the CSAT questions of your surveys. If your surveys have no CSAT question, it is calculated on the answers to all the star questions from the published surveys.
 >
 > That score can then be analyzed over any period of time or the focus can be narrowed to any given survey, the NPS, a particular establishment, or any other analysis filter you wish to apply.
 
@@ -99,8 +99,9 @@ And the return will always contain:
       </td>
 
       <td>
-        Number of responses to "star" questions observed over the requested periods.  
-        There may be several "star" questions per response.
+        Number of answers taken into account over the requested periods.  
+        With CSAT questions: number of participations with a CSAT answer.  
+        With star questions: number of answers to "star" questions (there may be several "star" questions per response).
       </td>
     </tr>
 
