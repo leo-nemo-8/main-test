@@ -202,9 +202,9 @@ Now, you can send your request. The response will include only the responses tha
 
 > 📘 The `google_review_date` attribute
 >
-> `google_review_date` is the date the review was actually posted on the Google Business Profile, as returned by Google. It's populated only for participations where `source` is `google`; it's `null` for every other source.
+> `google_review_date` is the date the review was last modified on the Google Business Profile, as returned by Google (its `updateTime`). For a review that was never edited, it is the date the review was posted. It's populated only for participations where `source` is `google`; it's `null` for every other source.
 >
-> Use it instead of `created_date` / `updated_date` when you need dates consistent with Google-side reporting (e.g. to match daily/weekly counts against the Google Score API or the Google statistics screen in the back office), since `created_date` / `updated_date` reflect Goodays' own collection lifecycle, not Google's publication date.
+> Use it instead of `created_date` / `updated_date` when you need dates consistent with Google-side reporting (e.g. to match daily/weekly counts against the Google Score API or the Google statistics screen in the back office), since `created_date` / `updated_date` reflect Goodays' own collection lifecycle, not Google's own dates.
 
 > 📘 Parsing the `answers` array
 >
@@ -261,7 +261,7 @@ Each object in the `results` array represents a single participation. Here are t
     <tr>
       <td>**google_review_date**</td>
       <td>datetime, nullable</td>
-      <td>Date the review was posted on the Google Business Profile, as returned by Google. Populated only when `source` is `google`; `null` for every other source.</td>
+      <td>Date the review was last modified on the Google Business Profile, as returned by Google (equals the posting date if the review was never edited). Populated only when `source` is `google`; `null` for every other source.</td>
     </tr>
 
     <tr>
