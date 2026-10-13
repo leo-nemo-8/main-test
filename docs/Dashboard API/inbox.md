@@ -43,10 +43,11 @@ The return will always contain:
 | :---------------- | :--------------------------------------- |
 | **pending_alert** | Number of dissatisfaction alerts pending |
 | **pending_reply** | Number of verbatims awaiting processing  |
+| **pending_chat**  | Number of active chat conversations waiting for an answer from your teams. _Only returned if the chat feature is enabled on your account._ |
 
 > 📘 Total items awaiting processing?
 >
-> To get the total number of items waiting to be processed, the two attributes `alert` and `awaiting_reply` must be added together.
+> To get the total number of items waiting to be processed, the attributes `pending_alert` and `pending_reply` must be added together (and `pending_chat`, if the chat feature is enabled on your account).
 
 # Add some filters
 

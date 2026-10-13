@@ -5951,6 +5951,9 @@
           },
           "pending_reply": {
             "type": "integer"
+          },
+          "pending_chat": {
+            "type": "integer"
           }
         },
         "additionalProperties": {
