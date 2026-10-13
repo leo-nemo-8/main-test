@@ -2529,6 +2529,195 @@
         ]
       }
     },
+    "/stats/ces": {
+      "get": {
+        "operationId": "stats_ces_list",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CesMetric_read"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "by",
+            "required": false,
+            "in": "query",
+            "description": "The field used to aggregate the metric.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "day",
+                "month",
+                "place",
+                "quarter",
+                "remark_type",
+                "source",
+                "survey",
+                "year"
+              ]
+            }
+          },
+          {
+            "name": "by_context",
+            "required": false,
+            "in": "query",
+            "description": "The key from the context used to aggregate the metric.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "by_level_category",
+            "required": false,
+            "in": "query",
+            "description": "The level category value used to aggregate the metric.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "place",
+            "required": false,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "places",
+            "required": false,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "level",
+            "required": false,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "levels",
+            "required": false,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "question",
+            "required": false,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "survey",
+            "required": false,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "remark_type",
+            "required": false,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Idea",
+                "Message",
+                "NoType",
+                "Praise",
+                "Problem",
+                "Question"
+              ]
+            }
+          },
+          {
+            "name": "source",
+            "required": false,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "api",
+                "apple_app_store",
+                "critizr",
+                "email",
+                "facebook",
+                "facebook_messenger",
+                "facebook_reviews",
+                "google",
+                "google_messaging",
+                "google_play_store",
+                "merci",
+                "outbound_call",
+                "pagesjaunes",
+                "plv",
+                "receipt",
+                "sdk",
+                "sms",
+                "sms_conv",
+                "sms_text",
+                "sms_trans",
+                "terminal",
+                "tripadvisor",
+                "uber_eats",
+                "undefined",
+                "whatsapp",
+                "widget",
+                "wifi"
+              ]
+            }
+          },
+          {
+            "name": "begin",
+            "required": false,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end",
+            "required": false,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "stats"
+        ]
+      }
+    },
     "/stats/relationship": {
       "get": {
         "operationId": "stats_relationship_list",
@@ -4502,7 +4691,8 @@
                         "emoji",
                         "text",
                         "multiple_answers",
-                        "csat"
+                        "csat",
+                        "ces"
                       ]
                     },
                     "enabled": {
@@ -5027,7 +5217,8 @@
                             "emoji",
                             "text",
                             "multiple_answers",
-                            "csat"
+                            "csat",
+                            "ces"
                           ]
                         },
                         "enabled": {
@@ -5412,7 +5603,8 @@
                             "emoji",
                             "text",
                             "multiple_answers",
-                            "csat"
+                            "csat",
+                            "ces"
                           ]
                         },
                         "enabled": {
@@ -5836,6 +6028,64 @@
         },
         "additionalProperties": {
           "type": "string"
+        }
+      },
+      "CesMetric_read": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "count": {
+                  "type": "integer"
+                },
+                "avg": {
+                  "type": "number"
+                },
+                "high_effort": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "percentage": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "moderate_effort": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "percentage": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "low_effort": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "percentage": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "RelationshipMetric_read": {

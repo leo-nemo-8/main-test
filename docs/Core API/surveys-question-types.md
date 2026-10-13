@@ -258,6 +258,30 @@ A simple binary choice.
 
 ```
 
+### 9. Customer Effort Score (`ces`)
+
+Used to measure the effort perceived by the end customer during a key interaction. The end customer says whether they agree with a statement (the question `title`), on a scale from 1 (_Strongly disagree_) to 7 (_Strongly agree_). A high score means a low effort.
+
+Unlike `nps` and `csat`, a survey can contain several `ces` questions (for example one per step of a journey).
+
+* **Configuration:** The `options` object can include an `alert_limit` (e.g., 3).
+* **Response Payload:** The `value` is an **Integer** (1-7).
+
+**Response Example:**
+
+```json
+{
+    "value": 6,
+    "question": {
+        "id": "Q54E5XpK4y",
+        "title": "It was easy to book my tickets for Jurassic Park.",
+        "type": "ces"
+    }
+}
+```
+
+See [CES - Customer Effort Score](doc:ces-score) to retrieve the calculated CES with the Metrics API.
+
 ***
 
 ## Advanced Behaviors
@@ -312,7 +336,7 @@ If an end customer skips a question, it will simply not appear in the `answers` 
 
 ### Handling Alerts (`alert_triggered`)
 
-Score-based questions—specifically **Stars Rating (`stars`)**, **End Customer Satisfaction (`csat`)**, and **Net Promoter Score (`nps`)**—can be configured with an `alert_limit` in their `options` object.
+Score-based questions—specifically **Stars Rating (`stars`)**, **End Customer Satisfaction (`csat`)**, **Net Promoter Score (`nps`)** and **Customer Effort Score (`ces`)**—can be configured with an `alert_limit` in their `options` object.
 
 If an and customer submits a score that is **equal to or lower than** this limit, it triggers an alert.
 

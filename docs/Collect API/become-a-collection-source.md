@@ -519,6 +519,7 @@ That's it, you have the structure of the survey!
 >
 > * `nps`
 > * `csat`
+> * `ces`
 > * `stars`
 > * `choices`
 > * `multiple_answers`

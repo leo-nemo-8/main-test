@@ -51,7 +51,7 @@ curl --location --request GET 'https://api.goodays.co/v2/responses/bulk? \
 
 > 📘 Which date is used?
 >
-> Metrics (`/stats/nps`, `/stats/satisfaction`, `/stats/remarks`, `/stats/surveys`, `/stats/dissatisfaction`) are always attached to the **date the customer submitted the response**, never to the date it was processed by the Local Manager.
+> Metrics (`/stats/nps`, `/stats/ces`, `/stats/satisfaction`, `/stats/remarks`, `/stats/surveys`, `/stats/dissatisfaction`) are always attached to the **date the customer submitted the response**, never to the date it was processed by the Local Manager.
 
 ## Timezone used for `by=day`, `month`, `quarter`, `year`
 
