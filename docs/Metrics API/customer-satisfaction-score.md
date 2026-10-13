@@ -339,7 +339,7 @@ The categories represent your hierarchical or geographical organization dependin
 
 From these categories, you can calculate the customer satisfaction score distributed by region, business unit, brand, etc.
 
-The category ID to be used is returned by the endpoint [/levels](ref:levels_list-1), in the "category_id" attribute.
+The category ID to be used is returned by the endpoint [/levels](ref:levels_list), in the "category_id" attribute.
 
 See "[By level category](customer-satisfaction-score#by-level-category-1)" use case.
 
