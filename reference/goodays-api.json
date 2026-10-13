@@ -4512,6 +4512,34 @@
               "nl",
               "ja"
             ]
+          },
+          "function": {
+            "type": "string",
+            "description": "The user's job."
+          },
+          "interface_moderation": {
+            "type": "boolean",
+            "description": "Access to the moderation of the reviews published on your store displays."
+          },
+          "interface_sollicitation": {
+            "type": "boolean",
+            "description": "Access to the solicitation interface."
+          },
+          "export_recherche": {
+            "type": "boolean",
+            "description": "Access to the search export."
+          },
+          "export_satisfaction": {
+            "type": "boolean",
+            "description": "Access to the satisfaction export."
+          },
+          "export_verbatim": {
+            "type": "boolean",
+            "description": "Access to the verbatim export."
+          },
+          "export_transaction": {
+            "type": "boolean",
+            "description": "Access to the transaction export."
           }
         },
         "additionalProperties": {
