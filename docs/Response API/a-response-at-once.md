@@ -447,7 +447,7 @@ To refine the result, it is possible to combine the following GET parameters:
       </td>
 
       <td>
-        Filter on source : "email", "facebook", "google", "sms", "tripadvisor", "widget", "wifi".
+        Filter on source (collection channel): "email", "widget", "wifi", "plv", "receipt", "sms", "terminal", "critizr", "sdk", "facebook", "sms_trans", "sms_text", "tripadvisor", "trustpilot", "google", "google_messaging", "pagesjaunes", "outbound_call", "sms_conv", "merci", "google_play_store", "apple_app_store", "uber_eats", "whatsapp", "deliveroo".
       </td>
     </tr>
 
