@@ -43,7 +43,7 @@ The return will always contain:
 | :---------------- | :--------------------------------------- |
 | **pending_alert** | Number of dissatisfaction alerts pending |
 | **pending_reply** | Number of verbatims awaiting processing  |
-| **pending_chat**  | Number of active chat conversations waiting for an answer from your teams. _Only returned if the chat feature is enabled on your account._ |
+| **pending_chat**  | Number of active chat conversations waiting for an answer from your teams. _Only returned if the chat feature is enabled on your account. Filtered by `place` and `level`, not by `pro_user`._ |
 
 > 📘 Total items awaiting processing?
 >
