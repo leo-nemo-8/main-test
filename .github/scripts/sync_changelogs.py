@@ -34,6 +34,7 @@ def call(method, url, payload=None):
     req = urllib.request.Request(url, data=data, method=method)
     req.add_header("Authorization", f"Bearer {os.environ['README_API_KEY']}")
     req.add_header("Accept", "application/json")
+    req.add_header("User-Agent", "goodays-readme-changelog-sync/1.0")
     if data is not None:
         req.add_header("Content-Type", "application/json")
     try:
@@ -74,7 +75,7 @@ def parse(path):
 def upsert(path):
     slug = pathlib.Path(path).stem
     payload = parse(path)
-    status, _ = call("GET", f"{API}/{slug}")
+    status, resp = call("GET", f"{API}/{slug}")
     if status == 200:
         status, resp = call("PATCH", f"{API}/{slug}", payload)
         action = "updated"
@@ -82,7 +83,7 @@ def upsert(path):
         status, resp = call("POST", API, {**payload, "slug": slug})
         action = "created"
     else:
-        raise RuntimeError(f"{slug}: lookup failed ({status})")
+        raise RuntimeError(f"{slug}: lookup failed ({status}) {resp[:500]}")
     if status not in (200, 201):
         raise RuntimeError(f"{slug}: {action} failed ({status}) {resp}")
     print(color("32", f"  {action}: {slug} ({payload['privacy']['view']})"))
