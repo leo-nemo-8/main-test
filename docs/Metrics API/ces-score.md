@@ -10,25 +10,29 @@ metadata:
 next:
   description: ''
 ---
-> 📘 What's that?
->
-> The CES (**Customer Effort Score**) measures the **effort perceived by the end customer** during a key interaction: solving a problem, completing a procedure, using a digital journey, or ordering a product or service.
->
-> The end customer is asked whether they agree with a statement, for example:  
-> “It was easy to return my product.”  
-> The answer is on a scale of 1 (_Strongly disagree_) to 7 (_Strongly agree_). A high score always means a low effort.
->
-> The CES is used to sort answers into three effort levels:
->
-> * “**HIGH EFFORT**”, for a score between 1 and 3
-> * “**MODERATE EFFORT**”, for a score of 4 or 5
-> * “**LOW EFFORT**”, for a score of 6 or 7
->
-> _That score can then be analyzed over any period of time or the focus can be narrowed to any given survey, a particular POS or any other analysis filter you wish to apply._
+<Callout icon="📘" theme="info">
+  ### What's that?
 
-> 👍 Going further
->
-> Consult the [general Metrics API documentation](/docs/exploit-the-full-potential-of-your-data) for more.
+  The CES (**Customer Effort Score**) measures the **effort perceived by the end customer** during a key interaction: solving a problem, completing a procedure, using a digital journey, or ordering a product or service.
+
+  The end customer is asked whether they agree with a statement, for example:<br />“It was easy to return my product.”<br />The answer is on a scale of 1 (_Strongly disagree_) to 7 (_Strongly agree_). A high score always means a low effort.
+
+  The CES is used to sort answers into three effort levels:
+
+  * “**HIGH EFFORT**”, for a score between 1 and 3
+  * “**MODERATE EFFORT**”, for a score of 4 or 5
+  * “**LOW EFFORT**”, for a score of 6 or 7
+
+  _That score can then be analyzed over any period of time or the focus can be narrowed to any given survey, a particular POS or any other analysis filter you wish to apply._
+</Callout>
+
+<Callout icon="👍" theme="okay">
+  ### Going further
+
+  Consult the [general Metrics API documentation](/docs/exploit-the-full-potential-of-your-data) for more.
+</Callout>
+
+![](https://files.readme.io/58bc1cc8eef7ccd32f3d13e27ece14d164ab2bbee4f143b6b37017611e7d1d19-ces.png)
 
 # How do I get my CES?
 
@@ -65,128 +69,33 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/ces' \
 }
 ```
 
-By default the calculation of the score is done "since always".  
-And the return will always contain:
+By default the calculation of the score is done "since always".<br />And the return will always contain:
 
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Attribute
-      </th>
+| Attribute           | Description                                                                                                                                                                                                                                |
+| :------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **key**             | Distribution key ID.                                                                                                                                                                                                                       |
+| **description**     | Description of the distribution key.                                                                                                                                                                                                       |
+| **count**           | Number of answers to "CES" questions in the selection over the requested period.<br />_This is a number of answers, not of participations: see below\._                                                                                    |
+| **avg**             | Average CES score, out of 7.<br />Calculated on all the answers of the selection, not as an average of the averages of each establishment.                                                                                                 |
+| **high_effort**     | Answers to "CES" questions with a score of 1 to 3.                                                                                                                                                                                         |
+| **moderate_effort** | Answers to "CES" questions with a score of 4 or 5.                                                                                                                                                                                         |
+| **low_effort**      | Answers to "CES" questions with a score of 6 or 7.                                                                                                                                                                                         |
+| **count**           | Number of answers to "CES" questions observed over the requested period for the high, moderate or low effort level.                                                                                                                        |
+| **percentage**      | Percentage of answers to "CES" questions observed over the requested period for the high, moderate or low effort level.<br />`low_effort.percentage` is the main CES KPI displayed in Goodays: the % of customers who find the effort low. |
 
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
+<Callout icon="📘" theme="info">
+  ### Zoom on "key" and "description" attribute
 
-  <tbody>
-    <tr>
-      <td>
-        **key**
-      </td>
+  This attributes are only filled in when "by", "by_context" or "by_level_category" is used.<br />Otherwise they have the value `null`.
+</Callout>
 
-      <td>
-        Distribution key ID.
-      </td>
-    </tr>
+<Callout icon="🚧" theme="warn">
+  ### Answers, not participations
 
-    <tr>
-      <td>
-        **description**
-      </td>
+  Unlike the NPS, a survey can contain **several CES questions** (for example one on the website and one on Customer Service). The CES is therefore calculated on **answers**: a participation that contains two CES questions counts as two answers in `count` and in the effort levels.
 
-      <td>
-        Description of the distribution key.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **count**
-      </td>
-
-      <td>
-        Number of answers to "CES" questions in the selection over the requested period.  
-        _This is a number of answers, not of participations: see below._
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **avg**
-      </td>
-
-      <td>
-        Average CES score, out of 7.  
-        Calculated on all the answers of the selection, not as an average of the averages of each establishment.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **high_effort**
-      </td>
-
-      <td>
-        Answers to "CES" questions with a score of 1 to 3.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **moderate_effort**
-      </td>
-
-      <td>
-        Answers to "CES" questions with a score of 4 or 5.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **low_effort**
-      </td>
-
-      <td>
-        Answers to "CES" questions with a score of 6 or 7.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **count**
-      </td>
-
-      <td>
-        Number of answers to "CES" questions observed over the requested period for the high, moderate or low effort level.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **percentage**
-      </td>
-
-      <td>
-        Percentage of answers to "CES" questions observed over the requested period for the high, moderate or low effort level.  
-        `low_effort.percentage` is the main CES KPI displayed in Goodays: the % of customers who find the effort low.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-> 📘 Zoom on "key" and "description" attribute
->
-> This attributes are only filled in when "by", "by_context" or "by_level_category" is used.  
-> Otherwise they have the value `null`.
-
-> 🚧 Answers, not participations
->
-> Unlike the NPS, a survey can contain **several CES questions** (for example one on the website and one on Customer Service). The CES is therefore calculated on **answers**: a participation that contains two CES questions counts as two answers in `count` and in the effort levels.
->
-> When your selection contains several CES questions, they are aggregated. To analyse one CES question on its own, use the `question` parameter.
+  When your selection contains several CES questions, they are aggregated. To analyse one CES question on its own, use the `question` parameter.
+</Callout>
 
 # Add some filters
 
@@ -196,176 +105,37 @@ It is possible to add GET parameters to refine the calculation of the score over
 
 To calculate a CES, it is possible to combine the following GET parameters:
 
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        GET parameters
-      </th>
+| GET parameters        | Description                                                                                                                                                             |
+| :-------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **begin**             | Start date of the calculation period.<br />_Format : YYYY-MM-DDThh:mm:ssZ_<br />See [this page](doc:timezone-and-date-management) for the timezone management.          |
+| **end**               | End date of the calculation period.<br />_Format : YYYY-MM-DDThh:mm:ssZ_<br />See [this page](doc:timezone-and-date-management) for the timezone management.            |
+| **place**             | Filter on an establishment.<br />_It is necessary to indicate the ID of the establishment from the endpoint [/places](ref:places_list)_                                 |
+| **places**            | Filter on an establishment list.<br />_Format : Establishment IDs separated by commas_                                                                                  |
+| **level**             | Filter on a level.<br />_It is necessary to indicate the ID of the level from the endpoint [/levels](ref:levels_list)_                                                  |
+| **levels**            | Filter on a level list.<br />_Format : Level IDs separated by commas_                                                                                                   |
+| **survey**            | Filter on a survey.<br />_It is necessary to indicate the ID of the survey from the endpoint [/surveys](ref:surveys_list)_                                              |
+| **question**          | Filter on a question, for example to isolate one CES question.<br />_It is necessary to indicate the ID of the question from the endpoint [/surveys](ref:surveys_list)_ |
+| **remark_type**       | Filter on remark type : "Idea", "Message",  "Praise", "Problem", "Question".                                                                                            |
+| **source**            | Filter on source : "email", "sms", "widget", "wifi"...                                                                                                                  |
+| **by**                | Group calculations by.<br />See chapter [by](ces-score#by)                                                                                                              |
+| **by_context**        | Group calculations by Additional Information.<br />See chapter [by Context](ces-score#by-context)                                                                       |
+| **by_level_category** | Group calculations by level category.<br />See chapter [by Level Category](ces-score#by-level-category)                                                                 |
 
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
+<Callout icon="📘" theme="info">
+  ### Get an updated list of values for the "source" parameter
 
-  <tbody>
-    <tr>
-      <td>
-        **begin**
-      </td>
-
-      <td>
-        Start date of the calculation period.  
-        _Format : YYYY-MM-DDThh:mm:ssZ_  
-        See [this page](doc:timezone-and-date-management) for the timezone management.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **end**
-      </td>
-
-      <td>
-        End date of the calculation period.  
-        _Format : YYYY-MM-DDThh:mm:ssZ_  
-        See [this page](doc:timezone-and-date-management) for the timezone management.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **place**
-      </td>
-
-      <td>
-        Filter on an establishment.  
-        _It is necessary to indicate the ID of the establishment from the endpoint [/places](ref:places_list)_
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **places**
-      </td>
-
-      <td>
-        Filter on an establishment list.  
-        _Format : Establishment IDs separated by commas_
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **level**
-      </td>
-
-      <td>
-        Filter on a level.  
-        _It is necessary to indicate the ID of the level from the endpoint [/levels](ref:levels_list)_
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **levels**
-      </td>
-
-      <td>
-        Filter on a level list.  
-        _Format : Level IDs separated by commas_
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **survey**
-      </td>
-
-      <td>
-        Filter on a survey.  
-        _It is necessary to indicate the ID of the survey from the endpoint [/surveys](ref:surveys_list)_
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **question**
-      </td>
-
-      <td>
-        Filter on a question, for example to isolate one CES question.  
-        _It is necessary to indicate the ID of the question from the endpoint [/surveys](ref:surveys_list)_
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **remark_type**
-      </td>
-
-      <td>
-        Filter on remark type : "Idea", "Message",  "Praise", "Problem", "Question".
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **source**
-      </td>
-
-      <td>
-        Filter on source : "email", "sms", "widget", "wifi"...
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **by**
-      </td>
-
-      <td>
-        Group calculations by.  
-        See chapter [by](ces-score#by)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **by_context**
-      </td>
-
-      <td>
-        Group calculations by Additional Information.  
-        See chapter [by Context](ces-score#by-context)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **by_level_category**
-      </td>
-
-      <td>
-        Group calculations by level category.  
-        See chapter [by Level Category](ces-score#by-level-category)
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-> 📘 Get an updated list of values for the "source" parameter
->
-> The examples listed for the "source" parameter are not exhaustive. To obtain an exhaustive list, the endpoint [/stats/ces](ref:stats_ces_list) must be called by indicating an unexpected value. In return the error message will list all possible values.
+  The examples listed for the "source" parameter are not exhaustive. To obtain an exhaustive list, the endpoint [/stats/ces](ref:stats_ces_list) must be called by indicating an unexpected value. In return the error message will list all possible values.
+</Callout>
 
 ## Group calculations
 
 The three "by" parameters allow you to retrieve a list of results aggregated according to the value selected in the input.
 
-> 📘 Combine the "by" or not combine the "by" ?
->
-> You can combine several other GET parameters with a "by" but you can not combine the filters "by", "by_context" and "by_level_category" in a single request. Only one aggregation parameter is allowed.
+<Callout icon="📘" theme="info">
+  ### Combine the "by" or not combine the "by" ?
+
+  You can combine several other GET parameters with a "by" but you can not combine the filters "by", "by_context" and "by_level_category" in a single request. Only one aggregation parameter is allowed.
+</Callout>
 
 Here are the 3 possibilities:
 
@@ -459,9 +229,11 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/ces? \
 }
 ```
 
-> 📘 Zoom on "by" parameter
->
-> Here the "by" distributes the calculation by establishment. The attribute "key" contains the ID of the establishment and the "description" its name.
+<Callout icon="📘" theme="info">
+  ### Zoom on "by" parameter
+
+  Here the "by" distributes the calculation by establishment. The attribute "key" contains the ID of the establishment and the "description" its name.
+</Callout>
 
 ## One CES question by month
 
@@ -525,6 +297,8 @@ question=Q54E5XpK4y \
 }
 ```
 
-> 📘 Zoom on "by" parameter
->
-> The attributes "key" and "description" both contain the relevant year and month.
+<Callout icon="📘" theme="info">
+  ### Zoom on "by" parameter
+
+  The attributes "key" and "description" both contain the relevant year and month.
+</Callout>
