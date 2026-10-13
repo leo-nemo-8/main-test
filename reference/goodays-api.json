@@ -4499,7 +4499,9 @@
           },
           "last_login": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Date and time of the user's last login to Goodays (null if the user never logged in).",
+            "nullable": true
           },
           "lang_training": {
             "type": "string",
