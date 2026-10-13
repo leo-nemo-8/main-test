@@ -171,7 +171,7 @@ With this endpoint, you will be able to send up to 1000 solicitations at a time!
 
 # Solicitation statuses
 
-A solicitation can have different status in its lifespan. Here are the possibilities 
+A solicitation can have different status in its lifespan. The `status` field of [/solicitations/{id}](ref:solicitations_read) returns the latest one. Here are the possibilities 
 
 <Table align={["left","left"]}>
   <thead>
@@ -189,7 +189,17 @@ A solicitation can have different status in its lifespan. Here are the possibili
   <tbody>
     <tr>
       <td>
-        Queued
+        `unknown`
+      </td>
+
+      <td>
+        No status is available yet for this solicitation.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `queued`
       </td>
 
       <td>
@@ -199,7 +209,7 @@ A solicitation can have different status in its lifespan. Here are the possibili
 
     <tr>
       <td>
-        Dispatching
+        `dispatching`
       </td>
 
       <td>
@@ -209,7 +219,7 @@ A solicitation can have different status in its lifespan. Here are the possibili
 
     <tr>
       <td>
-        Sent
+        `sent`
       </td>
 
       <td>
@@ -219,7 +229,7 @@ A solicitation can have different status in its lifespan. Here are the possibili
 
     <tr>
       <td>
-        Delivered
+        `delivered`
       </td>
 
       <td>
@@ -229,7 +239,7 @@ A solicitation can have different status in its lifespan. Here are the possibili
 
     <tr>
       <td>
-        Undelivered
+        `undelivered`
       </td>
 
       <td>
@@ -244,7 +254,7 @@ A solicitation can have different status in its lifespan. Here are the possibili
 
     <tr>
       <td>
-        Failed
+        `failed`
       </td>
 
       <td>
@@ -254,7 +264,7 @@ A solicitation can have different status in its lifespan. Here are the possibili
 
     <tr>
       <td>
-        Opened
+        `opened`
       </td>
 
       <td>
@@ -264,7 +274,7 @@ A solicitation can have different status in its lifespan. Here are the possibili
 
     <tr>
       <td>
-        Clicked
+        `clicked`
       </td>
 
       <td>
@@ -274,7 +284,7 @@ A solicitation can have different status in its lifespan. Here are the possibili
 
     <tr>
       <td>
-        Reported
+        `reported as spam`
       </td>
 
       <td>
@@ -284,7 +294,7 @@ A solicitation can have different status in its lifespan. Here are the possibili
 
     <tr>
       <td>
-        Unsubscribed
+        `unsubscribed`
       </td>
 
       <td>
