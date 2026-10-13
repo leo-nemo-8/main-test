@@ -311,6 +311,12 @@ Each object in the `results` array represents a single participation. Here are t
     </tr>
 
     <tr>
+      <td>**user.opt_in**</td>
+      <td>object</td>
+      <td>Consents given by the end customer to your brand (current state, not specific to this participation). Each value is a boolean:<br/>- `newsletter`: subscription to your newsletter;<br/>- `email`: agreement to receive your communications by email;<br/>- `sms`: agreement to receive your communications by SMS;<br/>- `custom`: acceptance of your custom opt-in, the additional consent checkbox with your own wording that can be enabled on your collection widget.</td>
+    </tr>
+
+    <tr>
       <td>**context**</td>
       <td>object</td>
       <td>Extra data sent at collection time (`email`, `phone`, `crm_id`, `extra`...).</td>
