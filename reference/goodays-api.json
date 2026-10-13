@@ -7084,6 +7084,44 @@
           "place": {
             "type": "string"
           },
+          "lang": {
+            "type": "string",
+            "enum": [
+              "ar",
+              "ca",
+              "cs",
+              "da",
+              "de",
+              "de-at",
+              "el",
+              "en",
+              "es",
+              "fi",
+              "fr",
+              "hrv",
+              "hu",
+              "hy",
+              "it",
+              "ja",
+              "ko",
+              "nb",
+              "nl",
+              "pl",
+              "pt",
+              "pt-br",
+              "ro",
+              "ru",
+              "sk",
+              "sl",
+              "sq",
+              "sv",
+              "tr",
+              "zh-hans",
+              "zh-hant",
+              "ka",
+              "ind"
+            ]
+          },
           "type": {
             "type": "string",
             "enum": [
@@ -7187,6 +7225,44 @@
               "properties": {
                 "recipient": {
                   "type": "string"
+                },
+                "lang": {
+                  "type": "string",
+                  "enum": [
+                    "ar",
+                    "ca",
+                    "cs",
+                    "da",
+                    "de",
+                    "de-at",
+                    "el",
+                    "en",
+                    "es",
+                    "fi",
+                    "fr",
+                    "hrv",
+                    "hu",
+                    "hy",
+                    "it",
+                    "ja",
+                    "ko",
+                    "nb",
+                    "nl",
+                    "pl",
+                    "pt",
+                    "pt-br",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "sl",
+                    "sq",
+                    "sv",
+                    "tr",
+                    "zh-hans",
+                    "zh-hant",
+                    "ka",
+                    "ind"
+                  ]
                 },
                 "context": {
                   "type": "object",

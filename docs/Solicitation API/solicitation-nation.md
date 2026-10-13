@@ -48,7 +48,7 @@ Let's say you want to get your customers' feedback right after they purchased so
    "survey":"{survey-id}",
    "type":"email|sms",
    "place":"{place-id}",
-   "lang":"{lang ISO 639-1}",
+   "lang":"{lang}",
    "recipient":"{client email|client phone number}",
    "context":{
       "first_name":"{client firstname}",
@@ -67,6 +67,14 @@ Let's say you want to get your customers' feedback right after they purchased so
 >
 > If you send an email the format must be "Your name [no-reply@yourdomain.com](mailto:no-reply@yourdomain.com)".\
 > For SMS the format must be a label of maximum 11 characters containing only numbers, spaces and/or letters without accents.
+
+> 📘 The lang parameter
+>
+> `lang` is optional. It sets the language of the solicitation (email or SMS). When it is not provided, the language of the point of sale is used.
+>
+> When sending several solicitations at once, `lang` is set for each item of `data`.
+>
+> Accepted values: `ar`, `ca`, `cs`, `da`, `de`, `de-at`, `el`, `en`, `es`, `fi`, `fr`, `hrv`, `hu`, `hy`, `it`, `ja`, `ko`, `nb`, `nl`, `pl`, `pt`, `pt-br`, `ro`, `ru`, `sk`, `sl`, `sq`, `sv`, `tr`, `zh-hans`, `zh-hant`, `ka`, `ind`.
 
 > 📘 Recipient's phone number format
 >
@@ -104,7 +112,7 @@ With this endpoint, you will be able to send up to 1000 solicitations at a time!
    "data":[
       {
          "recipient":"{client email|client phone number}",
-         "lang":"{lang ISO 639-1}",
+         "lang":"{lang}",
          "context":{
             "first_name":"{client name}",
             "last_name":"{client lastname}",
@@ -118,7 +126,7 @@ With this endpoint, you will be able to send up to 1000 solicitations at a time!
       },
       {
          "recipient":"{client email|client phone number}",
-         "lang":"{lang ISO 639-1}",
+         "lang":"{lang}",
          "context":{
             "first_name":"{client name}",
             "last_name":"{client lastname}",
