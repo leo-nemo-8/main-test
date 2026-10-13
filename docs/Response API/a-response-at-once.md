@@ -206,6 +206,16 @@ Now, you can send your request. The response will include only the responses tha
 >
 > Use it instead of `created_date` / `updated_date` when you need dates consistent with Google-side reporting (e.g. to match daily/weekly counts against the Google Score API or the Google statistics screen in the back office), since `created_date` / `updated_date` reflect Goodays' own collection lifecycle, not Google's own dates.
 
+> 📘 Anonymisation option
+>
+> An anonymisation option can be enabled on your API token. When it is enabled, participations returned by `GET /responses/{id}` and `GET /responses/bulk` that come from your end customers or from external reviews (Google, etc.) are anonymised:
+>
+> * the `email`, `first_name` and `last_name` of the respondent, and of every person who took part in the conversation (including your own users), are returned as `null`;
+> * `email`, `phone`, `first_name` and `last_name` are returned as `null` in `context`;
+> * `crm_id` and the other context fields are kept, so you can still reconcile participations with your own systems.
+>
+> The option is enabled per token. Contact your Goodays contact to activate it.
+
 > 📘 Parsing the `answers` array
 >
 > The structure of the objects inside the `answers` array depends entirely on the type of question asked (e.g., NPS, CSAT, multiple choice).
