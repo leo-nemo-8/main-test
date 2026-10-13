@@ -463,7 +463,7 @@ To refine the result, it is possible to combine the following GET parameters:
       </td>
 
       <td>
-        Filter on an End Customer email.
+        Filter on the respondent's email (`user.email`). The email sent in `context` is not used.
       </td>
     </tr>
 
