@@ -21,6 +21,12 @@ To use the Goodays APIs, you need to pass your personal access token in the Auth
 Access tokens are long strings of random characters that look something like this: `943af478d3ff3d4d760020c11af102b79c440513`.\
 Your access token is unique to you. We use it to identify you and make sure that only you can access your resources.
 
+> 📘 Access scope
+>
+> Your access token is attached to a Goodays user. The API only returns the data of the points of sale this user has access to.
+>
+> If this user has no active point of sale, list endpoints (responses, places, surveys, solicitations, dashboard...) return an empty result. Metrics (`stats`) endpoints are not affected.
+
 ## Get your token
 
 An access token is unique and belongs to an individual client. If you don't have your access token, you can ask for yours by contacting your account manager.
