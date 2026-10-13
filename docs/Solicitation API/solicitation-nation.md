@@ -318,6 +318,17 @@ A solicitation can have different status in its lifespan. The `status` field of 
 2. In return you get the list of emails sent.
 3. Save the "id" parameter of each emails you want a status.
 
+You can filter this list with the following GET parameters:
+
+| GET parameter | Description |
+| :------------ | :---------- |
+| **type** | Type of solicitation: `email` or `sms`. |
+| **recipient** | Email address or phone number of the recipient. |
+| **place** | Point of sale: Goodays ID from [/places](ref:places_list), or your own code (`external_id`). |
+| **partner_id** | Your own point of sale code (`external_id`). |
+
+Example: `https://api.goodays.co/v2/solicitations?type=sms`
+
 ## Check sending status
 
 1. Call the endpoint url `https://api.goodays.co/v2/solicitations/:solicitation_id` with the GET parameter "solicitation\_id" filled in with the email ID previously retrieved .
