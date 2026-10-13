@@ -73,6 +73,17 @@ To retrieve the number of items waiting to be processed it is possible to combin
   <tbody>
     <tr>
       <td>
+        **place**
+      </td>
+
+      <td>
+        Filter on an establishment.  
+        _Indicate the ID of the establishment from the endpoint [/places](ref:places_list), or its own code (`external_id`)._
+      </td>
+    </tr>
+
+    <tr>
+      <td>
         **level**
       </td>
 
