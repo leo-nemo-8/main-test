@@ -524,7 +524,7 @@ That's it, you have the structure of the survey!
 > * `choices`
 > * `multiple_answers`
 > * `text`
-> * `yes/no`
+> * `yesno` (value `0` for no, `1` for yes)
 
 ### The customer parameters part
 
