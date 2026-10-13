@@ -30,6 +30,10 @@ The Core API involves four key concepts: levels, places, users, and surveys.
 
 If you are not familiar with these concept, don't hesitate to consult the [Glossary](/docs/glossary)!
 
+> 📘 Test points of sale
+>
+> Test points of sale are returned by [/places](ref:places_list), like your other points of sale. The API does not flag them as test points of sale: if you synchronise your points of sale from the API, ask your Goodays contact for the list of your test points of sale so you can exclude them.
+
 # Functionalities
 
 With the Core API, the following actions are available : 
