@@ -16,11 +16,11 @@ next:
 >
 > This KPI takes three criteria into account:
 >
-> * **Reply rate:** Does the store respond to all these messages from customers?
-> * **Reply time:** How long does it take for the store to respond to these messages?
-> * **Reply quality:** Score given by your customers when they receive a response from the store.
+> * **Reply rate:** Does the point of sale reply to all the verbatims of its end customers?
+> * **Reply time:** How long does it take for the point of sale to reply?
+> * **Reply quality:** Score given by your end customers when they receive a reply from the point of sale.
 >
-> *The score displayed on the interface is updated in real time, and takes into account the messages received and processed during the month.*
+> *The score displayed in the Goodays back office is updated in real time, and takes into account the participations received and processed during the month.*
 
 > 👍 Going further
 >
@@ -72,7 +72,7 @@ And the return will always contain:
 
 # Add some filters
 
-It is possible to add GET parameters to refine the calculation of the score over a defined period, an establishment...
+It is possible to add GET parameters to refine the calculation of the score over a defined period, a point of sale...
 
 ## GET parameters
 
@@ -133,8 +133,8 @@ To calculate a Customer-Relationship score it is possible to combine the followi
       </td>
 
       <td>
-        Filter on an establishment.\
-        *It is necessary to indicate the ID of the establishment from the endpoint[/places](ref:places_list)*
+        Filter on a point of sale.\
+        *It is necessary to indicate the Place ID from the endpoint [/places](ref:places_list)*
       </td>
     </tr>
 
@@ -144,8 +144,8 @@ To calculate a Customer-Relationship score it is possible to combine the followi
       </td>
 
       <td>
-        Filter on an establishment list.\
-        *Format : Establishment IDs separated by commas*
+        Filter on a list of points of sale.\
+        *Format : Place IDs separated by commas*
       </td>
     </tr>
 
@@ -211,7 +211,7 @@ Calculate the Customer-Relationship score by grouping elements and return a list
 
 The distribution of the calculation can be by : "month" or "place".
 
-See "[By establishment over the month of May 2020](customer-relationship-score#by-establishment-over-the-month-of-may-2020)" or [By month for one level and a specific source](customer-relationship-score#by-month-for-one-level-and-a-specific-source) use cases.
+See "[By point of sale over the month of May 2020](customer-relationship-score#by-point-of-sale-over-the-month-of-may-2020)" or [By month for one level and a specific source](customer-relationship-score#by-month-for-one-level-and-a-specific-source) use cases.
 
 ### By Level Category
 
@@ -229,7 +229,7 @@ See "[By level category](customer-relationship-score#by-level-category-1)" use c
 
 Here are some examples to show you the possibilities of this endpoint. This is obviously not exhaustive, it's up to you to have fun to find the right parameter arrangements :)
 
-## By establishment over the month of May 2020
+## By point of sale over the month of May 2020
 
 I have to use the following parameters :
 
@@ -271,7 +271,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/relationship? \
 
 > 📘 Zoom on "by" parameter
 >
-> Here the "by" distributes the calculation by establishment. The attribute "key" contains the ID of the establishment and the "description" its name.
+> Here the "by" distributes the calculation by point of sale. The attribute "key" contains the Place ID of the point of sale and the "description" its name.
 
 ## By month for one level
 

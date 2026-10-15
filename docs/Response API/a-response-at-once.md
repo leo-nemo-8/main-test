@@ -28,13 +28,13 @@ The **Response API** lets you access the data your surveys collect — on demand
 
 With the Response API, you send a GET request each time you want to retrieve your data.
 
-The response includes all the submissions your surveys have received so far, in JSON format. You can also add query parameters to your requests so that responses include only submissions received after a certain date and time or within a certain date range. The [Response API reference](/reference/levels_responses_bulk) lists and describes all of the available query parameters.
+The API response includes all the participations your surveys have received so far, in JSON format. You can also add query parameters to your requests so that the API response only includes participations received after a certain date and time or within a certain date range. The [Response API reference](/reference/levels_responses_bulk) lists and describes all of the available query parameters.
 
-The bulk mode allows you to retrieve responses 20 by 20 (the paging is customizable).
+The bulk mode returns 20 participations per page by default; use the `page_size` parameter to get up to 1000 per page (see [Pagination](doc:sorting-and-pagination)).
 
 # Use query parameters to retrieve specific data
 
-Suppose you expect thousands of responses on your surveys. To keep your Response API requests manageable, you decide to retrieve your survey's data once each day. In other words, you'll retrieve yesterday's data today, today's data tomorrow, and so on. Because you don't want to retrieve every response to your surveys, you'll use the `start_date` and `end_date` query parameters to narrow the scope of your request and limit the API response by date.
+Suppose you expect thousands of participations on your surveys. To keep your Response API requests manageable, you decide to retrieve your survey's data once each day. In other words, you'll retrieve yesterday's data today, today's data tomorrow, and so on. Because you don't want to retrieve every participation in your surveys, you'll use the `start_date` and `end_date` query parameters to narrow the scope of your request and limit the API response by date.
 
 Use `start_date` and `end_date` query parameters to retrieve a date range.
 
@@ -42,9 +42,9 @@ Let's assume today is July 10, 2019, and you're going to retrieve the previous d
 
 1. You'll still use the `GET https://api.goodays.co/v2/responses/bulk` endpoint, but don't send your request yet!
 
-2. Add the `start_date` query parameter to your request. The `start_date` parameter is a string that uses ISO 8601 format, Coordinated Universal Time (UTC), with "T" as a delimiter between the date and time. July 10, 2019 at 12:00 a.m. UTC is expressed as 2019-07-10T00:00:00. If you want to retrieve responses for yesterday, 2019-07-09, the value for your `start_date` query parameter would be 2019-07-09T00:00:00. This means your response will include responses received since 12:00 a.m. UTC on July 9, 2019.
+2. Add the `start_date` query parameter to your request. The `start_date` parameter is a string that uses ISO 8601 format, Coordinated Universal Time (UTC), with "T" as a delimiter between the date and time. July 10, 2019 at 12:00 a.m. UTC is expressed as 2019-07-10T00:00:00. If you want to retrieve participations for yesterday, 2019-07-09, the value for your `start_date` query parameter would be 2019-07-09T00:00:00. This means the API response will include participations received since 12:00 a.m. UTC on July 9, 2019.
 
-3. Add the `end_date` query parameter to your request. The `end_date` parameter is also a string in the same format as the `start_date` parameter. The value for your `end_date` query parameter would be 2019-07-10T00:00:00. This means your response will include responses received up until 12:00 a.m. UTC on July 10, 2019.
+3. Add the `end_date` query parameter to your request. The `end_date` parameter is also a string in the same format as the `start_date` parameter. The value for your `end_date` query parameter would be 2019-07-10T00:00:00. This means the API response will include participations received up until 12:00 a.m. UTC on July 10, 2019.
 
 Here's what the cURL request looks like:
 
@@ -56,7 +56,7 @@ curl --location --request GET 'https://api.goodays.co/v2/responses/bulk? \
 --header 'Authorization: {access-token}'
 ```
 
-Now, you can send your request. The response will include only the responses that were submitted yesterday, July 9, 2019. Like this sample:
+Now, you can send your request. The API response will include only the participations that were submitted yesterday, July 9, 2019. Like this sample:
 
 ```json
 {
@@ -210,11 +210,11 @@ Now, you can send your request. The response will include only the responses tha
 >
 > An anonymisation option can be enabled on your API token. When it is enabled, participations returned by `GET /responses/{id}` and `GET /responses/bulk` that come from your end customers or from external reviews (Google, etc.) are anonymised:
 >
-> * the `email`, `first_name` and `last_name` of the respondent, and of every person who took part in the conversation (including your own users), are returned as `null`;
+> * the `email`, `first_name` and `last_name` of the respondent, and of every person who took part in the conversation (including your own pro users), are returned as `null`;
 > * `email`, `phone`, `first_name` and `last_name` are returned as `null` in `context`;
 > * `crm_id` and the other context fields are kept, so you can still reconcile participations with your own systems.
 >
-> The option is enabled per token. Contact your Goodays contact to activate it.
+> The option is enabled per token. Ask your Goodays project contact to activate it.
 
 > 📘 Parsing the `answers` array
 >
@@ -222,7 +222,7 @@ Now, you can send your request. The response will include only the responses tha
 >
 > To properly parse this data and understand advanced behaviors like conditional logic (mother-daughter questions) or alert triggers, please consult our dedicated guide: **[Survey Question Types & Structures](doc:surveys-question-types)**.
 
-# Response attributes
+# Participation attributes
 
 Each object in the `results` array represents a single participation. Here are the attributes exposed on it:
 
@@ -265,7 +265,7 @@ Each object in the `results` array represents a single participation. Here are t
     <tr>
       <td>**updated_date**</td>
       <td>datetime</td>
-      <td>Date the participation was last updated (survey continued, manager replied...).</td>
+      <td>Date the participation was last updated (survey continued, pro user replied...).</td>
     </tr>
 
     <tr>
@@ -277,7 +277,7 @@ Each object in the `results` array represents a single participation. Here are t
     <tr>
       <td>**source**</td>
       <td>string</td>
-      <td>Collection channel: `email`, `sms`, `google`, `facebook`, `widget`, `tripadvisor`, `wifi`, `terminal`...</td>
+      <td>Source (collection channel): `email`, `sms`, `google`, `facebook`, `widget`, `tripadvisor`, `wifi`, `terminal`...</td>
     </tr>
 
     <tr>
@@ -301,7 +301,7 @@ Each object in the `results` array represents a single participation. Here are t
     <tr>
       <td>**reply**</td>
       <td>object, nullable</td>
-      <td>Reply sent by the point of sale's manager, if any.</td>
+      <td>Reply sent by a pro user, if any.</td>
     </tr>
 
     <tr>
@@ -319,25 +319,25 @@ Each object in the `results` array represents a single participation. Here are t
     <tr>
       <td>**context**</td>
       <td>object</td>
-      <td>Extra data sent at collection time (`email`, `phone`, `crm_id`, `extra`...).</td>
+      <td>Custom parameters sent at collection time (`email`, `phone`, `crm_id`, `extra`...). Their list is returned by [/configuration](ref:configuration_list).</td>
     </tr>
 
     <tr>
       <td>**place**</td>
       <td>object</td>
-      <td>Point of sale the participation is attached to (`id`, `partner_id`, `name`, `enabled`, `detail_url`).</td>
+      <td>Point of sale the participation is attached to (`id` is the Place ID, `partner_id` your external ID, `name`, `enabled`, `detail_url`).</td>
     </tr>
 
     <tr>
       <td>**delegated_to**</td>
       <td>object, nullable</td>
-      <td>Point of sale the handling was delegated to, if any.</td>
+      <td>Point of sale the participation was delegated to (usually Customer Service), if any.</td>
     </tr>
 
     <tr>
       <td>**attached_messages**</td>
       <td>array</td>
-      <td>Additional messages exchanged on the same thread.</td>
+      <td>Private messages exchanged on the same thread after the first reply.</td>
     </tr>
 
     <tr>
@@ -361,14 +361,14 @@ Each object in the `results` array represents a single participation. Here are t
     <tr>
       <td>**alert_triggered**</td>
       <td>boolean</td>
-      <td>Whether the participation triggered an alert.</td>
+      <td>Whether the participation triggered a dissatisfaction alert.</td>
     </tr>
   </tbody>
 </Table>
 
 # Add some filters
 
-It is possible to add GET parameters to refine the response list over a defined period, a point of sales...
+It is possible to add GET parameters to refine the list of participations over a defined period, a point of sale...
 
 ## GET parameters
 
@@ -421,7 +421,7 @@ To refine the result, it is possible to combine the following GET parameters:
         Choose the date on which the period filter should be set.  
         See chapter [Choose the date to filter](a-response-at-once#choose-the-date-to-filter)
 
-        :bulb: _We recommend that you systematically use this parameter in your API calls with the value`updated_date` to retrieve all entries that have been modified over the requested `start_date` / `end_date` period, and not just those created._
+        :bulb: _We recommend that you systematically use this parameter in your API calls with the value`updated_date` to retrieve all participations that have been modified over the requested `start_date` / `end_date` period, and not just those created._
       </td>
     </tr>
 
@@ -431,8 +431,8 @@ To refine the result, it is possible to combine the following GET parameters:
       </td>
 
       <td>
-        Filter on a point of sales.  
-        _Enter your establishment code directly here._
+        Filter on a point of sale.  
+        _Place ID from the endpoint [/places](ref:places_list), or your external ID._
       </td>
     </tr>
 
@@ -463,7 +463,7 @@ To refine the result, it is possible to combine the following GET parameters:
       </td>
 
       <td>
-        Filter on the respondent's email (`user.email`). The email sent in `context` is not used.
+        Filter on the end customer's email (`user.email`). The email sent in `context` is not used.
       </td>
     </tr>
 
@@ -473,7 +473,7 @@ To refine the result, it is possible to combine the following GET parameters:
       </td>
 
       <td>
-        Filter on a CRM ID (aka End Customer ID).
+        Filter on a CRM ID (aka end customer ID).
       </td>
     </tr>
 
@@ -483,7 +483,7 @@ To refine the result, it is possible to combine the following GET parameters:
       </td>
 
       <td>
-        Filter on first name of the End Customer.
+        Filter on first name of the end customer.
       </td>
     </tr>
 
@@ -493,7 +493,7 @@ To refine the result, it is possible to combine the following GET parameters:
       </td>
 
       <td>
-        Filter on last name of the End Customer.
+        Filter on last name of the end customer.
       </td>
     </tr>
 
@@ -503,7 +503,7 @@ To refine the result, it is possible to combine the following GET parameters:
       </td>
 
       <td>
-        Filter on phone of the End Customer.
+        Filter on phone of the end customer.
       </td>
     </tr>
 
@@ -513,7 +513,7 @@ To refine the result, it is possible to combine the following GET parameters:
       </td>
 
       <td>
-        Filter on responses that have a survey answered (completely or partially) by the End Customer.
+        Filter on participations that have a survey answered (completely or partially) by the end customer.
 
         Possible values: `true` or `false`.
       </td>
@@ -525,7 +525,7 @@ To refine the result, it is possible to combine the following GET parameters:
       </td>
 
       <td>
-        Filter on response that have an initial textual message from the End Customer.
+        Filter on participations that have a verbatim from the end customer.
 
         Possible values: `true` or `false`.
       </td>
@@ -537,7 +537,7 @@ To refine the result, it is possible to combine the following GET parameters:
       </td>
 
       <td>
-        Filter on response that have already been replied from the Local Manager.
+        Filter on participations that have already been replied to by a pro user.
 
         Possible values: `true` or `false`.
       </td>
@@ -552,10 +552,10 @@ To refine the result, it is possible to combine the following GET parameters:
 
 ## Choose the date to filter
 
-A response includes two dates:
+A participation includes two dates:
 
-* The `created_date`: the date the response was created
-* The`updated_date`: the date the response was last updated because the client continued to complete the survey, the manager responded...
+* The `created_date`: the date the participation was created
+* The `updated_date`: the date the participation was last updated because the end customer continued to complete the survey, a pro user replied...
 
 To define on which date to base the date filter you have to use the parameter GET `date_field` with the value `updated_date` or `created_date`.
 
@@ -563,7 +563,7 @@ This is important if you don't want to miss any updates from your end customers!
 
 # Example of filters
 
-Retrieve the end customer's responses with a verbatim that have been answered by the local manager on a specific point of sales and survey and the source is the website:
+Retrieve the participations with a verbatim that have been replied to by a pro user, on a specific point of sale and survey, and whose source is the website:
 
 ```curl
 curl --location --request GET 'https://api.goodays.co/v2/responses/bulk \

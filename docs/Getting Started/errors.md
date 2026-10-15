@@ -29,7 +29,7 @@ The information included in the error object varies depending on the error, but 
 | HTTP Status Code | Message                            | Meaning                                   | Potential Solution                                             |
 | :--------------- | :--------------------------------- | :---------------------------------------- | :------------------------------------------------------------- |
 | 401              | No API key found in request        | The `Authorization` header doesn't exist. | Please add the `Authorization` header in your request.         |
-| 403              | Invalid authentication credentials | The provided access token is invalid.     | Check if the provided token matches the token sent by Goodays. |
+| 403              | Invalid authentication credentials | The provided API token is invalid.     | Check if the provided token matches the token sent by Goodays. |
 
 ## Rate Limits
 

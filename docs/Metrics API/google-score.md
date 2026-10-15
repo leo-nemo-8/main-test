@@ -12,7 +12,7 @@ next:
 ---
 > 📘 What's that
 >
-> The **Google Score** is a rating assigned by Google to local establishment on Google My Business (GMB), based on end customer reviews and ratings. This score reflects end customer satisfaction and can influence the business’s online visibility and reputation.
+> The **Google Score** is a rating assigned by Google to a point of sale on Google My Business (GMB), based on the Google reviews of end customers. This score reflects end customer satisfaction and can influence the business’s online visibility and reputation.
 
 > 👍 Going further
 >
@@ -119,9 +119,9 @@ And the return will always contain:
         Google Public Score at the time of the requested month.\
         *(current month by default)*  
 
-        :information_source: This is the score displayed by Google on the establishment's page (on the day of the query if the month is current or on the last day of the month requested).  
+        :information_source: This is the score displayed by Google on the point of sale's page (on the day of the query if the month is current or on the last day of the month requested).  
 
-        :bulb: If `places_count` is greater than 1, then this is the average Google Score for all the establishments in the query scope.
+        :bulb: If `places_count` is greater than 1, then this is the average Google Score for all the points of sale in the query scope.
       </td>
     </tr>
 
@@ -131,10 +131,10 @@ And the return will always contain:
       </td>
 
       <td>
-        Number of participations at the time of the requested month.\
+        Number of Google reviews at the time of the requested month.\
         *(current month by default)*  
 
-        :information_source: This is the total number of reviews displayed on the establishment page (on the day of the request if the month is current or on the last day of the month requested).
+        :information_source: This is the total number of reviews displayed on the point of sale page (on the day of the request if the month is current or on the last day of the month requested).
       </td>
     </tr>
 
@@ -144,7 +144,7 @@ And the return will always contain:
       </td>
 
       <td>
-        Number of establishment(s) taken into account when calculating the Google Public Score.\
+        Number of point(s) of sale taken into account when calculating the Google Public Score.\
         *(all by default)*
       </td>
     </tr>
@@ -168,7 +168,7 @@ And the return will always contain:
       </td>
 
       <td>
-        Number of participations collected between the first and last day over the requested month.\
+        Number of Google reviews collected between the first and last day over the requested month.\
         *(current month by default)*
       </td>
     </tr>
@@ -237,7 +237,7 @@ And the return will always contain:
 
 # Add some filters
 
-It is possible to add GET parameters to refine the calculation of the Google Score over a defined month, an establishment...
+It is possible to add GET parameters to refine the calculation of the Google Score over a defined month, a point of sale...
 
 ## GET parameters
 
@@ -274,8 +274,8 @@ To calculate a Google Score, it is possible to combine the following GET paramet
       </td>
 
       <td>
-        Filter on an establishment.\
-        *It is necessary to indicate the ID of the establishment from the endpoint[/places](ref:places_list) *
+        Filter on a point of sale.\
+        *It is necessary to indicate the Place ID from the endpoint [/places](ref:places_list) *
       </td>
     </tr>
 
@@ -285,8 +285,8 @@ To calculate a Google Score, it is possible to combine the following GET paramet
       </td>
 
       <td>
-        Filter on an establishment list.\
-        *Format : Establishment IDs separated by commas*
+        Filter on a list of points of sale.\
+        *Format : Place IDs separated by commas*
       </td>
     </tr>
 
@@ -297,7 +297,7 @@ To calculate a Google Score, it is possible to combine the following GET paramet
 
       <td>
         Filter on a level.\
-        *It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list) *
+        *It is necessary to indicate the ID of the level from the endpoint [/levels](ref:levels_list) *
       </td>
     </tr>
 
@@ -352,7 +352,7 @@ Calculate the Google Score by grouping elements and return a list.
 
 The distribution of the calculation can be by : "month", "place".
 
-See "[By establishment over the month of May 2024](google-score#by-establishment-over-the-month-of-may-2024)" or [By month for one level](google-score#by-month-for-one-level) use cases.
+See "[By point of sale over the month of May 2024](google-score#by-point-of-sale-over-the-month-of-may-2024)" or [By month for one level](google-score#by-month-for-one-level) use cases.
 
 ### By Level Category
 
@@ -370,7 +370,7 @@ See "[By level category](google-score#by-level-category-1)" use case.
 
 Here are some examples to show you the possibilities of this endpoint. This is obviously not exhaustive, it's up to you to have fun to find the right parameter arrangements :)
 
-## By establishment over the month of May 2024
+## By point of sale over the month of May 2024
 
 I have to use the following parameters:
 
@@ -499,7 +499,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/google_score? \
 
 > 📘 Zoom on "by" parameter
 >
-> Here the "by" distributes the calculation by establishment. The attribute "key" contains the ID of the establishment and the "description" its name.
+> Here the "by" distributes the calculation by point of sale. The attribute "key" contains the Place ID of the point of sale and the "description" its name.
 
 ## By month for one level
 

@@ -21,9 +21,9 @@ As a user browsing on a web page clicking from links to links, servers may disco
 
 ## Example
 
-For this example, we will get a list of responses and use the hypermedia links to retrieve a single response.
+For this example, we will get a list of participations and use the hypermedia links to retrieve a single participation.
 
-## Get a list of responses
+## Get a list of participations
 
 ```curl
 curl -X GET \
@@ -60,10 +60,10 @@ This request gets the following response :
 }
 ```
 
-At this point, you should notice the `detail_url` field. It contains a url to retrieve the details of a specific response.\
+At this point, you should notice the `detail_url` field. It contains a url to retrieve the details of a specific participation.\
 Let's try this url!
 
-## Get a specific response
+## Get a specific participation
 
 ```curl
 curl -X GET \
@@ -72,7 +72,7 @@ curl -X GET \
   -H 'Content-Type: application/json'
 ```
 
-We get the full object of this specific response :
+We get the full object of this specific participation :
 
 ```json
 {
@@ -117,5 +117,5 @@ We get the full object of this specific response :
 
 > 📘 Did you notice ?
 >
-> In the response of the specific Response request, the fields `survey` and `place` also contain a `detail_url` field.\
+> In the details of the participation, the fields `survey` and `place` also contain a `detail_url` field.\
 > We could continue navigating to other resources !

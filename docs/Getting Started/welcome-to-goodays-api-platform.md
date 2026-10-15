@@ -2,8 +2,8 @@
 title: Welcome to Goodays API Platform!
 excerpt: >-
   Goodays APIs help you manage your Goodays environment from the basics like get
-  your users or your places to the most advanced features, like answering a
-  review or retrieving statistics.
+  your pro users or your points of sale to the most advanced features, like
+  replying to a participation or retrieving statistics.
 deprecated: false
 hidden: false
 metadata:
@@ -30,14 +30,14 @@ With deployments in over 30 countries, we are rapidly becoming the global custom
 
 ## Glossary
 
-If you are not familiar with our terms and concept, feel free to head for the [Glossary](/docs/glossary).
+If you are not familiar with our terms and concepts, feel free to head for the [Glossary](doc:glossary): it gives the reference name of each notion and the older names you may still find.
 
 ## Why an API?
 
 Goodays offers several **RESTful APIs** to build, manage and take your business to the top of the customer experience!\
-Core API lets you manage your Goodays’ environment. For example, you are able to add new users or new places.\
+Core API lets you manage your Goodays’ environment. For example, you are able to add new pro users or new points of sale.\
 Solicitation API is the best way to get in touch with your customers. You can send both emails and SMS.\
-Response API offers a simple way to retrieve your customers’ reviews from anywhere.
+Response API offers a simple way to retrieve your end customers’ participations from anywhere.
 
 For details about how Goodays' APIs work, keep reading!
 
@@ -69,7 +69,7 @@ Please, feel comfortable telling us how we can improve this documentation.
 
 > 📘 SDK
 >
-> To get started with our Embed SDK, head straight [here](https://developers.critizr.com). This guide covers getting started with our RESTful APIs but not our Embed SDK.
+> To get started with our Web SDK, head straight to the [developer documentation](https://developers.goodays.co). This guide covers getting started with our RESTful APIs but not our Web SDK.
 >
 > If you need information about an error, check out [Troubleshooting and errors section](/docs/errors).
 >

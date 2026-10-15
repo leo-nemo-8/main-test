@@ -12,9 +12,9 @@ next:
 ---
 > 📘 What's that?
 >
-> A Dissatisfaction Alert is triggered if an End Customer gives a low score on a pre-defined survey question or leaves a problem remark.
+> A dissatisfaction alert is triggered if an end customer gives a low score on a pre-defined survey question or leaves a verbatim of type Problem.
 >
-> Each Dissatisfaction Alert is highlighted in the Goodays Back Office and must be handled by the Local Manager by a call or message to the End Customer to understand their dissatisfaction.
+> Each dissatisfaction alert is highlighted in the Goodays back office and must be handled by a pro user with a call or message to the end customer to understand their dissatisfaction.
 
 > 👍 Going further
 >
@@ -108,7 +108,7 @@ And the return will always contain:
       </td>
 
       <td>
-        Total number of responses that triggered a dissatisfaction alert.
+        Total number of participations that triggered a dissatisfaction alert.
       </td>
     </tr>
 
@@ -118,7 +118,7 @@ And the return will always contain:
       </td>
 
       <td>
-        Percentage of total volume of responses received.
+        Percentage of the total volume of participations received.
       </td>
     </tr>
 
@@ -128,8 +128,8 @@ And the return will always contain:
       </td>
 
       <td>
-        * **count**: total number of dissatisfaction alert in `pending` status
-        * **percentage**: Percentage of dissatisfaction alert with this status
+        * **count**: total number of dissatisfaction alerts in `pending` status
+        * **percentage**: Percentage of dissatisfaction alerts with this status
       </td>
     </tr>
 
@@ -139,8 +139,8 @@ And the return will always contain:
       </td>
 
       <td>
-        * **count**: total number of dissatisfaction alert in `spam` status
-        * **percentage**: Percentage of dissatisfaction alert with this status
+        * **count**: total number of dissatisfaction alerts in `spam` status
+        * **percentage**: Percentage of dissatisfaction alerts with this status
       </td>
     </tr>
 
@@ -150,8 +150,8 @@ And the return will always contain:
       </td>
 
       <td>
-        * **count**: total number of dissatisfaction alert in `ignored` status
-        * **percentage**: Percentage of dissatisfaction alert with this status
+        * **count**: total number of dissatisfaction alerts in `ignored` status
+        * **percentage**: Percentage of dissatisfaction alerts with this status
       </td>
     </tr>
 
@@ -161,7 +161,7 @@ And the return will always contain:
       </td>
 
       <td>
-        * **count**: total number of dissatisfaction alert in `call` status
+        * **count**: total number of dissatisfaction alerts in `call` status
         * **percentage**: Percentage of dissatisfaction alerts with this status
       </td>
     </tr>
@@ -172,8 +172,8 @@ And the return will always contain:
       </td>
 
       <td>
-        * **count**: total number of dissatisfaction alert in `pending` status
-        * **percentage**: Percentage of dissatisfaction alert with this status
+        * **count**: total number of dissatisfaction alerts in `text` status
+        * **percentage**: Percentage of dissatisfaction alerts with this status
       </td>
     </tr>
   </tbody>
@@ -181,13 +181,13 @@ And the return will always contain:
 
 > 📘 Status
 >
-> Responses (with or without a dissatisfaction alert) can have different statuses:
+> Participations (with or without a dissatisfaction alert) can have different statuses:
 >
-> * **pending**: the processing of the response has been put on hold by the Local Manager.
-> * **spam**: response was spammed by the Local Manager.
-> * **ignored**: response was ignored by the Local Manager.
-> * **call**: the response was processed by a call to the End Customer by the Local Manager.
-> * **text**: the processing of the participation was written to the End User by the Local Manager.
+> * **pending**: the processing of the participation has been put on hold by a pro user.
+> * **spam**: the participation was marked as spam by a pro user.
+> * **ignored**: the participation was ignored by a pro user.
+> * **call**: the participation was processed by a pro user with a call to the end customer.
+> * **text**: the participation was processed by a pro user with a written reply to the end customer.
 
 > 📘 Zoom on "key" and "description" attribute
 >
@@ -196,7 +196,7 @@ And the return will always contain:
 
 # Add some filters
 
-It is possible to add GET parameters to refine the calculation of the dissatisfaction results over a defined period, an establishment...
+It is possible to add GET parameters to refine the calculation of the dissatisfaction results over a defined period, a point of sale...
 
 ## GET parameters
 
@@ -246,8 +246,8 @@ To filter the dissatisfaction results, it is possible to combine the following G
       </td>
 
       <td>
-        Filter on an establishment.  
-        _It is necessary to indicate the ID of the establishment from the endpoint[/places](ref:places_list)_
+        Filter on a point of sale.  
+        _It is necessary to indicate the Place ID from the endpoint [/places](ref:places_list)_
       </td>
     </tr>
 
@@ -257,8 +257,8 @@ To filter the dissatisfaction results, it is possible to combine the following G
       </td>
 
       <td>
-        Filter on an establishment list.  
-        _Format : Establishment IDs separated by commas_
+        Filter on a list of points of sale.  
+        _Format : Place IDs separated by commas_
       </td>
     </tr>
 
@@ -269,7 +269,7 @@ To filter the dissatisfaction results, it is possible to combine the following G
 
       <td>
         Filter on a level.  
-        _It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list)_
+        _It is necessary to indicate the ID of the level from the endpoint [/levels](ref:levels_list)_
       </td>
     </tr>
 
@@ -353,7 +353,7 @@ To filter the dissatisfaction results, it is possible to combine the following G
       </td>
 
       <td>
-        Group calculations by Additional Information.  
+        Group calculations by custom parameter.  
         See chapter [by Context](dissatisfaction#by-context)
       </td>
     </tr>
@@ -391,15 +391,15 @@ Refine the calculation of the dissatisfaction results by grouping elements and r
 
 The distribution of the calculation can be by : "day", "month", "nps_category", "place", "quarter", "remark_type", "source", "survey", "year".
 
-See "[By establishment over the month of May 2020](dissatisfaction#by-establishment-over-the-month-of-may-2020)" or [By month for one level and a specific source](dissatisfaction#by-month-for-one-level-and-a-specific-source) use cases.
+See "[By point of sale over the month of May 2020](dissatisfaction#by-point-of-sale-over-the-month-of-may-2020)" or [By month for one level and a specific source](dissatisfaction#by-month-for-one-level-and-a-specific-source) use cases.
 
 ### By Context
 
-Refine the calculation of the dissatisfaction results for each value of the "Additional Information" passed as a parameter and returns a list.
+Refine the calculation of the dissatisfaction results for each value of the custom parameter passed as a parameter and returns a list.
 
-"Additional Information" is additional data attached to a response to give a better understanding about the context.
+A custom parameter is additional data attached to a participation to describe its context (order date, purchase amount, advisor...).
 
-The list of "Additional Information" available depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). The only 'Additional Information" usable with this parameter are the one with the field _"use_in_stats" = true_.
+The list of your custom parameters depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). Only the custom parameters with the field _"use_in_stats" = true_ can be used with this parameter.
 
 See "[By context of the purchase amount](dissatisfaction#by-context-of-the-purchase-amount)" use case.
 
@@ -419,7 +419,7 @@ See "[By level category](dissatisfaction#by-level-category-1)" use case.
 
 Here are some examples to show you the possibilities of this endpoint. This is obviously not exhaustive, it's up to you to have fun to find the right parameter arrangements :)
 
-## By establishment over the month of May 2020
+## By point of sale over the month of May 2020
 
 I have to use the following parameters :
 
@@ -522,7 +522,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/dissatisfaction? 
 
 > 📘 Zoom on "by" parameter
 >
-> Here the "by" distributes the calculation by establishment. The attribute "key" contains the ID of the institution and the "description" its name.
+> Here the "by" distributes the calculation by point of sale. The attribute "key" contains the Place ID of the point of sale and the "description" its name.
 
 ## By month for one level and a specific source
 
@@ -638,7 +638,7 @@ I have to use the following parameters :
 
 * by_context : "advisor"
 
-_Hypothesis: additional information exists in your configuration and is present in every response._
+_Hypothesis: the custom parameter exists in your configuration and is present in every participation._
 
 ```curl Satisfaction call
 curl --location --request GET 'https://api.goodays.co/v2/stats/dissatisfaction?by_context=advisor' \
@@ -733,7 +733,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/dissatisfaction?b
 
 > 📘 Zoom on "by_context" parameter
 >
-> Here the "by_context" distributes the calculation by additional information "price". The attribute "key" contains the ID of the additional information and the "description" its name.
+> Here the "by_context" distributes the calculation by custom parameter "advisor". The attribute "key" contains the ID of the custom parameter value and the "description" its name.
 
 ## By level category
 

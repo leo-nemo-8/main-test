@@ -12,7 +12,7 @@ next:
 ---
 > 📘 What's that?
 >
-> The Inbox is where a Goodays user receives all the feedback from end customers to process.
+> The Inbox is where a pro user receives all the participations from end customers to process.
 >
 > The elements to be processed are distinguished into two attributes:
 >
@@ -51,7 +51,7 @@ The return will always contain:
 
 # Add some filters
 
-It is possible to add GET parameters to refine the calculation of the score over a Goodays user perimeter or an establishment.
+It is possible to add GET parameters to refine the calculation of the score over a pro user perimeter or a point of sale.
 
 ## GET parameters
 
@@ -77,8 +77,8 @@ To retrieve the number of items waiting to be processed it is possible to combin
       </td>
 
       <td>
-        Filter on an establishment.  
-        _Indicate the ID of the establishment from the endpoint [/places](ref:places_list), or its own code (`external_id`)._
+        Filter on a point of sale.  
+        _Indicate the Place ID from the endpoint [/places](ref:places_list), or your external ID._
       </td>
     </tr>
 
@@ -89,7 +89,7 @@ To retrieve the number of items waiting to be processed it is possible to combin
 
       <td>
         Filter on a level.  
-        _It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list)._
+        _It is necessary to indicate the ID of the level from the endpoint [/levels](ref:levels_list)._
       </td>
     </tr>
 
@@ -99,7 +99,7 @@ To retrieve the number of items waiting to be processed it is possible to combin
       </td>
 
       <td>
-        Filter on the perimeter of a Goodays user.  
+        Filter on the perimeter of a pro user.  
         _Format : email url encoded_  
         Ex: [_yul.brenner@coolrunnings.com_](mailto:_yul.brenner@coolrunnings.com_) will become _yul.brenner%40coolrunnings.com_
       </td>
@@ -111,7 +111,7 @@ To retrieve the number of items waiting to be processed it is possible to combin
 
 Here are some examples to show you the possibilities of this endpoint.
 
-## For one Goodays user
+## For one pro user
 
 I have to use the following parameters :
 

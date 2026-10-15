@@ -27,7 +27,7 @@ Lastly and more importantly, these data are still valuable for their original pu
 
 The process is actually pretty simple. However, depending on the volume of your data, it may take some time.
 
-The simple part is telling the Goodays API to create new responses based on your previous data. It is a simple API call providing every information you want to have in Goodays.
+The simple part is telling the Goodays API to create new participations based on your previous data. It is a simple API call providing every information you want to have in Goodays.
 
 > 🚧 Warning
 >
@@ -42,7 +42,7 @@ The process is simple but an analysis have to happen to detect potential format 
 
 > 📘 Disclaimer
 >
-> These steps only covers the part where you create valid new responses to Goodays. Any previous transformation job you might have to do before is taken for granted.
+> These steps only covers the part where you create valid new participations in Goodays. Any previous transformation job you might have to do before is taken for granted.
 
 The retrieval simply requires to call the `/responses`endpoint with the `POST` method and the correct payload.  
 This payload will contain the list of all the answers of a participation. In order to create this array, you will need to get the surveys and the questions attached to properly match the Goodays questions and the legacy answers.
@@ -77,7 +77,7 @@ This payload will contain the list of all the answers of a participation. In ord
 2. For each survey, get the attached questions  
    Request the following endpoint : `/surveys/{survey-id}` with a survey-id retrieved from the previous requests.
 
-Below, an example of the response :
+Below, an example of the API response :
 
 ```json
 {
@@ -113,7 +113,7 @@ Below, an example of the response :
 }
 ```
 
-Now that you have retrieved the surveys ids and the questions ids, you can generate the payload to insert your legacy responses to Goodays.
+Now that you have retrieved the surveys ids and the questions ids, you can generate the payload to insert your legacy participations in Goodays.
 
 3. Create payloads  
    The payload you need to generate looks like the one below :
@@ -151,9 +151,9 @@ Now that you have retrieved the surveys ids and the questions ids, you can gener
 >
 > You should fill the `date` field with the date where the participation actually took place!
 
-> 📘 Context
+> 📘 Custom parameters
 >
-> To obtain the value for the context part request the following endpoint : [`/configuration`](ref:configuration_list).
+> The `context` part contains your custom parameters. To obtain their list, request the following endpoint : [`/configuration`](ref:configuration_list).
 
 > 📘 Answer values
 >
@@ -216,7 +216,7 @@ If not, an error will be returned in the endpoint return, for example:
 
   The `collect_uid` parameter is used to identify the participation in a unique way. This can be a string, a number, a date... You can, for example, concatenate an order ID, a reservation ID, a basket ID... with a timestamp. The most important thing is that this value must be unique.
 
-  If the value of the `collect_uid` already exists then a 409 error is returned and the response is not recorded.
+  If the value of the `collect_uid` already exists then a 409 error is returned and the participation is not recorded.
 
   This parameter is not mandatory but strongly recommended.
 </Callout>
@@ -224,5 +224,5 @@ If not, an error will be returned in the endpoint return, for example:
 ##
 
 4. Check if everything is ok  
-   Every response you created with this method can be retrieved by call the endpoint `/responses` with the GET method. You can add filters to this request to obtain the results given a user, a place or a survey.  
-   Then you can retrieve individual response to check if the responses match your expectations.
+   Every participation you created with this method can be retrieved by calling the endpoint `/responses` with the GET method. You can add filters to this request to obtain the results for an end customer, a point of sale or a survey.  
+   Then you can retrieve each participation to check that it matches your expectations.

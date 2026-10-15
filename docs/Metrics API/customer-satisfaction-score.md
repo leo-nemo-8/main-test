@@ -12,9 +12,9 @@ next:
 ---
 > 📘 What's that?
 >
-> The Customer-Satisfaction score is an average calculated on the basis of the customers’ answers to the CSAT questions of your surveys. If your surveys have no CSAT question, it is calculated on the answers to all the star questions from the published surveys.
+> The Customer-Satisfaction score is an average calculated on the basis of the end customers’ answers to the CSAT questions of your surveys. If your surveys have no CSAT question, it is calculated on the answers to all the star questions from the published surveys.
 >
-> That score can then be analyzed over any period of time or the focus can be narrowed to any given survey, the NPS, a particular establishment, or any other analysis filter you wish to apply.
+> That score can then be analyzed over any period of time or the focus can be narrowed to any given survey, the NPS, a particular point of sale, or any other analysis filter you wish to apply.
 
 > 👍 Going further
 >
@@ -101,7 +101,7 @@ And the return will always contain:
       <td>
         Number of answers taken into account over the requested periods.  
         With CSAT questions: number of participations with a CSAT answer.  
-        With star questions: number of answers to "star" questions (there may be several "star" questions per response).
+        With star questions: number of answers to "star" questions (there may be several "star" questions per participation).
       </td>
     </tr>
 
@@ -124,7 +124,7 @@ And the return will always contain:
 
 # Add some filters
 
-It is possible to add GET parameters to refine the calculation of the score over a defined period, an establishment...
+It is possible to add GET parameters to refine the calculation of the score over a defined period, a point of sale...
 
 ## GET parameters
 
@@ -174,8 +174,8 @@ To calculate a Customer-Satisfaction Score, it is possible to combine the follow
       </td>
 
       <td>
-        Filter on an establishment.  
-        _It is necessary to indicate the ID of the establishment from the endpoint[/places](ref:places_read)_
+        Filter on a point of sale.  
+        _It is necessary to indicate the Place ID from the endpoint [/places](ref:places_read)_
       </td>
     </tr>
 
@@ -185,8 +185,8 @@ To calculate a Customer-Satisfaction Score, it is possible to combine the follow
       </td>
 
       <td>
-        Filter on an establishment list.  
-        _Format : Establishment IDs separated by commas_
+        Filter on a list of points of sale.  
+        _Format : Place IDs separated by commas_
       </td>
     </tr>
 
@@ -197,7 +197,7 @@ To calculate a Customer-Satisfaction Score, it is possible to combine the follow
 
       <td>
         Filter on a level.  
-        _It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list)_
+        _It is necessary to indicate the ID of the level from the endpoint [/levels](ref:levels_list)_
       </td>
     </tr>
 
@@ -281,7 +281,7 @@ To calculate a Customer-Satisfaction Score, it is possible to combine the follow
       </td>
 
       <td>
-        Group calculations by Additional Information.  
+        Group calculations by custom parameter.  
         See chapter [by Context](customer-satisfaction-score#by-context)
       </td>
     </tr>
@@ -319,15 +319,15 @@ Calculate the Customer-Satisfaction score by grouping elements and return a list
 
 The distribution of the calculation can be by : "day", "month", "nps_category", "place", "quarter", "remark_type", "source", "survey", "year".
 
-See "[By establishment over the month of May 2020](customer-satisfaction-score#by-establishment-over-the-month-of-may-2020)" or [By month for one level and a specific source](customer-satisfaction-score#by-month-for-one-level-and-a-specific-source) use cases.
+See "[By point of sale over the month of May 2020](customer-satisfaction-score#by-point-of-sale-over-the-month-of-may-2020)" or [By month for one level and a specific source](customer-satisfaction-score#by-month-for-one-level-and-a-specific-source) use cases.
 
 ### By Context
 
-Calculate the Customer-Satisfaction score for each value of the "Additional Information" passed as a parameter and returns a list.
+Calculate the Customer-Satisfaction score for each value of the custom parameter passed as a parameter and returns a list.
 
-"Additional Information" is additional data attached to a response to give a better understanding about the context.
+A custom parameter is additional data attached to a participation to describe its context (order date, purchase amount, advisor...).
 
-The list of "Additional Information" available depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). The only 'Additional Information" usable with this parameter are the one with the field _"use_in_stats" = true_.
+The list of your custom parameters depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). Only the custom parameters with the field _"use_in_stats" = true_ can be used with this parameter.
 
 See "[By context of the purchase amount](customer-satisfaction-score#by-context-of-the-purchase-amount)" use case.
 
@@ -347,7 +347,7 @@ See "[By level category](customer-satisfaction-score#by-level-category-1)" use c
 
 Here are some examples to show you the possibilities of this endpoint. This is obviously not exhaustive, it's up to you to have fun to find the right parameter arrangements :)
 
-## By establishment over the month of May 2020
+## By point of sale over the month of May 2020
 
 I have to use the following parameters :
 
@@ -408,7 +408,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/satisfaction? \
 
 > 📘 Zoom on "by" parameter
 >
-> Here the "by" distributes the calculation by establishment. The attribute "key" contains the ID of the establishment and the "description" its name.
+> Here the "by" distributes the calculation by point of sale. The attribute "key" contains the Place ID of the point of sale and the "description" its name.
 
 ## By month for one level and a specific source
 
@@ -467,7 +467,7 @@ I have to use the following parameters :
 
 * by_context : "price"
 
-_Hypothesis: additional informations exist in your configuration and is present in every response._
+_Hypothesis: the custom parameter exists in your configuration and is present in every participation._
 
 ```curl Satisfaction call
 curl --location --request GET 'https://api.goodays.co/v2/stats/satisfaction?by_context=price' \
@@ -505,7 +505,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/satisfaction?by_c
 
 > 📘 Zoom on "by_context" parameter
 >
-> Here the "by_context" distributes the calculation by additional information "price". The attribute "key" contains the ID of the additional information and the "description" its name.
+> Here the "by_context" distributes the calculation by custom parameter "price". The attribute "key" contains the ID of the custom parameter value and the "description" its name.
 
 ## By level category
 

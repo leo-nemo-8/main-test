@@ -12,7 +12,7 @@ next:
 ---
 > 📘 What's that?
 >
-> A Retained Customer is a customer who has expressed dissatisfaction and has been identified as "at risk". After the local manager's response, this customer indicated that he was satisfied with the treatment of his dissatisfaction and considered returning to the place. The local manager's action thus prevented this customer from churn.
+> A retained customer is an end customer who has expressed dissatisfaction and has been identified as "at risk". After the reply of a pro user, this end customer indicated that they were satisfied with the treatment of their dissatisfaction and considered returning to the point of sale. The pro user's action thus prevented this end customer from churning.
 
 > 👍 Going further
 >
@@ -51,9 +51,9 @@ And the return will always contain:
 | :-------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------- |
 | **key**                           | Distribution key ID.                                                                                                                |
 | **description**                   | Description of the distribution key.                                                                                                |
-| **retained_customers_count**      | Total number of End Customers who are satisfied with the Local Manager's response and planned to return to the place.               |
-| **retained_customers_percentage** | Percentage of total number of End Customers who are satisfied with the Local Manager's response and planned to return to the place. |
-| **customers_responding_count**    | Total number of End Customers responding to the question about coming back to the place                                             |
+| **retained_customers_count**      | Total number of end customers who are satisfied with the pro user's reply and planned to return to the point of sale.               |
+| **retained_customers_percentage** | Percentage of total number of end customers who are satisfied with the pro user's reply and planned to return to the point of sale. |
+| **customers_responding_count**    | Total number of end customers responding to the question about coming back to the point of sale                                             |
 
 > 📘 Zoom on "key" and "description" attribute
 >
@@ -62,11 +62,11 @@ And the return will always contain:
 
 # Add some filters
 
-It is possible to add GET parameters to refine the calculation of the dissatisfaction results over a defined period, a place...
+It is possible to add GET parameters to refine the calculation of the dissatisfaction results over a defined period, a point of sale...
 
 ## GET parameters
 
-To filter the Retain Customers results, it is possible to combine the following GET parameters:
+To filter the Retained Customers results, it is possible to combine the following GET parameters:
 
 <Table align={["left","left"]}>
   <thead>
@@ -112,8 +112,8 @@ To filter the Retain Customers results, it is possible to combine the following 
       </td>
 
       <td>
-        Filter on an establishment.  
-        _It is necessary to indicate the ID of the establishment from the endpoint[/places](ref:places_list)_
+        Filter on a point of sale.  
+        _It is necessary to indicate the Place ID from the endpoint [/places](ref:places_list)_
       </td>
     </tr>
 
@@ -123,8 +123,8 @@ To filter the Retain Customers results, it is possible to combine the following 
       </td>
 
       <td>
-        Filter on an establishment list.  
-        _Format : Establishment IDs separated by commas_
+        Filter on a list of points of sale.  
+        _Format : Place IDs separated by commas_
       </td>
     </tr>
 
@@ -135,7 +135,7 @@ To filter the Retain Customers results, it is possible to combine the following 
 
       <td>
         Filter on a level.  
-        _It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list)_
+        _It is necessary to indicate the ID of the level from the endpoint [/levels](ref:levels_list)_
       </td>
     </tr>
 
@@ -219,7 +219,7 @@ To filter the Retain Customers results, it is possible to combine the following 
       </td>
 
       <td>
-        Group calculations by Additional Information.  
+        Group calculations by custom parameter.  
         See chapter [by Context](dissatisfaction#by-context)
       </td>
     </tr>
@@ -257,15 +257,15 @@ Refine the calculation of the Retained Customers results by grouping elements an
 
 The distribution of the calculation can be by : "day", "month", "nps_category", "place", "quarter", "remark_type", "source", "survey", "year".
 
-See "[By establishment over the month of May 2020](retained-customers#by-establishment-over-the-month-of-may-2020)" or [By month for one level and a specific source](retained-customers#by-month-for-one-level-and-a-specific-source) use cases.
+See "[By point of sale over the month of May 2020](retained-customers#by-point-of-sale-over-the-month-of-may-2020)" or [By month for one level and a specific source](retained-customers#by-month-for-one-level-and-a-specific-source) use cases.
 
 ### By Context
 
-Refine the calculation of the Retained Customers results for each value of the "Additional Information" passed as a parameter and returns a list.
+Refine the calculation of the Retained Customers results for each value of the custom parameter passed as a parameter and returns a list.
 
-"Additional Information" is additional data attached to a response to give a better understanding about the context.
+A custom parameter is additional data attached to a participation to describe its context (order date, purchase amount, advisor...).
 
-The list of "Additional Information" available depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). The only 'Additional Information" usable with this parameter are the one with the field _"use_in_stats" = true_.
+The list of your custom parameters depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). Only the custom parameters with the field _"use_in_stats" = true_ can be used with this parameter.
 
 See "[By context of the purchase amount](dissatisfaction#by-context-of-the-purchase-amount)" use case.
 
@@ -285,7 +285,7 @@ See "[By level category](retained-customers#by-level-category-1)" use case.
 
 Here are some examples to show you the possibilities of this endpoint. This is obviously not exhaustive, it's up to you to have fun to find the right parameter arrangements :)
 
-## By establishment over the month of May 2020
+## By point of sale over the month of May 2020
 
 I have to use the following parameters :
 
@@ -325,7 +325,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/retained-customer
 
 > 📘 Zoom on "by" parameter
 >
-> Here the "by" distributes the calculation by establishment. The attribute "key" contains the ID of the institution and the "description" its name.
+> Here the "by" distributes the calculation by point of sale. The attribute "key" contains the Place ID of the point of sale and the "description" its name.
 
 ## By month for one level and a specific source
 
@@ -398,7 +398,7 @@ I have to use the following parameters :
 
 * by_context : "advisor"
 
-_Hypothesis: additional informations exist in your configuration and is present in every response._
+_Hypothesis: the custom parameter exists in your configuration and is present in every participation._
 
 ```curl Satisfaction call
 curl --location --request GET 'https://api.goodays.co/v2/stats/retained-customers?by_context=advisor' \
@@ -436,7 +436,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/retained-customer
 
 > 📘 Zoom on "by_context" parameter
 >
-> Here the "by_context" distributes the calculation by additional information "price". The attribute "key" contains the ID of the additional information and the "description" its name.
+> Here the "by_context" distributes the calculation by custom parameter "price". The attribute "key" contains the ID of the custom parameter value and the "description" its name.
 
 ## By level category
 

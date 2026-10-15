@@ -133,7 +133,7 @@ For every `GET` request that will respond with a list, filters will be available
 
 ## Example
 
-When you are retrieving a list of solicitations, you may want to only get the one related to a particular place. In this case, you can use the `place` filter.\
+When you are retrieving a list of solicitations, you may want to only get the ones related to a particular point of sale. In this case, you can use the `place` filter, with the Place ID or your external ID.\
 The request should look like this:
 
 ```curl
@@ -143,4 +143,4 @@ curl -X GET \
   -H 'Content-Type: application/json' \
 ```
 
-With this request, you only get the solicitations related to the place you enter as a parameter.
+With this request, you only get the solicitations related to the point of sale you enter as a parameter.

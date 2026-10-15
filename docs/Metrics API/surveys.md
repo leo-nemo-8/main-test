@@ -211,7 +211,7 @@ And the return will always contain:
       </td>
 
       <td>
-        Number of responses.
+        Number of participations.
       </td>
     </tr>
 
@@ -232,7 +232,7 @@ And the return will always contain:
 
       <td>
         List of questions related to the survey selected.  
-        Each question lists the number of answers made on each answer option. The list is presented in the order of the choices proposed to the End Customer.  
+        Each question lists the number of answers made on each answer option. The list is presented in the order of the choices proposed to the end customer.  
         To know the order of the choices of a survey it is necessary to use the endpoint [/stats/survey/\{id}](ref:stats_surveys_read).
       </td>
     </tr>
@@ -243,7 +243,7 @@ And the return will always contain:
       </td>
 
       <td>
-        For each _answers_ : number of responses for the answer.
+        For each _answers_ : number of participations with this answer.
       </td>
     </tr>
 
@@ -253,7 +253,7 @@ And the return will always contain:
       </td>
 
       <td>
-        Percentage of responses for the answer.
+        Percentage of participations with this answer.
       </td>
     </tr>
 
@@ -283,7 +283,7 @@ And the return will always contain:
 
 # Add some filters
 
-It is possible to add GET parameters to refine the calculation of the survey results over a defined period, an establishment...
+It is possible to add GET parameters to refine the calculation of the survey results over a defined period, a point of sale...
 
 ## GET parameters
 
@@ -333,8 +333,8 @@ To filter the survey results, it is possible to combine the following GET parame
       </td>
 
       <td>
-        Filter on an establishment.  
-        _It is necessary to indicate the ID of the establishment from the endpoint[/places](ref:places_list)_
+        Filter on a point of sale.  
+        _It is necessary to indicate the Place ID from the endpoint [/places](ref:places_list)_
       </td>
     </tr>
 
@@ -344,8 +344,8 @@ To filter the survey results, it is possible to combine the following GET parame
       </td>
 
       <td>
-        Filter on an establishment list.  
-        _Format : Establishment IDs separated by commas_
+        Filter on a list of points of sale.  
+        _Format : Place IDs separated by commas_
       </td>
     </tr>
 
@@ -356,7 +356,7 @@ To filter the survey results, it is possible to combine the following GET parame
 
       <td>
         Filter on a level.  
-        _It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list)_
+        _It is necessary to indicate the ID of the level from the endpoint [/levels](ref:levels_list)_
       </td>
     </tr>
 
@@ -377,13 +377,13 @@ To filter the survey results, it is possible to combine the following GET parame
 
 Here are some examples to show you the possibilities of this endpoint. This is obviously not exhaustive, it's up to you to have fun to find the right parameter arrangements :)
 
-## For one establishment over the month of Octobre 2021
+## For one point of sale over the month of Octobre 2021
 
 I have to use the following parameters :
 
 * begin : the first date of the month of October
 * end : the last date of the month of October
-* place : the ID of the establishment
+* place : the Place ID of the point of sale
 
 ```curl
 curl --location --request GET 'https://api.goodays.co/v2/stats/surveys/My4lvMpK8R? \

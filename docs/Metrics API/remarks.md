@@ -1,5 +1,5 @@
 ---
-title: Remarks
+title: Remark types
 excerpt: ''
 deprecated: false
 hidden: false
@@ -12,9 +12,9 @@ next:
 ---
 > 📘 What's that?
 >
-> A remark is the message left by the End Customer. It can be typed as **Idea**, **Praise**, **Problem** or **Question**.
+> The remark type is the category of the verbatim left by the end customer: **Idea**, **Praise**, **Problem** or **Question**.
 >
-> The discussion between the Local Manager and the End Customer. after the first comment from the End Customer is typed as a "Message".
+> The exchanges between a pro user and the end customer after the first verbatim are typed as "Message".
 
 > 👍 Going further
 >
@@ -22,7 +22,7 @@ next:
 
 <Image border={false} src="https://files.readme.io/ec4c833-Constructive_Conversations.png" title="Constructive Conversations.png" />
 
-# How do I get my remarks metrics?
+# How do I get my remark type metrics?
 
 With [/stats/remarks](ref:stats_remarks_list):
 
@@ -72,13 +72,13 @@ And the return will always contain:
 | **key**         | Distribution key ID.                                                                                                                    |
 | **description** | Description of the distribution key.                                                                                                    |
 | **count**       | Number of participations in the selection over the requested period.                                                                    |
-| **Idea**        | End Customer having left a remark typed "Idea".                                                                                         |
-| **Praise**      | End Customer having left a remark typed "Praise".                                                                                       |
-| **Problem**     | End Customer having left a remark typed "Problem".                                                                                      |
-| **Question**    | End Customer having left a remark typed "Question".                                                                                     |
-| **Message**     | The discussion between the Local Manager and the End Customer. after the first comment from the End Customer is typed as a "Message".   |
-| **count**       | Number of responses for the type of remarks observed over the requested periods for the Idea, Praise, Problem, Question or Message.     |
-| **percentage**  | Percentage of responses for the type of remarks observed over the requested periods for the Idea, Praise, Problem, Question or Message. |
+| **Idea**        | Participations with a verbatim of type "Idea".                                                                                         |
+| **Praise**      | Participations with a verbatim of type "Praise".                                                                                       |
+| **Problem**     | Participations with a verbatim of type "Problem".                                                                                      |
+| **Question**    | Participations with a verbatim of type "Question".                                                                                     |
+| **Message**     | Exchanges between a pro user and the end customer after the first verbatim.   |
+| **count**       | Number of participations for the remark type observed over the requested periods for the Idea, Praise, Problem, Question or Message.     |
+| **percentage**  | Percentage of participations for the remark type observed over the requested periods for the Idea, Praise, Problem, Question or Message. |
 
 > 📘 Zoom on "key" and "description" attribute
 >
@@ -87,11 +87,11 @@ And the return will always contain:
 
 # Add some filters
 
-It is possible to add GET parameters to refine the calculation of the score over a defined period, an establishment...
+It is possible to add GET parameters to refine the calculation of the score over a defined period, a point of sale...
 
 ## GET parameters
 
-To calculate a remarks metrics it is possible to combine the following GET parameters:
+To calculate remark type metrics it is possible to combine the following GET parameters:
 
 <Table align={["left","left"]}>
   <thead>
@@ -137,8 +137,8 @@ To calculate a remarks metrics it is possible to combine the following GET param
       </td>
 
       <td>
-        Filter on an establishment.  
-        _It is necessary to indicate the ID of the establishment from the endpoint[/places](ref:places_list)._
+        Filter on a point of sale.  
+        _It is necessary to indicate the Place ID from the endpoint [/places](ref:places_list)._
       </td>
     </tr>
 
@@ -148,8 +148,8 @@ To calculate a remarks metrics it is possible to combine the following GET param
       </td>
 
       <td>
-        Filter on an establishment list.  
-        _Format : Establishment IDs separated by commas._
+        Filter on a list of points of sale.  
+        _Format : Place IDs separated by commas._
       </td>
     </tr>
 
@@ -160,7 +160,7 @@ To calculate a remarks metrics it is possible to combine the following GET param
 
       <td>
         Filter on a level.  
-        _It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list)._
+        _It is necessary to indicate the ID of the level from the endpoint [/levels](ref:levels_list)._
       </td>
     </tr>
 
@@ -213,7 +213,7 @@ To calculate a remarks metrics it is possible to combine the following GET param
       </td>
 
       <td>
-        Filter on a value of Additional Information.  
+        Filter on a value of a custom parameter.  
         _To construct this parameter you need to concatenate the prefix`context_`and one of the`key` attribute returned by the endpoint [/configuration](ref:configuration_list)._
 
         See the :information_source: block below.
@@ -257,7 +257,7 @@ To calculate a remarks metrics it is possible to combine the following GET param
       </td>
 
       <td>
-        Group calculations by Additional Information.  
+        Group calculations by custom parameter.  
         See chapter [by Context](remarks#by-context).
       </td>
     </tr>
@@ -277,9 +277,9 @@ To calculate a remarks metrics it is possible to combine the following GET param
 
 > 📘 Get an updated list of values for the "context_" parameter
 >
-> "Additional Information" is additional data attached to a response to give a better understanding about the context.
+> A custom parameter is additional data attached to a participation to describe its context (order date, purchase amount, advisor...).
 >
-> The list of Additional Information available depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). The only 'Additional Information" usable with this parameter are the one with the field _"use_in_stats" = true_.
+> The list of your custom parameters depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). Only the custom parameters with the field _"use_in_stats" = true_ can be used with this parameter.
 >
 > See "[By context of the purchase amount](remarks#by-context-of-the-purchase-amount)" use case.
 
@@ -299,29 +299,29 @@ Here are the 3 possibilities :
 
 ### By
 
-Calculate the remarks metrics by grouping elements and return a list.
+Calculate the remark type metrics by grouping elements and return a list.
 
 The distribution of the calculation can be by : "day", "month", "nps_category", "place", "quarter", "remark_type", "source", "survey", "year".
 
-See "[By establishment over the month of May 2020](remarks#by-establishment-over-the-month-of-may-2020)" or [By month for one level and a specific source](remarks#by-month-for-one-level-and-a-specific-source) use cases.
+See "[By point of sale over the month of May 2020](remarks#by-point-of-sale-over-the-month-of-may-2020)" or [By month for one level and a specific source](remarks#by-month-for-one-level-and-a-specific-source) use cases.
 
 ### By Context
 
-Calculate the remarks metrics for each value of the "Additional Information" passed as a parameter and return a list.
+Calculate the remark type metrics for each value of the custom parameter passed as a parameter and return a list.
 
-"Additional Information" is additional data attached to a response to give a better understanding about the context.
+A custom parameter is additional data attached to a participation to describe its context (order date, purchase amount, advisor...).
 
-The list of Additional Information available depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). The only 'Additional Information" usable with this parameter are the one with the field _"use_in_stats" = true_.
+The list of your custom parameters depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). Only the custom parameters with the field _"use_in_stats" = true_ can be used with this parameter.
 
 See "[By context of the purchase amount](remarks#by-context-of-the-purchase-amount)" use case.
 
 ### By Level Category
 
-Calculate the remarks metrics by level category and return a list.
+Calculate the remark type metrics by level category and return a list.
 
 The categories represent your hierarchical or geographical organization depending on your Goodays configuration.
 
-From these categories, you can calculate the remarks metrics distributed by region, business unit, brand, etc.
+From these categories, you can calculate the remark type metrics distributed by region, business unit, brand, etc.
 
 The category ID to be used is returned by the endpoint [/levels](ref:levels_list), in the "category_id" attribute.
 
@@ -331,7 +331,7 @@ See "[By level category](remarks#by-level-category-1)" use case.
 
 Here are some examples to show you the possibilities of this endpoint. This is obviously not exhaustive, it's up to you to have fun to find the right parameter arrangements :)
 
-## By establishment over the month of May 2020
+## By point of sale over the month of May 2020
 
 I have to use the following parameters :
 
@@ -432,15 +432,15 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/remarks? \
 
 > 📘 Zoom on "by" parameter
 >
-> Here the "by" distributes the calculation by establishment. The attribute "key" contains the ID of the institution and the "description" its name.
+> Here the "by" distributes the calculation by point of sale. The attribute "key" contains the Place ID of the point of sale and the "description" its name.
 
-## For one End Customer
+## For one end customer
 
 I have to use the following parameters :
 
 * email
 
-**Tips :** you can add the parameter "by" with the value "place" to get a distribution of this end-customer's scores by establishment.
+**Tips :** you can add the parameter "by" with the value "place" to get a distribution of this end customer's scores by point of sale.
 
 ```curl Remarks call
 curl --location --request GET 'https://api.goodays.co/v2/stats/remarks? \
@@ -485,13 +485,13 @@ email=max.guevara@angel.com' \
 >
 > Here there is no "by". The attribute "key" and "description" contains "null".
 
-## For one Additional Information
+## For one custom parameter
 
 I have to use the following parameters :
 
 * context_ : "context_service"
 
-_Hypothesis: in our configuration we have a "Service" Additional Information with a`service` key_
+_Hypothesis: in our configuration we have a "Service" custom parameter with a `service` key_
 
 ```curl
 curl --location --request GET 'https://api.goodays.co/v2/stats/remarks? /
@@ -658,7 +658,7 @@ I have to use the following parameters :
 
 * by_context : "price"
 
-_Hypothesis: additional information exists in your configuration and is present in ever response._
+_Hypothesis: the custom parameter exists in your configuration and is present in every participation._
 
 ```curl Remarks
 curl --location --request GET 'https://api.goodays.co/v2/stats/remarks?by_context=price' \
@@ -750,7 +750,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/remarks?by_contex
 
 > 📘 Zoom on "by_context" parameter
 >
-> Here the "by_context" distributes the calculation by additional information "price". The attribute "key" contains the ID of the additional information and the "description" its name.
+> Here the "by_context" distributes the calculation by custom parameter "price". The attribute "key" contains the ID of the custom parameter value and the "description" its name.
 
 ## By level category
 

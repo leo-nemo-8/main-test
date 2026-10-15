@@ -11,10 +11,10 @@ As established in the **Core API** overview, surveys are one of the four essenti
 A Goodays survey is a dynamic tool designed to capture the nuances of the end customer experience. It can range from a single satisfaction question to a complex, multi-path journey using "Mother-Daughter" conditional logic. Understanding these structures is critical for several key technical workflows:
 
 * **Interpreting Data:** Correcty parsing the JSON results returned by the Response API.
-* **Pushing Feedback:** Formatting the `answers` array correctly when using the Collect API to import external data.
+* **Pushing participations:** Formatting the `answers` array correctly when using the Collect API to import external data.
 * **Data Analysis:** Understanding how specific question types (like NPS or Stars) contribute to the calculated values in the Metrics API.
 
-The following guide details every question type available in Goodays and how their data is structured in both the survey definition and the user's response.
+The following guide details every question type available in Goodays and how their data is structured in both the survey definition and the end customer's participation.
 
 ***
 
@@ -22,7 +22,7 @@ The following guide details every question type available in Goodays and how the
 
 Goodays surveys are highly customizable and support a wide variety of question formats—ranging from simple text inputs to complex, conditional logic (mother-daughter questions).
 
-When querying the [Response API](/reference/responses_list) understanding the `type` of question and its configuration in the `options` object is crucial for properly parsing the response data.
+When querying the [Response API](/reference/responses_list) understanding the `type` of question and its configuration in the `options` object is crucial for properly parsing the participation data.
 
 ***
 
@@ -46,22 +46,22 @@ Before diving into specific types, it's important to understand the basic struct
 
 * `type`: Defines the format of the question (e.g., `stars`, `text`, `nps`).
 * `options`: A configuration object containing type-specific parameters (e.g., alert limit, skippable flags).
-* `sub_questions`: An array containing conditional "daughter" questions that are triggered based on the end user's answer.
+* `sub_questions`: An array containing conditional "daughter" questions that are triggered based on the end customer's answer.
 
 ***
 
 ## Supported Question Types
 
-Here is a detailed breakdown of all available question `type` values, including how they are configured in the survey definition and how the user's answer is formatted in the Response API payload.
+Here is a detailed breakdown of all available question `type` values, including how they are configured in the survey definition and how the end customer's answer is formatted in the Response API payload.
 
 ### 1. Stars Rating (`stars`)
 
 Used for standard 1-to-5 star rating scales.
 
 * **Configuration:** The `options` object can include an `alert_limit` (e.g., 2).
-* **Response Payload:** The `value` is an **Integer** representing the number of stars selected.
+* **Answer format:** The `value` is an **Integer** representing the number of stars selected.
 
-**Response Example:**
+**Answer example:**
 
 ```json
 {
@@ -74,14 +74,14 @@ Used for standard 1-to-5 star rating scales.
 }
 ```
 
-### 2. End Customer Satisfaction (`csat`)
+### 2. Customer Satisfaction (`csat`)
 
-A metric used to measure user satisfaction, often represented visually as a scale (e.g., 1 to 5).
+A metric used to measure end customer satisfaction, often represented visually as a scale (e.g., 1 to 5).
 
 * **Configuration:** The `options` object can include an `alert_limit` (e.g., 2).
-* **Response Payload:** The `value` is an **Integer**.
+* **Answer format:** The `value` is an **Integer**.
 
-**Response Example:**
+**Answer example:**
 
 ```json
 {
@@ -99,9 +99,9 @@ A metric used to measure user satisfaction, often represented visually as a scal
 Used to measure end customer loyalty. It asks how likely the end customer is to recommend the business on a scale of 0 to 10.
 
 * **Configuration:** The `options` object can include an `alert_limit` (e.g., 2).
-* **Response Payload:** The `value` is an **Integer** (0-10).
+* **Answer format:** The `value` is an **Integer** (0-10).
 
-**Response Example:**
+**Answer example:**
 
 ```json
 {
@@ -116,12 +116,12 @@ Used to measure end customer loyalty. It asks how likely the end customer is to 
 
 ### 4. Open-ended Text (`text`)
 
-A free-form text input field for end customers to leave verbatim feedback.
+A free-form text input field for end customers to leave a verbatim.
 
 * **Configuration:** Typically uses an empty options object (unless configured as skippable).
-* **Response Payload:** The `value` is a **String**.
+* **Answer format:** The `value` is a **String**.
 
-**Response Example:**
+**Answer example:**
 
 ```json
 {
@@ -136,10 +136,10 @@ A free-form text input field for end customers to leave verbatim feedback.
 
 ### 5. Single Choice (`choices`)
 
-A list of options where the user can only select **one** answer.
+A list of options where the end customer can only select **one** answer.
 
 * **Configuration:** The `options` object contains an array of `choices` (Strings).
-* **Response Payload:** The `value` is a **String** exactly matching the chosen option.
+* **Answer format:** The `value` is a **String** exactly matching the chosen option.
 
 **Survey Configuration Example:**
 
@@ -153,7 +153,7 @@ A list of options where the user can only select **one** answer.
 }
 ```
 
-**Response Example:**
+**Answer example:**
 
 ```json
 {
@@ -168,10 +168,10 @@ A list of options where the user can only select **one** answer.
 
 ### 6. Multiple Choice (`multiple_answers`)
 
-A list of options where the user can select **one or more** answers.
+A list of options where the end customer can select **one or more** answers.
 
 * **Configuration:** The `options` object contains an array of available `choices`.
-* **Response Payload:** The `value` is an **Array of Strings**, containing all selected options.
+* **Answer format:** The `value` is an **Array of Strings**, containing all selected options.
 
 **Survey Configuration Example:**
 
@@ -185,7 +185,7 @@ A list of options where the user can select **one or more** answers.
 }
 ```
 
-**Response Example:**
+**Answer example:**
 
 ```json
 {
@@ -207,7 +207,7 @@ A list of options where the user can select **one or more** answers.
 A visual scale using emojis instead of numbers to capture sentiment.
 
 * **Configuration:** The `options` object contains an array of `labels` corresponding to the emojis.
-* **Response Payload:** The `value` is a **String** matching the label of the selected emoji.
+* **Answer format:** The `value` is a **String** matching the label of the selected emoji.
 
 **Survey Configuration Example:**
 
@@ -223,7 +223,7 @@ A visual scale using emojis instead of numbers to capture sentiment.
 
 ```
 
-**Response Example:**
+**Answer example:**
 
 ```json
 {
@@ -242,10 +242,10 @@ A visual scale using emojis instead of numbers to capture sentiment.
 A simple binary choice.
 
 * **Configuration:** Usually empty `options`.
-* **Response Payload:** The `value` is a **String** representing the user's localized choice (e.g., "Oui", "Non", "Yes", "No").
-* **Pushing a response:** When you send answers through the [Collect API](doc:become-a-collection-source) (`POST /responses/collect`) or the [legacy retrieval](doc:legacy-retrieval) (`POST /responses`), the `value` must be an **Integer**: `1` for yes, `0` for no. Any other value returns a validation error.
+* **Answer format:** The `value` is a **String** representing the end customer's localized choice (e.g., "Oui", "Non", "Yes", "No").
+* **Pushing a participation:** When you send answers through the [Collect API](doc:become-a-collection-source) (`POST /responses/collect`) or the [legacy retrieval](doc:legacy-retrieval) (`POST /responses`), the `value` must be an **Integer**: `1` for yes, `0` for no. Any other value returns a validation error.
 
-**Response Example:**
+**Answer example:**
 
 ```json
 {
@@ -266,9 +266,9 @@ Used to measure the effort perceived by the end customer during a key interactio
 Unlike `nps` and `csat`, a survey can contain several `ces` questions (for example one per step of a journey).
 
 * **Configuration:** The `options` object can include an `alert_limit` (e.g., 3).
-* **Response Payload:** The `value` is an **Integer** (1-7).
+* **Answer format:** The `value` is an **Integer** (1-7).
 
-**Response Example:**
+**Answer example:**
 
 ```json
 {
@@ -294,7 +294,7 @@ Goodays supports nested conditional questions. In the survey structure, a "Mothe
 The daughter question is only displayed to the end customer if their answer to the mother question matches one of the values in the `triggers` array.
 
 **Example Logic:**
-If a user gives a low CSAT score (1 or 2), we want to ask what went wrong. If they give a high score (4 or 5), we want to ask what worked best.
+If an end customer gives a low CSAT score (1 or 2), we want to ask what went wrong. If they give a high score (4 or 5), we want to ask what worked best.
 
 ```json
 {
@@ -333,18 +333,18 @@ Any question type can be configured as optional. This is defined in the options 
 
 ```
 
-If an end customer skips a question, it will simply not appear in the `answers` array of their response payload.
+If an end customer skips a question, it will simply not appear in the `answers` array of their participation.
 
 ### Handling Alerts (`alert_triggered`)
 
-Score-based questions—specifically **Stars Rating (`stars`)**, **End Customer Satisfaction (`csat`)**, **Net Promoter Score (`nps`)** and **Customer Effort Score (`ces`)**—can be configured with an `alert_limit` in their `options` object.
+Score-based questions (specifically **Stars Rating (`stars`)**, **Customer Satisfaction (`csat`)**, **Net Promoter Score (`nps`)** and **Customer Effort Score (`ces`)**) can be configured with an `alert_limit` in their `options` object.
 
-If an and customer submits a score that is **equal to or lower than** this limit, it triggers an alert.
+If an end customer submits a score that is **equal to or lower than** this limit, it triggers a dissatisfaction alert.
 
-In the Response API payload, this is represented by the `alert_triggered` boolean located at the **root** of the response object (not inside the individual answer).
+In the Response API payload, this is represented by the `alert_triggered` boolean located at the **root** of the participation object (not inside the individual answer).
 
-**Example of a response triggering an alert:**
-Here, the customer gave a CSAT score of 2, which hit the alert limit threshold.
+**Example of a participation triggering an alert:**
+Here, the end customer gave a CSAT score of 2, which hit the alert limit threshold.
 
 ```json
 {

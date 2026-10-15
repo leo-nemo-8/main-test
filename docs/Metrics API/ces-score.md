@@ -23,7 +23,7 @@ next:
   * “**MODERATE EFFORT**”, for a score of 4 or 5
   * “**LOW EFFORT**”, for a score of 6 or 7
 
-  _That score can then be analyzed over any period of time or the focus can be narrowed to any given survey, a particular POS or any other analysis filter you wish to apply._
+  _That score can then be analyzed over any period of time or the focus can be narrowed to any given survey, a particular point of sale or any other analysis filter you wish to apply._
 </Callout>
 
 <Callout icon="👍" theme="okay">
@@ -76,12 +76,12 @@ By default the calculation of the score is done "since always".<br />And the ret
 | **key**             | Distribution key ID.                                                                                                                                                                                                                       |
 | **description**     | Description of the distribution key.                                                                                                                                                                                                       |
 | **count**           | Number of answers to "CES" questions in the selection over the requested period.<br />_This is a number of answers, not of participations: see below\._                                                                                    |
-| **avg**             | Average CES score, out of 7.<br />Calculated on all the answers of the selection, not as an average of the averages of each establishment.                                                                                                 |
+| **avg**             | Average CES score, out of 7.<br />Calculated on all the answers of the selection, not as an average of the averages of each point of sale.                                                                                                 |
 | **high_effort**     | Answers to "CES" questions with a score of 1 to 3.                                                                                                                                                                                         |
 | **moderate_effort** | Answers to "CES" questions with a score of 4 or 5.                                                                                                                                                                                         |
 | **low_effort**      | Answers to "CES" questions with a score of 6 or 7.                                                                                                                                                                                         |
 | **count**           | Number of answers to "CES" questions observed over the requested period for the high, moderate or low effort level.                                                                                                                        |
-| **percentage**      | Percentage of answers to "CES" questions observed over the requested period for the high, moderate or low effort level.<br />`low_effort.percentage` is the main CES KPI displayed in Goodays: the % of customers who find the effort low. |
+| **percentage**      | Percentage of answers to "CES" questions observed over the requested period for the high, moderate or low effort level.<br />`low_effort.percentage` is the main CES KPI displayed in Goodays: the % of answers with a low effort. |
 
 <Callout icon="📘" theme="info">
   ### Zoom on "key" and "description" attribute
@@ -99,7 +99,7 @@ By default the calculation of the score is done "since always".<br />And the ret
 
 # Add some filters
 
-It is possible to add GET parameters to refine the calculation of the score over a defined period, an establishment...
+It is possible to add GET parameters to refine the calculation of the score over a defined period, a point of sale...
 
 ## GET parameters
 
@@ -109,8 +109,8 @@ To calculate a CES, it is possible to combine the following GET parameters:
 | :-------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **begin**             | Start date of the calculation period.<br />_Format : YYYY-MM-DDThh:mm:ssZ_<br />See [this page](doc:timezone-and-date-management) for the timezone management.          |
 | **end**               | End date of the calculation period.<br />_Format : YYYY-MM-DDThh:mm:ssZ_<br />See [this page](doc:timezone-and-date-management) for the timezone management.            |
-| **place**             | Filter on an establishment.<br />_It is necessary to indicate the ID of the establishment from the endpoint [/places](ref:places_list)_                                 |
-| **places**            | Filter on an establishment list.<br />_Format : Establishment IDs separated by commas_                                                                                  |
+| **place**             | Filter on a point of sale.<br />_It is necessary to indicate the Place ID from the endpoint [/places](ref:places_list)_                                 |
+| **places**            | Filter on a list of points of sale.<br />_Format : Place IDs separated by commas_                                                                                  |
 | **level**             | Filter on a level.<br />_It is necessary to indicate the ID of the level from the endpoint [/levels](ref:levels_list)_                                                  |
 | **levels**            | Filter on a level list.<br />_Format : Level IDs separated by commas_                                                                                                   |
 | **survey**            | Filter on a survey.<br />_It is necessary to indicate the ID of the survey from the endpoint [/surveys](ref:surveys_list)_                                              |
@@ -118,7 +118,7 @@ To calculate a CES, it is possible to combine the following GET parameters:
 | **remark_type**       | Filter on remark type : "Idea", "Message",  "Praise", "Problem", "Question".                                                                                            |
 | **source**            | Filter on source : "email", "sms", "widget", "wifi"...                                                                                                                  |
 | **by**                | Group calculations by.<br />See chapter [by](ces-score#by)                                                                                                              |
-| **by_context**        | Group calculations by Additional Information.<br />See chapter [by Context](ces-score#by-context)                                                                       |
+| **by_context**        | Group calculations by custom parameter.<br />See chapter [by Context](ces-score#by-context)                                                                       |
 | **by_level_category** | Group calculations by level category.<br />See chapter [by Level Category](ces-score#by-level-category)                                                                 |
 
 <Callout icon="📘" theme="info">
@@ -145,15 +145,15 @@ Calculate the CES by grouping elements and return a list.
 
 The distribution of the calculation can be by : "day", "month", "place", "quarter", "remark_type", "source", "survey", "year".
 
-See "[By establishment over the month of May 2026](ces-score#by-establishment-over-the-month-of-may-2026)" use case.
+See "[By point of sale over the month of May 2026](ces-score#by-point-of-sale-over-the-month-of-may-2026)" use case.
 
 ### By Context
 
-Calculate the CES for each value of the "Additional Information" passed as a parameter and return a list.
+Calculate the CES for each value of the custom parameter passed as a parameter and return a list.
 
-"Additional Information" is data attached to a response to give a better understanding about the context.
+A custom parameter is additional data attached to a participation to describe its context (order date, purchase amount, advisor...).
 
-The list of Additional Information available depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). The only 'Additional Information" usable with this parameter are the one with the field  _"use_in_stats" = true_.
+The list of your custom parameters depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). Only the custom parameters with the field _"use_in_stats" = true_ can be used with this parameter.
 
 ### By Level Category
 
@@ -169,7 +169,7 @@ The category ID to be used is returned by the endpoint [/levels](ref:levels_list
 
 Here are some examples to show you the possibilities of this endpoint. This is obviously not exhaustive, it's up to you to have fun to find the right parameter arrangements :)
 
-## By establishment over the month of May 2026
+## By point of sale over the month of May 2026
 
 I have to use the following parameters :
 
@@ -232,7 +232,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/ces? \
 <Callout icon="📘" theme="info">
   ### Zoom on "by" parameter
 
-  Here the "by" distributes the calculation by establishment. The attribute "key" contains the ID of the establishment and the "description" its name.
+  Here the "by" distributes the calculation by point of sale. The attribute "key" contains the Place ID of the point of sale and the "description" its name.
 </Callout>
 
 ## One CES question by month

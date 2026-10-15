@@ -11,12 +11,12 @@ next:
   description: ''
   pages:
     - type: link
-      title: API response
-      url: https://critizr.readme.io/reference#response
+      title: Response API reference
+      url: https://apidocs.goodays.co/reference/responses_list
 ---
-You are using a dedicated Customer Service tool to respond to all or part of your customers' feedback? You use Goodays to collect customer feedback? Then you are on the right page!
+You are using a dedicated Customer Service tool to reply to all or part of your customers' feedback? You use Goodays to collect customer feedback? Then you are on the right page!
 
-The **Converse API** allows you to delegate the response to Goodays participations from a dedicated external tool — in JSON format — with setting up webhooks on a third-party integrations.
+The **Converse API** allows you to process Goodays participations, and reply to them, from a dedicated external tool, in JSON format, by setting up webhooks with your third-party integration.
 
 > 👍 Going further
 >
@@ -28,31 +28,31 @@ The **Converse API** allows you to delegate the response to Goodays participatio
 
 # Why use Converse API
 
-* Enable you to manage the participations collected by Goodays outside its Back Office:
+* Enable you to manage the participations collected by Goodays outside its back office:
 
-* In the case of partial delegation from the local to the Customer Service Department  
-  E.g.: the local has the possibility of delegating an End Customer's remark for processing by Customer Service.
+* In the case of partial delegation from the points of sale to the Customer Service Department  
+  E.g.: a pro user of a point of sale has the possibility of delegating a participation for processing by Customer Service.
 
 * In the case of total delegation to remote Customer Service  
   E.g.: Customer Service operates from a Salesforce-type tool.
 
 # Key Concepts
 
-The Converse API allows you to manage the participations collected by Goodays outside its Back Office.
+The Converse API allows you to manage the participations collected by Goodays outside its back office.
 
-We can send, through webhook, the participation to your third-party tool and retrieve the answers from your Customer Service to send them directly to your End Customers.
+We can send, through webhook, the participation to your third-party tool and retrieve the replies from your Customer Service to send them directly to your end customers.
 
 # For what purposes?
 
 ## Partial delegation to Remote Customer Service
 
-In this solution, the remote Customer Service responds only to customer participations that are within its perimeter from its third-party tool. Customer participations destined for the local area are answered by the local area.
+In this solution, the remote Customer Service replies from its third-party tool only to the participations that are within its perimeter. The other participations are processed by the pro users of the points of sale.
 
 <Image align="center" alt="Partial delegation to Remote Customer Service" border={false} caption="Partial delegation to Remote Customer Service" src="https://files.readme.io/723ca20-image.png" />
 
 ## Total delegation to Remote Customer Service
 
-In this solution, the Remote Customer Service answers to all customer participations collected by Goodays from its third party tools.
+In this solution, the remote Customer Service replies from its third-party tool to all the participations collected by Goodays.
 
 <Image align="center" alt="Total delegation to Remote Customer Service" border={false} caption="Total delegation to Remote Customer Service" src="https://files.readme.io/3ed9350-image.png" />
 
@@ -60,63 +60,63 @@ In this solution, the Remote Customer Service answers to all customer participat
 
 ## Receive events from Goodays
 
-With each new End Customer participation or new message to the Customer Service, the Goodays webhook calls the specific endpoint provided by you.
+With each new end customer participation or new message to the Customer Service, the Goodays webhook calls the specific endpoint provided by you.
 
 <Image border={false} src="https://files.readme.io/2dbda95-image.png" />
 
 You have to set up, by your side, one endpoint to managed all these events triggered by the different hooks:
 
-* A "response" handler to deal with the End Customer verbatim.
+* A "response" handler to deal with a new participation of an end customer.
 
 <Callout icon="📘" theme="info">
-  It is the first exchange with the End Customer, it contains the verbatim of the customer, the answers to the questions as well as the personal and additional data collected.
+  It is the first exchange with the end customer, it contains the verbatim of the end customer, the answers to the questions as well as the personal data and the custom parameters collected.
 </Callout>
 
-* A "message" handler to manage a possible private message from the End Customer in response to the Customer Service response.
+* A "message" handler to manage a possible private message from the end customer after the Customer Service reply.
 
 <Callout icon="📘" theme="info">
-  Once Customer Service has responded to the End Customer's verbatim, the End Customer can continue the exchange through a "private message" visible only to the End Customer and the Customer Service.
+  Once Customer Service has replied to the end customer's participation, the end customer can continue the exchange through a "private message" visible only to the end customer and the Customer Service.
 </Callout>
 
-* A "delegate" handler, only needed for the partial delegation mode, to deal with the local delegation to the Customer Service.
+* A "delegate" handler, only needed for the partial delegation mode, to deal with the delegation of a participation from a point of sale to the Customer Service.
 
 <Callout icon="📘" theme="info">
-  If a local establishment considers that it cannot respond to an End Customer verbatim, it can delegate it to Customer Service.
+  If a pro user considers that they cannot reply to a participation, they can delegate it to Customer Service.
 </Callout>
 
 The Converse API will send event to your endpoint every time these actions are triggered.
 
-## Send actions from the Customer Service to the End Customer
+## Send actions from the Customer Service to the end customer
 
 <Image border={false} src="https://files.readme.io/2137d4d-image.png" />
 
-The actions that Customer Service can perform on an End Customer return are:
+The actions that Customer Service can perform on a participation are:
 
-* Reply to the End Customer participation:
+* Reply to the end customer participation:
 
-The main functionality: Customer Service simply responds to the End Customer's return by text.
+The main functionality: Customer Service simply replies to the end customer by text.
 
-* Mark the End Customer's message as handled by a phone call (with the optional addition of a private note):
+* Mark the participation as handled by a phone call (with the optional addition of a private note):
 
-If your Customer Service processes a customer message directly by phone, this will close the thread on the Goodays side. It is also possible to add a "private note" to summarize the phone exchange between Customer Service and the End Customer.
+If your Customer Service processes a participation directly by phone, this will close the thread on the Goodays side. It is also possible to add a "private note" to summarize the phone exchange between Customer Service and the end customer.
 
-* Mark the End Customer's message as closed without reply:
+* Mark the participation as closed without reply:
 
-If your Customer Service considers that an End Customer return does not require answer or telephone processing, it is possible to close the thread directly on the Goodays side.
+If your Customer Service considers that a participation does not require a reply or telephone processing, it is possible to close the thread directly on the Goodays side.
 
-* Mark the customer's return as spam:
+* Mark the participation as spam:
 
-If your Customer Service considers that an End Customer's return is a spam, they can report it to Goodays.
+If your Customer Service considers that a participation is a spam, they can report it to Goodays.
 
 * Reply to a private message from the end customer
 
-If the end customer has replied to your first answer, Customer Service can respond in turn.
+If the end customer has replied to your first reply, Customer Service can reply in turn.
 
 # How to - Expert
 
 ## Receive events from Goodays
 
-As said before you have to set up the endpoint allowing Goodays to send you the entries and private messages of your End Customer.
+As said before you have to set up the endpoint allowing Goodays to send you the participations and private messages of your end customers.
 
 Once your endpoint is up and running, you must provide us its URL so we can set up the webhook.
 
@@ -144,7 +144,7 @@ X-HMAC-SHA256
 
 This header contains a signature generated from:
 
-* the `secret key` agreed beforehand with your Goodays technical referent;
+* the `secret key` agreed beforehand with your Goodays project contact;
 * the raw `body` of the API call.
 
 The signature is calculated as:
@@ -276,9 +276,9 @@ X-HMAC-SHA256 = bcf95bdaa6dae4e97a44eb8d65273d3c5459f9a258b68c26f10d6cc69b359b51
 >
 > The content of the parameter `X-HMAC-SHA256` will therefore change with each request.
 
-### Receive a "response" from an End Customer
+### Receive a "response" from an end customer
 
-This event is triggered when an End Customer send a [response](ref:events_sample_response).
+This event is triggered when an end customer sends a [participation](ref:events_sample_response).
 
 Here is an example of the payload received for this event:
 
@@ -371,19 +371,19 @@ Focus on important attributes:
 | Attribute name | Description                                                                                     |
 | :------------- | :---------------------------------------------------------------------------------------------- |
 | event_type     | The type of event that triggered the transmission: response, message, delegated                 |
-| survey         | The questionnaire answered by the end customer                                                  |
-| answers        | The final client's answers to the survey                                                        |
+| survey         | The survey answered by the end customer                                                  |
+| answers        | The end customer's answers to the survey                                                        |
 | message        | The end customer's verbatim                                                                     |
 | attachment     | Contains a web link to the resource shared by the end customer: image or document               |
 | user           | Information on the end customer                                                                 |
-| context        | Additional data provided by our common client to provide context to the end customer's response |
-| place          | Establishment information                                                                       |
-| state          | Thread status: open, closed or pending                                                          |
-| actions        | The only possible actions on the end customer response: reply, spam, close and call             |
+| context        | Custom parameters provided by our common client to describe the context of the participation    |
+| place          | Point of sale information                                                                       |
+| state          | Thread status: open, closed or spam                                                             |
+| actions        | The only possible actions on the participation: reply, spam, close and call                     |
 
-### Receive a "message" from an End Customer
+### Receive a "message" from an end customer
 
-This event is triggered when an End Customer send a [private message](ref:events_sample_message) in a conversation with you. This event can only occur after this End Customer send a response and you replied to it.
+This event is triggered when an end customer sends a [private message](ref:events_sample_message) in a conversation with you. This event can only occur after this end customer sent a participation and you replied to it.
 
 Here is an example of the payload received for this event:
 
@@ -521,13 +521,13 @@ Focus on important new attributes:
 
 | Attribute name    | Description                                                                                |
 | :---------------- | :----------------------------------------------------------------------------------------- |
-| reply             | Contains the Customer Service response to the verbatim of the end customer                 |
+| reply             | Contains the Customer Service reply to the participation of the end customer               |
 | attached_messages | The list of past exchanges in the thread between the end customer and the Customer Service |
-| message           | The return (private message) of the end customer to Customer Service                       |
+| message           | The private message of the end customer to Customer Service                                |
 
-### Receive a "delegation" from a Local Manager
+### Receive a "delegation" from a pro user
 
-This event is triggered when a local user faces a question he doesn't know how to respond to. He can "ask for help" and [delegate the answer](ref:events_sample_delegated) to the Customer Service.
+This event is triggered when a pro user of a point of sale faces a question they don't know how to reply to. They can "ask for help" and [delegate the participation](ref:events_sample_delegated) to the Customer Service.
 
 Here is an example of the payload received for this event:
 
@@ -625,32 +625,32 @@ Focus on important new attributes:
 
 | Attribute name | Description                                                                                                       |
 | :------------- | :---------------------------------------------------------------------------------------------------------------- |
-| delegated_to   | Contains the information of the establishment to which the client's response is delegated. Here: Customer Service |
+| delegated_to   | Contains the information of the point of sale to which the participation is delegated. Here: Customer Service |
 
-## Send actions from the Customer Service to the End Customer
+## Send actions from the Customer Service to the end customer
 
-Two Goodays endpoints allows you to process an End Customer's feedback or private message:
+Two Goodays endpoints allow you to process an end customer's participation or private message:
 
-<Image align="center" alt="Main use case: processing of End Customer's feedback" border={false} caption="Main use case: processing of End Customer's feedback" src="https://files.readme.io/5a3361e-image.png" />
+<Image align="center" alt="Main use case: processing of end customer's participation" border={false} caption="Main use case: processing of end customer's participation" src="https://files.readme.io/5a3361e-image.png" />
 
-<Image align="center" alt="Secondary Use Case: processing of End Customer's response" border={false} caption="Secondary Use Case: processing of End Customer's response" src="https://files.readme.io/3d5a486-image.png" />
+<Image align="center" alt="Secondary use case: processing of end customer's private message" border={false} caption="Secondary use case: processing of end customer's private message" src="https://files.readme.io/3d5a486-image.png" />
 
-> ❗️ The Goodays Back Office management rules apply.
+> ❗️ The Goodays back office management rules apply.
 >
-> The possible actions for each response or message are listed in the "actions" attribute. Please use them.
+> The possible actions for each participation or message are listed in the "actions" attribute. Please use them.
 >
 > E.g.:
 >
-> * you cannot send a message without having processed the initial response previously
-> * you cannot put in spam if an entry is already processed.
+> * you cannot send a message without having processed the initial participation previously
+> * you cannot put in spam if a participation is already processed.
 
-> 🚧 Process each End Customer response or message
+> 🚧 Process each participation or message
 >
-> To allow a good management of the response statistics it is very important to process each End Customer's return (even with a "closed without reply").
+> To allow a good management of the statistics it is very important to process each participation of an end customer (even with a "closed without reply").
 
 The different possibilities are:
 
-### Reply to the End Customer feedback
+### Reply to the end customer participation
 
 With [`/responses/{response-id}/reply`](ref:responses_reply):
 
@@ -664,13 +664,13 @@ With [`/responses/{response-id}/reply`](ref:responses_reply):
 
 > 📘 "user" attribute
 >
-> The "user" attribute is your user ID that you can obtain with Users API: `/users?email={your email}`.  
-> It is optional when you do processing on a response.
+> The "user" attribute is the ID of the pro user who performs the action. You can obtain it with the Users API: `/users?email={pro user email}`.  
+> It is optional: when it is missing, the action is attributed to the pro user of your API token.
 
 > 📘 "remark_type" attribute
 >
-> The "remark_type" is mandatory when the initial response source is not Goodays.  
-> E.g.: a Google feedback.
+> The "remark_type" is mandatory when the participation is an external review that has not been typed yet.  
+> E.g.: a Google review.
 >
 > The possible values are:
 >
@@ -682,7 +682,7 @@ With [`/responses/{response-id}/reply`](ref:responses_reply):
 > If you can't implement Google reviews typing then you should always push `Message` value.  
 > i.e. `"remark_type": "Message"`
 
-### Reply to the End Customer private message
+### Reply to the end customer private message
 
 With [`/responses/{response-id}/message`](ref:responses_message):
 
@@ -703,7 +703,7 @@ Or for a Google message:
 }
 ```
 
-### Mark the End Customer's return as handled by a phone call (with optional addition of a rating and a private note)
+### Mark the participation as handled by a phone call (with optional addition of a rating and a private note)
 
 With [`/responses/{response-id}/call`](ref:responses_call):
 
@@ -715,14 +715,14 @@ With [`/responses/{response-id}/call`](ref:responses_call):
 }
 ```
 
-> 📘 "note" and "rate" attribute
+> 📘 "note" and "rating" attributes
 >
-> The "note" and "rate" attributes are facultative:
+> The "note" and "rating" attributes are optional:
 >
-> * The "note" attribute (0-5) permit to add some private note about the End Customer call (Eg: give more context about the dissatisfaction of the End Customer).
-> * The "rate" gives the possibility to the Customer Service to rate the End Customer call.
+> * The "note" attribute is a free text: a private note about the call with the end customer (e.g. more context about the dissatisfaction of the end customer).
+> * The "rating" attribute is an integer from 1 to 5: it lets Customer Service rate the call with the end customer.
 
-### Mark the End Customer's return as closed without reply
+### Mark the participation as closed without reply
 
 With [`/responses/{response-id}/close`](ref:responses_close):
 
@@ -733,7 +733,7 @@ With [`/responses/{response-id}/close`](ref:responses_close):
 }
 ```
 
-### Mark the customer's return as spam
+### Mark the participation as spam
 
 With [`/responses/{response-id}/spam`](ref:responses_spam):
 
@@ -745,13 +745,13 @@ With [`/responses/{response-id}/spam`](ref:responses_spam):
 
 # Use cases
 
-## Customer Service handles the response of an End Customer
+## Customer Service handles the participation of an end customer
 
-Let's imagine that an operator in your Customer Service has received a response from an End Customer via the Goodays webhook. We are in the "public message" section: the final End Customers remark and the operator's answer could possibly be published on the site of our common customer.
+Let's imagine that an operator in your Customer Service has received a participation from an end customer via the Goodays webhook. We are in the "public message" section: the verbatim of the end customer and the operator's reply could possibly be published on the site of our common client.
 
-### Receive the response
+### Receive the participation
 
-As a preliminary, we have sent the End Customer's response to your endpoint "response":
+As a preliminary, we have sent the end customer's participation to your endpoint "response":
 
 ```json Customer's response
 {
@@ -838,16 +838,16 @@ As a preliminary, we have sent the End Customer's response to your endpoint "res
 }
 ```
 
-### Process the response
+### Process the participation
 
-> 🚧 You need to processed each response send
+> 🚧 You need to process each participation sent
 >
-> It is important to provide Goodays with a processing status for each response provided.  
-> The reply rate and processing time are part of the KPIs monitored by our common customer.
+> It is important to provide Goodays with a processing status for each participation provided.  
+> The reply rate and processing time are part of the KPIs monitored by our common client.
 
 Here are, in concrete terms, the possible actions on your side:
 
-* Your operator can directly call the End Customer, after that action you must notify Goodays to mark response as completed:
+* Your operator can directly call the end customer, after that action you must notify Goodays to mark the participation as completed:
 
 ```curl Call
 curl --location --request PUT 'https://api.goodays.co/v2/responses/vdOpL1NJ74l/call' \
@@ -872,7 +872,7 @@ curl --location --request PUT 'https://api.goodays.co/v2/responses/646RjJ5Z49/re
 }'
 ```
 
-* **OR**, if your operator judges that the task does not require an answer, he can close it without any exchange with the End Customer:
+* **OR**, if your operator judges that the participation does not require a reply, they can close it without any exchange with the end customer:
 
 ```curl Close without reply
 curl --location --request PUT 'https://api.goodays.co/v2/responses/vdOpL1NJ74l/close' \
@@ -883,7 +883,7 @@ curl --location --request PUT 'https://api.goodays.co/v2/responses/vdOpL1NJ74l/c
 }'
 ```
 
-* **OR**, if your operator deems that the End Customer's response is spam, please report it to us:
+* **OR**, if your operator deems that the participation is spam, please report it to us:
 
 ```curl Spam
 curl --location --request PUT 'https://api.goodays.co/v2/responses/vdOpL1NJ74l/spam' \
@@ -894,13 +894,13 @@ curl --location --request PUT 'https://api.goodays.co/v2/responses/vdOpL1NJ74l/s
 }'
 ```
 
-## The End Customer responds to Customer Service
+## The end customer replies to Customer Service
 
-Let's imagine that, following the operator's reply, the End Customer replies in turn: we then enter the "private message" section. The rest of the exchange will remain between you and the End Customer
+Let's imagine that, following the operator's reply, the end customer replies in turn: we then enter the "private message" section. The rest of the exchange will remain between you and the end customer
 
-### Receive the message from the End Customer
+### Receive the message from the end customer
 
-As a preliminary, we have sent the End Customer's message to your endpoint "message":
+As a preliminary, we have sent the end customer's message to your endpoint "message":
 
 ```json Customer's message
 {
@@ -1036,8 +1036,8 @@ As a preliminary, we have sent the End Customer's message to your endpoint "mess
 
 > 🚧 Need to process the message
 >
-> It is important to provide Goodays with a processing status for each response provided.  
-> Even if no answer is needed.
+> It is important to provide Goodays with a processing status for each message provided.  
+> Even if no reply is needed.
 
 Here are, in concrete terms, the possible actions on your side:
 
@@ -1055,11 +1055,11 @@ curl --location --request PUT 'https://api.goodays.co/v2/responses/vdOpL1NJ74l/m
 
 ### The loop message
 
-The End Customer and Customer Service can continue to exchange in "private message" mode until a new "response" from the End Customer arrives.
+The end customer and Customer Service can continue to exchange in "private message" mode until a new participation from the end customer arrives.
 
-> 📘 Loop message and new response
+> 📘 Loop message and new participation
 >
-> If a new "response" from the End Customer arrives we get out of the loop message.
+> If a new participation from the end customer arrives we get out of the loop message.
 
 In this case, the payload sent to your endpoint "message" will look like this:
 
@@ -1217,16 +1217,16 @@ In this case, the payload sent to your endpoint "message" will look like this:
 }
 ```
 
-## The Local Manager delegate the response of an End Customer to the Customer Service
+## The pro user delegates the participation of an end customer to the Customer Service
 
-It is possible that a response from an End Customer cannot be processed by the Local Manager, in which case it is possible to delegate the End Customer's response (and possible private messages) to Customer Service.  
-In this case the response is moved from his establishment directly to the Customer Service. The Local Manager no longer has access to this response.
+It is possible that a participation from an end customer cannot be processed by the pro users of the point of sale, in which case it is possible to delegate the participation (and possible private messages) to Customer Service.  
+In this case the participation is moved from its point of sale directly to the Customer Service. The pro users of the point of sale no longer have access to this participation.
 
-> 📘 Possible actions after a Local Manager delegation
+> 📘 Possible actions after a pro user delegation
 >
-> Once the delegation has been made by the Local Manager, the actions are the same as in the chapter "[Customer Service handles the response of an End Customer](#section-customer-service-handles-the-response-of-an-end-customer)".
+> Once the delegation has been made by the pro user, the actions are the same as in the chapter "[Customer Service handles the participation of an end customer](#customer-service-handles-the-participation-of-an-end-customer)".
 
-Then, we send the response to your endpoint "response" with the "event_type" on "delegated":
+Then, we send the participation to your endpoint "response" with the "event_type" on "delegated":
 
 ```json Delegate the End Customer response
 {

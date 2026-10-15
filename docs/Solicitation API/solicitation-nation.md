@@ -38,7 +38,7 @@ On the other hand, if you create a program that sends a lot of solicitations at 
 
 ## Send a single solicitation
 
-Let's say you want to get your customers' feedback right after they purchased something on your website. On your success page, you simply have to send a POST request to the Solicitation API to get in touch with your client!
+Let's say you want to get your customers' feedback right after they purchased something on your website. On your success page, you simply have to send a POST request to the Solicitation API to get in touch with your end customer!
 
 1. Create the payload.
 
@@ -49,16 +49,16 @@ Let's say you want to get your customers' feedback right after they purchased so
    "type":"email|sms",
    "place":"{place-id}",
    "lang":"{lang}",
-   "recipient":"{client email|client phone number}",
+   "recipient":"{end customer email|end customer phone number}",
    "context":{
-      "first_name":"{client firstname}",
-      "last_name":"{client lastname}",
-      "phone":"{client phone}",
-      "email":"{client email}",
-      "crm_id":"{client crm ID}",
-      "additional_information_1":"{valeur}",
-      "additional_information_2":"{valeur}",
-      "additional_information_n":"{valeur}"
+      "first_name":"{end customer first name}",
+      "last_name":"{end customer last name}",
+      "phone":"{end customer phone}",
+      "email":"{end customer email}",
+      "crm_id":"{end customer CRM ID}",
+      "custom_parameter_1":"{value}",
+      "custom_parameter_2":"{value}",
+      "custom_parameter_n":"{value}"
    }
 }
 ```
@@ -111,31 +111,31 @@ With this endpoint, you will be able to send up to 1000 solicitations at a time!
    "place":"{place-id}",
    "data":[
       {
-         "recipient":"{client email|client phone number}",
+         "recipient":"{end customer email|end customer phone number}",
          "lang":"{lang}",
          "context":{
-            "first_name":"{client name}",
-            "last_name":"{client lastname}",
-            "email":"{client email}",
-            "phone":"{client phone}",
-            "crm_id":"{client crm ID}",
-            "additional_information_1":"{valeur}",
-            "additional_information_2":"{valeur}",
-            "additional_information_n":"{valeur}"
+            "first_name":"{end customer first name}",
+            "last_name":"{end customer last name}",
+            "email":"{end customer email}",
+            "phone":"{end customer phone}",
+            "crm_id":"{end customer CRM ID}",
+            "custom_parameter_1":"{value}",
+            "custom_parameter_2":"{value}",
+            "custom_parameter_n":"{value}"
          }
       },
       {
-         "recipient":"{client email|client phone number}",
+         "recipient":"{end customer email|end customer phone number}",
          "lang":"{lang}",
          "context":{
-            "first_name":"{client name}",
-            "last_name":"{client lastname}",
-            "email":"{client email}",
-            "phone":"{client phone}",
-            "crm_id":"{client crm ID}",
-            "additional_information_1":"{valeur}",
-            "additional_information_2":"{valeur}",
-            "additional_information_n":"{valeur}"
+            "first_name":"{end customer first name}",
+            "last_name":"{end customer last name}",
+            "email":"{end customer email}",
+            "phone":"{end customer phone}",
+            "crm_id":"{end customer CRM ID}",
+            "custom_parameter_1":"{value}",
+            "custom_parameter_2":"{value}",
+            "custom_parameter_n":"{value}"
          }
       }
    ]
@@ -165,17 +165,17 @@ With this endpoint, you will be able to send up to 1000 solicitations at a time!
 
 ## Retrieve the "place-id"
 
-* Enter your establishment code directly here
+* Use the Place ID returned by the endpoint [/places](ref:places_list), or directly your external ID.
 
 ## Retrieve the "survey-id"
 
 1. Call the endpoint url `https://api.goodays.co/v2/surveys` to obtain the ID corresponding to the right survey.
 2. Then the "id" attribute is the answer.
 
-## Check the required (or not) attribute in the "context" part
+## Check the required (or not) custom parameters in the "context" part
 
-1. Call the endpoint url `https://api.goodays.co/v2/configuration` to get the attribute list
-2. "required" tells you which attribute is mandatory or not
+1. Call the endpoint url `https://api.goodays.co/v2/configuration` to get the list of your custom parameters
+2. "required" tells you which custom parameter is mandatory or not
 
 # Solicitation statuses
 
@@ -324,8 +324,8 @@ You can filter this list with the following GET parameters:
 | :------------ | :---------- |
 | **type** | Type of solicitation: `email` or `sms`. |
 | **recipient** | Email address or phone number of the recipient. |
-| **place** | Point of sale: Goodays ID from [/places](ref:places_list), or your own code (`external_id`). |
-| **partner_id** | Your own point of sale code (`external_id`). |
+| **place** | Point of sale: Place ID from [/places](ref:places_list), or your external ID. |
+| **partner_id** | Point of sale: your external ID. |
 
 Example: `https://api.goodays.co/v2/solicitations?type=sms`
 
@@ -336,4 +336,4 @@ Example: `https://api.goodays.co/v2/solicitations?type=sms`
 
 # Ready to start?
 
-For an overview of how our APIs work, check out the [Get started page](doc:getting-started). If you're ready to use the Solicitation API, you can use your access token to make direct requests.
+For an overview of how our APIs work, check out the [Get started page](doc:getting-started). If you're ready to use the Solicitation API, you can use your API token to make direct requests.

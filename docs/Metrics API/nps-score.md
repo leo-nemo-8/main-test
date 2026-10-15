@@ -12,19 +12,19 @@ next:
 ---
 > 📘 What's that?
 >
-> The NPS (**Net Promoter Score**) is an indicator calculated from a very specific question about the customer's **intention to recommend** you to others.
+> The NPS (**Net Promoter Score**) is an indicator calculated from a very specific question about the end customer's **intention to recommend** you to others.
 >
 > The question used in the survey is:  
-> “Would you recommend this establishment to your friends and family?”  
+> “Would you recommend this point of sale to your friends and family?”  
 > The answer is on a scale of 0 to 10.
 >
-> The NPS is used to sort respondents into three main categories:
+> The NPS is used to sort end customers into three main categories:
 >
 > * “**DETRACTORS**”, who gave a score between 0 and 6
 > * “**PASSIVES**”, who gave a score of 7 or 8
 > * “**PROMOTERS**”, who gave a score of 9 or 10
 >
-> _That score can then be analyzed over any period of time or the focus can be narrowed to any given survey, a particular POS or any other analysis filter you wish to apply._
+> _That score can then be analyzed over any period of time or the focus can be narrowed to any given survey, a particular point of sale or any other analysis filter you wish to apply._
 
 > 👍 Going further
 >
@@ -131,7 +131,7 @@ And the return will always contain:
       </td>
 
       <td>
-        End Customer who answered the ‘how likely are you to recommend this establishment to a friend or colleague?’ question with a score of 0 to 6.
+        End customer who answered the ‘how likely are you to recommend this point of sale to a friend or colleague?’ question with a score of 0 to 6.
       </td>
     </tr>
 
@@ -141,7 +141,7 @@ And the return will always contain:
       </td>
 
       <td>
-        End Customer who answered the ‘how likely are you to recommend this establishment to a friend or colleague?’ question with a score of 7 or 8.
+        End customer who answered the ‘how likely are you to recommend this point of sale to a friend or colleague?’ question with a score of 7 or 8.
       </td>
     </tr>
 
@@ -151,7 +151,7 @@ And the return will always contain:
       </td>
 
       <td>
-        End Customer who answered the ‘how likely are you to recommend this establishment to a friend or colleague?’ question with a score of 9 or 10.
+        End customer who answered the ‘how likely are you to recommend this point of sale to a friend or colleague?’ question with a score of 9 or 10.
       </td>
     </tr>
 
@@ -161,7 +161,7 @@ And the return will always contain:
       </td>
 
       <td>
-        Number of responses to "NPS" questions observed over the requested periods for the detractor, passive or promoter.
+        Number of answers to "NPS" questions observed over the requested periods for the detractor, passive or promoter.
       </td>
     </tr>
 
@@ -171,7 +171,7 @@ And the return will always contain:
       </td>
 
       <td>
-        Percentage of responses to "NPS" questions observed over the requested periods for the detractor, passive or promoter.
+        Percentage of answers to "NPS" questions observed over the requested periods for the detractor, passive or promoter.
       </td>
     </tr>
   </tbody>
@@ -184,7 +184,7 @@ And the return will always contain:
 
 # Add some filters
 
-It is possible to add GET parameters to refine the calculation of the score over a defined period, an establishment...
+It is possible to add GET parameters to refine the calculation of the score over a defined period, a point of sale...
 
 ## GET parameters
 
@@ -234,8 +234,8 @@ To calculate a NPS, it is possible to combine the following GET parameters:
       </td>
 
       <td>
-        Filter on an establishment.  
-        _It is necessary to indicate the ID of the establishment from the endpoint[/places](ref:places_list)_
+        Filter on a point of sale.  
+        _It is necessary to indicate the Place ID from the endpoint [/places](ref:places_list)_
       </td>
     </tr>
 
@@ -245,8 +245,8 @@ To calculate a NPS, it is possible to combine the following GET parameters:
       </td>
 
       <td>
-        Filter on an establishment list.  
-        _Format : Establishment IDs separated by commas_
+        Filter on a list of points of sale.  
+        _Format : Place IDs separated by commas_
       </td>
     </tr>
 
@@ -257,7 +257,7 @@ To calculate a NPS, it is possible to combine the following GET parameters:
 
       <td>
         Filter on a level.  
-        _It is necessary to indicate the ID of the establishment from the endpoint[/levels](ref:levels_list)_
+        _It is necessary to indicate the ID of the level from the endpoint [/levels](ref:levels_list)_
       </td>
     </tr>
 
@@ -341,7 +341,7 @@ To calculate a NPS, it is possible to combine the following GET parameters:
       </td>
 
       <td>
-        Group calculations by Additional Information.  
+        Group calculations by custom parameter.  
         See chapter [by Context](nps-score#by-context)
       </td>
     </tr>
@@ -379,15 +379,15 @@ Calculate the NPS by grouping elements and return a list.
 
 The distribution of the calculation can be by : "day", "month", "nps_category", "place", "quarter", "remark_type", "source", "survey", "year".
 
-See "[By establishment over the month of May 2020](nps-score#by-establishment-over-the-month-of-may-2020)" or [By month for one level and a specific source](nps-score#by-month-for-one-level-and-a-specific-source) use cases.
+See "[By point of sale over the month of May 2020](nps-score#by-point-of-sale-over-the-month-of-may-2020)" or [By month for one level and a specific source](nps-score#by-month-for-one-level-and-a-specific-source) use cases.
 
 ### By Context
 
-Calculate the NPS for each value of the "Additional Information" passed as a parameter and return a list.
+Calculate the NPS for each value of the custom parameter passed as a parameter and return a list.
 
-"Additional Information" is data attached to a response to give a better understanding about the context.
+A custom parameter is additional data attached to a participation to describe its context (order date, purchase amount, advisor...).
 
-The list of Additional Information available depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). The only 'Additional Information" usable with this parameter are the one with the field  _"use_in_stats" = true_.
+The list of your custom parameters depends on your Goodays configuration and can be retrieved by the endpoint [configuration](ref:configuration_list). Only the custom parameters with the field _"use_in_stats" = true_ can be used with this parameter.
 
 See "[By context of the purchase amount](nps-score#by-context-of-the-purchase-amount)" use case.
 
@@ -407,7 +407,7 @@ See "[By level category](nps-score#by-level-category-1)" use case.
 
 Here are some examples to show you the possibilities of this endpoint. This is obviously not exhaustive, it's up to you to have fun to find the right parameter arrangements :)
 
-## By establishment over the month of May 2020
+## By point of sale over the month of May 2020
 
 I have to use the following parameters :
 
@@ -469,7 +469,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/nps? \
 
 > 📘 Zoom on "by" parameter
 >
-> Here the "by" distributes the calculation by establishment. The attribute "key" contains the ID of the establishment and the "description" its name.
+> Here the "by" distributes the calculation by point of sale. The attribute "key" contains the Place ID of the point of sale and the "description" its name.
 
 ## By month for one level and a specific source
 
@@ -560,7 +560,7 @@ source=email \
 I have to use the following parameters :
 
 * by_context : "price"  
-  _Hypothesis: additional information exists in your configuration and is present in ever response._
+  _Hypothesis: the custom parameter exists in your configuration and is present in every participation._
 
 ```curl nps call
 curl --location --request GET 'https://api.goodays.co/v2/stats/nps?by_context=price' \
@@ -631,7 +631,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/nps?by_context=pr
 
 > 📘 Zoom on "by_context" parameter
 >
-> Here the "by_context" distributes the calculation by additional information "price". The attribute "key" contains the ID of the additional information and the "description" its name.
+> Here the "by_context" distributes the calculation by custom parameter "price". The attribute "key" contains the ID of the custom parameter value and the "description" its name.
 
 ## By level category
 

@@ -50,4 +50,4 @@ You can subscribe to this feed with any tool that reads RSS, so that your teams 
 
 > 👍 Any question?
 >
-> If an evolution raises a question for your integration, contact your Goodays technical contact.
+> If an evolution raises a question for your integration, contact your Goodays project contact.

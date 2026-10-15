@@ -10,13 +10,13 @@ metadata:
 next:
   description: ''
 ---
-Let's say you use a CRM tool. Let's also say that you are well aware that customer experience is a must-have to understand your customers. If not, head to this [amazing white book](https://business.critizr.com/ebook-10-convictions-pour-la-relation-client?hsCtaTracking=17abeb06-bbdf-482a-9db5-5e9c45834578%7Cd930c7c2-5da0-4429-bbe8-f6bb9db4052e) and if you are still not convinced, please read [this one](https://business.critizr.com/en/blog/why-is-customer-feedback-important-for-marketing-purposes).
+Let's say you use a CRM tool. Let's also say that you are well aware that customer experience is a must-have to understand your customers. If not, please read [this article](https://community.goodays.co/en/blog/why-is-customer-feedback-important-for-marketing-purposes).
 
 ## Why use Goodays to enrich your CRM ?
 
 Customer feedback is an amazing source of knowledge. It will not only provide valuable KPI about how your brand is perceived by your customers but it will also help you gather valuable informations about your customers' experience on more precise levels and even *verbatims*.\
 These elements allow a general analysis on your brand and how you do things but they can also be used under the scope of one customer.\
-With Goodays API, you will be able to add a whole new context facet for your customers. You will not only be aware of their purchases but also how they judge their experiences within your stores or online!
+With Goodays API, you will be able to add a whole new context facet for your customers. You will not only be aware of their purchases but also how they judge their experiences within your points of sale or online!
 
 All these new informations may be extremely valuable when : 
 
@@ -27,8 +27,8 @@ All these new informations may be extremely valuable when :
 ## How to - Basics
 
 The process is pretty straightforward.\
-First, you have to retrieve the responses for the period you need.\
-Then, you need to get the details of each response.\
+First, you have to retrieve the participations for the period you need.\
+Then, you need to get the details of each participation.\
 Finally, you can use the answers to update your CRM profiles.
 
 ## Key takeaways
@@ -40,15 +40,15 @@ Finally, you can use the answers to update your CRM profiles.
 
 ## How to - Expert
 
-1. Retrieve every customer responses for a user
+1. Retrieve every participation of an end customer
 
 2. Request the following endpoint : `/responses`
 
-3. Add the parameter `email` to only retrieve the responses for a user. We **strongly** recommend to url encode the email address to avoid any disturbances.
+3. Add the parameter `email` to only retrieve the participations of this end customer. We **strongly** recommend to url encode the email address to avoid any disturbances.
 
 4. Perform the request that should look like this : `https://api.goodays.co/v2/responses?email=arnaud.lancelot%40goodays.co`
 
-At this point, you will get an array of responses. By convention, we only send the 20 first results and the [pagination system](/docs/navigation-through-the-resources) to get the others.
+At this point, you will get an array of participations. By convention, we only send the 20 first results and the [pagination system](/docs/navigation-through-the-resources) to get the others.
 
 Here is an example of what the API responds : 
 
@@ -78,11 +78,11 @@ Here is an example of what the API responds :
 }
 ```
 
-2. For each response, get the details
+2. For each participation, get the details
 
 Request the following endpoint : `/responses/{response-id}` with a response-id retrieved from the previous requests.
 
-Below, an example of the response : 
+Below, an example of the API response : 
 
 ```json
 {
@@ -140,7 +140,7 @@ Below, an example of the response :
 
 You can use the answers to the survey or some context informations to enrich your customers profile.
 
-> 📘 Need to retrieve hundreds of responses at once?
+> 📘 Need to retrieve hundreds of participations at once?
 >
 > Don't panic!\
-> There is the [bulk mode](/reference#responses_bulk) which allows you to retrieve responses 20 by 20 (the paging is not customizable here). The GET parameters are the same as described above.
+> There is the [bulk mode](/reference#responses_bulk) which returns 20 participations per page by default; use the `page_size` parameter to get up to 1000 per page. The GET parameters are the same as described above.

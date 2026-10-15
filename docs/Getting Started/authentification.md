@@ -14,27 +14,27 @@ next:
       slug: sorting-and-pagination
       title: Pagination and sorting
 ---
-To use the Goodays APIs, you need to pass your personal access token in the Authorization header of your requests.
+To use the Goodays APIs, you need to pass your API token in the Authorization header of your requests.
 
-## Access Token
+## API token
 
-Access tokens are long strings of random characters that look something like this: `943af478d3ff3d4d760020c11af102b79c440513`.\
-Your access token is unique to you. We use it to identify you and make sure that only you can access your resources.
+API tokens are long strings of random characters that look something like this: `943af478d3ff3d4d760020c11af102b79c440513`.\
+Your API token is unique to you. We use it to identify you and make sure that only you can access your resources.
 
 > 📘 Access scope
 >
-> Your access token is attached to a Goodays user. The API only returns the data of the points of sale this user has access to.
+> Your API token is attached to a pro user. The API only returns the data of the points of sale this user has access to.
 >
-> If this user has no active point of sale, list endpoints (responses, places, surveys, solicitations, dashboard...) return an empty result. Metrics (`stats`) endpoints are not affected.
+> If this user has no active point of sale, list endpoints (`responses`, `places`, `surveys`, `solicitations`, `dashboard`...) return an empty result. Metrics (`stats`) endpoints are not affected.
 
 ## Get your token
 
-An access token is unique and belongs to an individual client. If you don't have your access token, you can ask for yours by contacting your account manager.
+An API token is unique and belongs to one pro user of your organization. If you don't have your API token, you can ask for yours by contacting your Goodays project contact.
 
 ## Authentication format
 
-Now that you have your access token, you can perform requests.\
-Each request to an API have to contain the access token in the Authorization header.\
+Now that you have your API token, you can perform requests.\
+Each request to an API have to contain the API token in the Authorization header.\
 A typical request should look like this:
 
 ```curl
@@ -53,8 +53,8 @@ The information included in the error object varies depending on the error, but 
 | HTTP Status Code | Message                            | Meaning                                   | Potential Solution                                             |
 | :--------------- | :--------------------------------- | :---------------------------------------- | :------------------------------------------------------------- |
 | 401              | No API key found in request        | The `Authorization` header doesn't exist. | Please add the `Authorization` header in your request.         |
-| 403              | Invalid authentication credentials | The provided access token is invalid.     | Check if the provided token matches the token sent by Goodays. |
+| 403              | Invalid authentication credentials | The provided API token is invalid.     | Check if the provided token matches the token sent by Goodays. |
 
 > ❗️ Privacy
 >
-> Anyone with your access token can read, update and delete your resources, so keep your token **safe**! Also, don't commit to source control with your access token in your code — use a placeholder like ACCESS\_TOKEN instead.
+> Anyone with your API token can read, update and delete your resources, so keep your token **safe**! Also, don't commit to source control with your API token in your code: use a placeholder like ACCESS\_TOKEN instead.

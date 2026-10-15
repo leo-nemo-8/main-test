@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The Collect API will allow you to become your own collection source by allowing you to send us the collected entries from your own tools!
+The Collect API will allow you to become your own collection source by allowing you to send us the participations collected by your own tools!
 
 ![](https://files.readme.io/a2dc0e4-Collect_reviews.png "Collect reviews.png")
 
@@ -24,8 +24,8 @@ The Collect API will allow you to become your own collection source by allowing 
 
 # Presentation
 
-The Collect API allows you to push the collected responses on your side from your own tools, all in real time!\
-Our recommendation is to create participation on the Goodays side as soon as you collect it from your tool. This allows the local manager not to lose time on the processing of the customer feedback.
+The Collect API allows you to push the participations collected on your side from your own tools, all in real time!\
+Our recommendation is to create the participation on the Goodays side as soon as you collect it from your tool. This allows the pro users not to lose time on the processing of the participation.
 
 This is very effective if you are using an application, kiosk or terminal that would not be compatible with the SDKs provided by default by Goodays.
 
@@ -33,34 +33,34 @@ This is very effective if you are using an application, kiosk or terminal that w
 
 > ❗️
 >
-> The survey used is in Goodays format and must respect the **response** formatting rules.
+> The survey used is in Goodays format and the participation must respect the **response** formatting rules.
 
-# How to push the responses from my end customer
+# How to push the participations of my end customers
 
-## Push a response
+## Push a participation
 
-In order to complete the payload to post a response you must first recover the following Goodays data:
+In order to complete the payload to post a participation you must first recover the following Goodays data:
 
 * the **structure** ID of the **[survey](become-a-collection-source#the-survey-part)**
 * the **question** IDs of the **[survey](become-a-collection-source#the-survey-part)**
-* the **[establishment](become-a-collection-source#the-point-of-sales-part)** ID
-* the **[Custom parameters](become-a-collection-source#the-customer-parameters-part)**
+* the Place ID or the external ID of the **point of sale**
+* the **[custom parameters](become-a-collection-source#the-custom-parameters-part)**
 
 And, of course, the data related to the end customer.
 
-You now have all the information you need to post a response to Goodays!\
+You now have all the information you need to post a participation to Goodays!\
 For this you must use the [API Collect](/reference#responses_collect).
 
-> ❗️ Unique Response
+> ❗️ Unique participation
 >
-> Be careful to push only one response per end customer's participation: the Collect API records each call you made without deduplication.
+> Be careful to push each participation of an end customer only once: the Collect API records each call you made without deduplication (see `collect_uid` below).
 
 For our example, we will send the answer to the survey with the following information (see [prepare the data](become-a-collection-source#prepare-the-data) chapter):
 
 * End customer (the "*user*") : **Mr Miyagi**
-* Establishment (the "*place*") : **VÉLO Antibes** (ID : *ABC123*)
+* Point of sale (the "*place*") : **VÉLO Antibes** (ID : *ABC123*)
 * Survey : **post\_visit** (ID : *mrY4WLpx9w*)
-* Custom Parameters : **Order date** (key : *ordr\_dt*)
+* Custom parameters : **Order date** (key : *ordr\_dt*)
 
 Description of the payload:
 
@@ -88,7 +88,7 @@ Description of the payload:
       </td>
 
       <td>
-        Date of response from the end customer  
+        Date of the participation of the end customer  
 
         Format: 2020-08-07T01:29:30.034195+02:00
       </td>
@@ -114,7 +114,7 @@ Description of the payload:
       </td>
 
       <td>
-        See [The customer parameters part](become-a-collection-source#the-customer-parameters-part).
+        See [The custom parameters part](become-a-collection-source#the-custom-parameters-part).
       </td>
     </tr>
 
@@ -124,11 +124,11 @@ Description of the payload:
       </td>
 
       <td>
-        The Custom Parameters
+        The custom parameters
       </td>
 
       <td>
-        See [The customer parameters part](become-a-collection-source#the-customer-parameters-part).
+        See [The custom parameters part](become-a-collection-source#the-custom-parameters-part).
       </td>
     </tr>
 
@@ -138,8 +138,7 @@ Description of the payload:
       </td>
 
       <td>
-        The establishment ID\
-        *Enter your establishment code directly here*
+        The Place ID of the point of sale, or your external ID
       </td>
 
       <td>
@@ -187,17 +186,19 @@ Description of the payload:
       </td>
 
       <td>
-        Text message from the end customer:  
+        Verbatim of the end customer:  
 
         * *created\_date* : format "2020-08-07T01:29:30.034195+02:00"
 
-        * *type*: "Idea", "Praise", "Problem", "Question" or "NoType" if no category exists
+        * *type*: the remark type: "Idea", "Praise", "Problem", "Question" or "NoType" if no category exists
 
-        * *content*: text messageNotes:
+        * *content*: text of the verbatim
 
-        * A text message cannot be sent without a survey
+        Notes:
 
-        * A text message must have all his attributes filled in
+        * A verbatim cannot be sent without a survey
+
+        * A verbatim must have all its attributes filled in
       </td>
 
       <td>
@@ -211,13 +212,13 @@ Description of the payload:
       </td>
 
       <td>
-        Source of feedback collection.  
+        Source of the participation (collection channel).  
 
         Here are the most used mediums:  
 
         * transactional email: `TE`
         * transactional SMS: `TS`
-        * mobile: `MOB`*The value differs according to your collection perimeter: please ask your Goodays technical contact for this information if it does not match the examples above.*
+        * mobile: `MOB`*The value differs according to your collection perimeter: please ask your Goodays project contact for this information if it does not match the examples above.*
       </td>
 
       <td>
@@ -235,7 +236,7 @@ Description of the payload:
 
         The `collect_uid` parameter is used to identify the participation in a unique way. This can be a string, a number, a date... You can, for example, concatenate an order ID, a reservation ID, a basket ID... with a timestamp. The most important thing is that this value must be unique.  
 
-        If the value of the `collect_uid` already exists then a `409 error` is returned and the response is not recorded.  
+        If the value of the `collect_uid` already exists then a `409 error` is returned and the participation is not recorded.  
 
         *This parameter is not mandatory but strongly recommended.*
       </td>
@@ -343,7 +344,7 @@ You will obtain something like this:
 }
 ```
 
-Take the id corresponding to the survey you wish to push responses to.\
+Take the id corresponding to the survey you wish to push participations to.\
 Request the following endpoint : [`/surveys`](ref:surveys_list) with the "id" as parameter:
 
 ```curl surveys_read call
@@ -526,7 +527,7 @@ That's it, you have the structure of the survey!
 > * `text`
 > * `yesno` (value `0` for no, `1` for yes)
 
-### The customer parameters part
+### The custom parameters part
 
 Request the following endpoint : [`/configuration`](ref:configuration_list).
 
@@ -587,9 +588,9 @@ You will obtain something like this:
 }
 ```
 
-> 🚧 What Custom Parameters do I have to use?
+> 🚧 What custom parameters do I have to use?
 >
-> To find out if a Custom Parameter is mandatory you have to look at the attribute "required ". If it is at "true" then the attribute must be in the payload of the API call.
+> To find out if a custom parameter is mandatory you have to look at the attribute "required ". If it is at "true" then the attribute must be in the payload of the API call.
 
 > 🚧 And for the "user"?
 >
