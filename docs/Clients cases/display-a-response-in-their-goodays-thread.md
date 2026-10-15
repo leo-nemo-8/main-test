@@ -1,8 +1,8 @@
 ---
-title: Display a response in their Goodays thread
+title: Display a participation in the Goodays back office
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
@@ -10,18 +10,18 @@ metadata:
 next:
   description: ''
 ---
-You retrieve responses from our [Response API ](a-response-at-once)and would like to be able to make a direct link between them and the Goodays Back Office?
+You retrieve participations with our [Response API](doc:a-response-at-once) and would like to link each of them to its thread in the Goodays back office?
 
 For example:
 
-* you can display your End Customers' responses in their CRM records,
-* you have an internal dashboard that displays entries using certain filters.
+* you display your end customers' participations in their CRM records,
+* you have an internal dashboard that lists participations with certain filters.
 
 **It can be done!**
 
-## Retrieve the response ID
+## Retrieve the participation ID
 
-The unique ID of each response is the `id` attribute present for each response you have retrieved through our API:
+The unique ID of each participation is the `id` attribute of each participation you retrieve through the API:
 
 ```json
 {
@@ -30,7 +30,7 @@ The unique ID of each response is the `id` attribute present for each response y
     "message": {
         "id": "TTT",
         "created_date": "2021-11-22T15:42:48.691040+01:00",
-        "type": "Problem",
+        "type": "Praise",
         "content": "I like this shop!",
         "attachment": null,
         "sender": {
@@ -46,27 +46,27 @@ The unique ID of each response is the `id` attribute present for each response y
 
 ## Build the URL to call
 
-Once the response `id` has been retrieved, simply call the `https://app.goodays.co/pro/open` url with the `response_id` parameter.
+Once the participation `id` has been retrieved, simply call the `https://app.goodays.co/pro/open` url with the `response_id` parameter.
 
 For example with the `id` "gxKrrlok4o":
 
 ```Text URL
-https://app.goodays.co/pro/open?response_id=gxKrrlok4
+https://app.goodays.co/pro/open?response_id=gxKrrlok4o
 ```
 
-> 👍 Successfully display a response
+> 👍 Successfully display a participation
 >
-> For the response to be displayed successfully in the Goodays Back Office, it must satisfy three rules:
+> For the participation to be displayed in the Goodays back office, three rules must be met:
 >
-> * the user must have a Goodays account AND the rights to display the response,
-> * the `id` must correspond to an existing response,
-> * the response must contain a verbatim OR have triggered a Dissatisfaction Alert.
+> * the person who opens the link must be a pro user with access to the point of sale of the participation,
+> * the `id` must correspond to an existing participation,
+> * the participation must contain a verbatim OR have triggered a dissatisfaction alert.
 
 > ❗️ In case of error
 >
-> If the message "The conversation can't be found on our servers." verifies that the response meets one of the following conditions:
+> If the message "The conversation can't be found on our servers." is displayed, check that the participation meets one of the following conditions:
 >
-> * the response has a verbatim `message.content` other than `null`
-> * the response's `alert_triggered` attribute value is `true`
+> * its verbatim `message.content` is not `null`,
+> * its `alert_triggered` attribute is `true`.
 >
-> And, of course, the user connected to the Goodays Back Office has the right perimeter to access this response.
+> And check that the pro user connected to the Goodays back office has access to the point of sale of this participation.
