@@ -490,7 +490,7 @@ source=email \
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
 ```
 
-```json NPS by month for one one level and a specific source
+```json NPS by month for one level and a specific source
 {
     "data": [
         {
@@ -568,7 +568,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/nps?by_context=pr
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
 ```
 
-```json NPS by month for one one level and a specific source
+```json NPS by month for one level and a specific source
 {
     "data": [
         {

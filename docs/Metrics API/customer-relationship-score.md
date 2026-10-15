@@ -1,10 +1,10 @@
 ---
-title: Customer-Relationship score
+title: Customer Relationship score
 excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: customer-relationshio-score
+  title: Customer Relationship score
   description: ''
   robots: index
 next:
@@ -12,7 +12,7 @@ next:
 ---
 > 📘 What's that?
 >
-> The Customer-Relationship score is one of Goodays key performance indicators.
+> The Customer Relationship score is one of Goodays key performance indicators.
 >
 > This KPI takes three criteria into account:
 >
@@ -28,7 +28,7 @@ next:
 
 <Image align="center" width="smart" src="https://files.readme.io/0485105-Customer_Relationship.png" />
 
-# How do I get my Customer-Relationship score?
+# How do I get my Customer Relationship score?
 
 With [/stats/relationship](ref:stats_relationship_list):
 
@@ -63,7 +63,7 @@ And the return will always contain:
 | **reply\_rate**               | Average reply rate over the requested periods (in percentage).                                  |
 | **reply\_time**               | Average reply time over the requested periods (in seconds).                                     |
 | **reply\_quality**            | Average of the reply quality over the requested periods (on a scale from 1 to 5).               |
-| **customer\_service\_rating** | Average of the Customer-Relationship score over the requested periods (on a scale from 1 to 5). |
+| **customer\_service\_rating** | Average of the Customer Relationship score over the requested periods (on a scale from 1 to 5). |
 
 > 📘 Zoom on "key" and "description" attribute
 >
@@ -76,7 +76,7 @@ It is possible to add GET parameters to refine the calculation of the score over
 
 ## GET parameters
 
-To calculate a Customer-Relationship score it is possible to combine the following GET parameters:
+To calculate a Customer Relationship score it is possible to combine the following GET parameters:
 
 <Table align={["left","left"]}>
   <thead>
@@ -207,7 +207,7 @@ Here are the 2 possibilities :
 
 ### By
 
-Calculate the Customer-Relationship score by grouping elements and return a list.
+Calculate the Customer Relationship score by grouping elements and return a list.
 
 The distribution of the calculation can be by : "month" or "place".
 
@@ -215,11 +215,11 @@ See "[By point of sale over the month of May 2020](customer-relationship-score#b
 
 ### By Level Category
 
-Calculate the Customer-Relationship score by level category and return a list.
+Calculate the Customer Relationship score by level category and return a list.
 
 The categories represent your hierarchical or geographical organization depending on your Goodays configuration.
 
-From these categories, you can calculate the Customer-Relationship score distributed by region, business unit, brand, etc.
+From these categories, you can calculate the Customer Relationship score distributed by region, business unit, brand, etc.
 
 The category ID to be used is returned by the endpoint [/levels](ref:levels_list), in the "category\_id" attribute.
 
@@ -288,7 +288,7 @@ level=Yqxzpde42J \
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
 ```
 
-```json Customer-Relationship score by month for one one level and a specific source
+```json Customer Relationship score by month for one level and a specific source
 {
     "data": [
         {
@@ -353,7 +353,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/relationship?by_l
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
 ```
 
-```json Customer-Rlationship Score by level category
+```json Customer Relationship score by level category
 {
     "data": [
         {

@@ -275,7 +275,7 @@ Refine the calculation of the Retained Customers results by level category and r
 
 The categories represent your hierarchical or geographical organization depending on your Goodays configuration.
 
-From these categories, you can calculate the customer satisfaction score distributed by region, business unit, brand, etc.
+From these categories, you can calculate the Retained Customers results distributed by region, business unit, brand, etc.
 
 The category ID to be used is returned by the endpoint [/levels](ref:levels_list), in the "category_id" attribute.
 
@@ -302,7 +302,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/retained-customer
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
 ```
 
-```json Customer-Satisfaction Score by place on the last month
+```json Retained Customers by place on the last month
 {
     "data": [
         {
@@ -346,7 +346,7 @@ source=email \
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
 ```
 
-```json Customer-Satisfaction Score by month for one one level and a specific source
+```json Retained Customers by month for one level and a specific source
 {
     "data": [
         {
@@ -406,7 +406,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/retained-customer
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
 ```
 
-```json Customer-Satisfaction Score by month for one one level and a specific source
+```json Retained Customers by month for one level and a specific source
 {
     "data": [
         {
@@ -452,7 +452,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/retained-customer
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
 ```
 
-```json Customer-Satisfaction Score by level category
+```json Retained Customers by level category
 {
     "data": [
         {

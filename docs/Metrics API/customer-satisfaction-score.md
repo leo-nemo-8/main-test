@@ -1,5 +1,5 @@
 ---
-title: Customer-Satisfaction Score
+title: Customer Satisfaction score
 excerpt: ''
 deprecated: false
 hidden: false
@@ -12,7 +12,7 @@ next:
 ---
 > 📘 What's that?
 >
-> The Customer-Satisfaction score is an average calculated on the basis of the end customers’ answers to the CSAT questions of your surveys. If your surveys have no CSAT question, it is calculated on the answers to all the star questions from the published surveys.
+> The Customer Satisfaction score is an average calculated on the basis of the end customers’ answers to the CSAT questions of your surveys. If your surveys have no CSAT question, it is calculated on the answers to all the star questions from the published surveys.
 >
 > That score can then be analyzed over any period of time or the focus can be narrowed to any given survey, the NPS, a particular point of sale, or any other analysis filter you wish to apply.
 
@@ -22,7 +22,7 @@ next:
 
 <Image align="center" border={false} width="smart" src="https://files.readme.io/2252ad3-CSAT.png" />
 
-# How do I get my Customer-Satisfaction score?
+# How do I get my Customer Satisfaction score?
 
 With [/stats/satisfaction](ref:stats_satisfaction_list):
 
@@ -128,7 +128,7 @@ It is possible to add GET parameters to refine the calculation of the score over
 
 ## GET parameters
 
-To calculate a Customer-Satisfaction Score, it is possible to combine the following GET parameters:
+To calculate a Customer Satisfaction score, it is possible to combine the following GET parameters:
 
 <Table align={["left","left"]}>
   <thead>
@@ -315,7 +315,7 @@ Here are the 3 possibilities :
 
 ### By
 
-Calculate the Customer-Satisfaction score by grouping elements and return a list.
+Calculate the Customer Satisfaction score by grouping elements and return a list.
 
 The distribution of the calculation can be by : "day", "month", "nps_category", "place", "quarter", "remark_type", "source", "survey", "year".
 
@@ -323,7 +323,7 @@ See "[By point of sale over the month of May 2020](customer-satisfaction-score#b
 
 ### By Context
 
-Calculate the Customer-Satisfaction score for each value of the custom parameter passed as a parameter and returns a list.
+Calculate the Customer Satisfaction score for each value of the custom parameter passed as a parameter and returns a list.
 
 A custom parameter is additional data attached to a participation to describe its context (order date, purchase amount, advisor...).
 
@@ -333,11 +333,11 @@ See "[By context of the purchase amount](customer-satisfaction-score#by-context-
 
 ### By Level Category
 
-Calculate the Customer-Satisfaction score by level category and return a list.
+Calculate the Customer Satisfaction score by level category and return a list.
 
 The categories represent your hierarchical or geographical organization depending on your Goodays configuration.
 
-From these categories, you can calculate the customer satisfaction score distributed by region, business unit, brand, etc.
+From these categories, you can calculate the Customer Satisfaction score distributed by region, business unit, brand, etc.
 
 The category ID to be used is returned by the endpoint [/levels](ref:levels_list), in the "category_id" attribute.
 
@@ -364,7 +364,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/satisfaction? \
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
 ```
 
-```json Customer-Satisfaction Score by place on the last month
+```json Customer Satisfaction score by place on the last month
 {
     "data": [
         {
@@ -429,7 +429,7 @@ source=email \
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
 ```
 
-```json Customer-Satisfaction Score by month for one one level and a specific source
+```json Customer Satisfaction score by month for one level and a specific source
 {
     "data": [
         {
@@ -475,7 +475,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/satisfaction?by_c
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
 ```
 
-```json Customer-Satisfaction Score by month for one one level and a specific source
+```json Customer Satisfaction score by month for one level and a specific source
 {
     "data": [
         {
@@ -521,7 +521,7 @@ curl --location --request GET 'https://api.goodays.co/v2/stats/satisfaction?by_l
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd'
 ```
 
-```json Customer-Satisfaction Score by level category
+```json Customer Satisfaction score by level category
 {
     "data": [
         {

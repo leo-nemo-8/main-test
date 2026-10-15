@@ -14,14 +14,14 @@ next:
       slug: navigation-through-the-resources
       title: Navigation through the resources
     - type: basic
-      slug: manage-your-places
+      slug: explore-the-core-2
       title: Explore the core
     - type: basic
-      slug: carrefour
+      slug: solicitation-nation
       title: Solicitation nation
     - type: basic
-      slug: sense-the-response
-      title: A response at once
+      slug: a-response-at-once
+      title: Participation retrieval
 ---
 ## Pagination
 

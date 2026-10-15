@@ -12,11 +12,17 @@ next:
 ---
 # **Purpose**
 
-> 📘 The Semantic Classification API allows point of sales to retrieve end customer participations classifications based on predefined categories and sentiment analysis. It supports retrieving classification schemes and categorised feedback.
+> 📘 The Semantic Classification API allows you to retrieve the classification of your participations, based on predefined categories and sentiment analysis. It supports retrieving your classification scheme and the classified participations.
 
 # **Dependency Notice**
 
-This API depends on the **Responses API**. Before querying the **Semantic Classification API**, you must first retrieve responses IDs using the **Responses API**. More details can be found [here](/docs/a-response-at-once).
+This API depends on the **Response API**: each classification refers to a participation by its ID (`response`). To get the details of these participations, use the **Response API**. More details can be found [here](doc:a-response-at-once).
+
+# **URL and authentication**
+
+* `{customer}` is the identifier of your client in Goodays URLs. This API is enabled per client: ask your Goodays project contact for your identifier and access.
+* The `Authorization` header contains your token alone, without any prefix.
+* Only the participations of the points of sale your token's pro user has access to are returned.
 
 # **Scheme API**
 
@@ -30,7 +36,7 @@ Retrieves your semantic classification scheme.
 
 ```sh Curl
 curl --location 'https://app.goodays.co/customers/{customer}/api/semantic/scheme' \
---header 'Authorization: Token <YOUR_TOKEN>' \
+--header 'Authorization: <YOUR_TOKEN>' \
 --header 'Content-Type: application/json'
 ```
 
@@ -69,9 +75,9 @@ curl --location 'https://app.goodays.co/customers/{customer}/api/semantic/scheme
 
 ## **Description**
 
-**GET /customers/\{customer}/semantic/classification**
+**GET /customers/\{customer}/api/semantic/classifications**
 
-Retrieves categorized end customer feedback and associated sentiment analysis.
+Retrieves the classified participations of your end customers and the associated sentiment.
 
 ### **Query Parameters**
 
@@ -147,7 +153,7 @@ Retrieves categorized end customer feedback and associated sentiment analysis.
       </td>
 
       <td>
-        (Optional) Filter by point of sales ID.
+        (Optional) Filter on a point of sale: Place ID, or your external ID.
       </td>
     </tr>
 
@@ -157,7 +163,7 @@ Retrieves categorized end customer feedback and associated sentiment analysis.
       </td>
 
       <td>
-        (Optional) List of point of sales IDs (comma-separated).
+        (Optional) Filter on several points of sale: repeat the parameter for each one (`places=ABQ-001&places=ABQ-002`). Place IDs or external IDs.
       </td>
     </tr>
 
@@ -177,7 +183,7 @@ Retrieves categorized end customer feedback and associated sentiment analysis.
       </td>
 
       <td>
-        (Optional) List of level IDs (comma-separated).
+        (Optional) Filter on several levels: repeat the parameter for each level ID.
       </td>
     </tr>
 
@@ -187,7 +193,7 @@ Retrieves categorized end customer feedback and associated sentiment analysis.
       </td>
 
       <td>
-        (Optional) Filter by category IDs (comma-separated).
+        (Optional) Filter by category: repeat the parameter for each category ID. A parent category includes its subcategories.
       </td>
     </tr>
 
@@ -197,7 +203,7 @@ Retrieves categorized end customer feedback and associated sentiment analysis.
       </td>
 
       <td>
-        (Optional) Filter by response IDs (comma-separated).
+        (Optional) Filter by participation: repeat the parameter for each participation ID.
       </td>
     </tr>
   </tbody>
@@ -209,7 +215,7 @@ Retrieves categorized end customer feedback and associated sentiment analysis.
 curl --location 'https://app.goodays.co/customers/{customer}/api/semantic/classifications? \
    start_date=2025-01-01& \
    end_date=2025-01-02' \
---header 'Authorization: Token <YOUR_TOKEN>'
+--header 'Authorization: <YOUR_TOKEN>'
 ```
 
 ## **Response Example**
@@ -267,20 +273,20 @@ If no query parameters (`start_date`, `end_date`, `responses`, or `month`) are p
 
 ## **Scenario**
 
-You want to extract feedback data related to a specific category `m1n2p3q4r5` for a given point of sales `t1u2v3w4x5` within the period from January 1, 2025, to January 2, 2025, for integration into your datalake.
+You want to extract the participations related to a specific category `m1n2p3q4r5` for a given point of sale `t1u2v3w4x5` within the period from January 1, 2025, to January 2, 2025, for integration into your datalake.
 
 ## **Steps**
 
-1. The client calls the following API request:
+1. You call the following API request:
    ```sh
    curl --location 'https://app.goodays.co/customers/{customer}/api/semantic/classifications?\
       start_date=2025-01-01& \
       end_date=2025-01-02& \
       place=t1u2v3w4x5& \
       categories=m1n2p3q4r5' \
-   --header 'Authorization: Token <YOUR_TOKEN>'
+   --header 'Authorization: <YOUR_TOKEN>'
    ```
-2. The API returns only feedback related to the category **"Ambiance générale"** at the specified point of sales for the requested date range.
+2. The API returns only the participations related to the category **"Ambiance générale"** at the specified point of sale for the requested date range.
 3. You integrate the returned data into your datalake.
 
 ## **Response Example**
