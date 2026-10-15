@@ -243,6 +243,7 @@ A simple binary choice.
 
 * **Configuration:** Usually empty `options`.
 * **Response Payload:** The `value` is a **String** representing the user's localized choice (e.g., "Oui", "Non", "Yes", "No").
+* **Pushing a response:** When you send answers through the [Collect API](doc:become-a-collection-source) (`POST /responses/collect`) or the [legacy retrieval](doc:legacy-retrieval) (`POST /responses`), the `value` must be an **Integer**: `1` for yes, `0` for no. Any other value returns a validation error.
 
 **Response Example:**
 

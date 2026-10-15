@@ -155,6 +155,10 @@ Now that you have retrieved the surveys ids and the questions ids, you can gener
 >
 > To obtain the value for the context part request the following endpoint : [`/configuration`](ref:configuration_list).
 
+> 📘 Answer values
+>
+> The expected `value` format depends on the question type: see [Surveys & Question Types](doc:surveys-question-types). For example, a Yes/No question takes `1` for yes and `0` for no.
+
 4. Send the request  
    Once your payload is properly build, you can call the endpoint `/responses`with the POST method.  
    Don't forget to had your previous payload!
