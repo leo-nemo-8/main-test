@@ -403,7 +403,7 @@ The `state` attribute tells where a participation stands in its processing by yo
     <tr>
       <td>**spam**</td>
       <td>Marked as spam.</td>
-      <td>A pro user marked the participation as spam, by a user, for instance from the back office. It is a manual choice: Goodays does not detect spam or offensive content automatically.</td>
+      <td>A pro user marked the participation as spam, for instance from the back office. It is a manual choice: Goodays does not detect spam or offensive content automatically.</td>
     </tr>
   </tbody>
 </Table>
