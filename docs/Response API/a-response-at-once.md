@@ -355,7 +355,7 @@ Each object in the `results` array represents a single participation. Here are t
     <tr>
       <td>**actions**</td>
       <td>object</td>
-      <td>URLs of the actions currently available on the participation (`reply`, `spam`, `call`, `close`, `message`). They depend on its state: see [Participation states](#participation-states).</td>
+      <td>URLs of the actions currently available on the participation. The list varies from one participation to another and is empty when no action is possible.</td>
     </tr>
 
     <tr>
@@ -397,13 +397,13 @@ The `state` attribute tells where a participation stands in its processing by yo
     <tr>
       <td>**closed**</td>
       <td>Processed.</td>
-      <td>A pro user sent a reply (written, or a logged phone call), **or** marked the participation as done, meaning that it needs no reply ([/responses/{id}/close](ref:responses_close)). One of the two is enough: a reply does not need to be followed by a "done" step.</td>
+      <td>A pro user sent a reply (written, or a logged phone call), **or** marked the participation as done, meaning that it needs no reply. One of the two is enough: a reply does not need to be followed by a "done" step.</td>
     </tr>
 
     <tr>
       <td>**spam**</td>
       <td>Marked as spam.</td>
-      <td>A pro user marked the participation as spam, from the back office or with [/responses/{id}/spam](ref:responses_spam). It is a manual choice: Goodays does not detect spam or offensive content automatically.</td>
+      <td>A pro user marked the participation as spam, by a user, for instance from the back office. It is a manual choice: Goodays does not detect spam or offensive content automatically.</td>
     </tr>
   </tbody>
 </Table>
@@ -411,12 +411,6 @@ The `state` attribute tells where a participation stands in its processing by yo
 > 📘 A spam stays in your data
 >
 > A participation marked as spam is still returned by the API and is not excluded from statistics, whether for volumes or averages. The `state` only describes how it was processed.
-
-> 📘 Available `actions` depend on the state
->
-> * While a participation is `open`, `actions` offers `reply`, `spam` and `close`. If it triggered a dissatisfaction alert (`alert_triggered`), it offers `reply`, `spam` and `call` instead, plus `close` only if your account allows closing alerts without a reply.
-> * Once a participation from an external platform (Google, Tripadvisor, Facebook, app stores, delivery platforms...) is `closed` or `spam`, `actions` is empty. Other participations keep a `message` action to follow up privately with the end customer.
-> * A participation without a conversation thread (`thread` is `null`) has no `actions`.
 
 # Add some filters
 
