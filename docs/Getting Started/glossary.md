@@ -62,9 +62,10 @@ This glossary gives one reference name per notion. It uses the same words as the
 
 | Term | Definition | Also called | Technical name |
 | --- | --- | --- | --- |
-| **Reply** | The answer a pro user writes to an end customer about their participation. | answer, response | `reply`, [/responses/{id}/reply](ref:responses_reply) |
+| **Reply** | The answer a pro user writes to an end customer about their participation. A phone call logged by a pro user also counts as a reply (`type` is `call`). | answer, response | `reply`, [/responses/{id}/reply](ref:responses_reply) |
 | **Private message** | A message exchanged after the first reply, between the end customer and the pro users. It is visible only to them. | message | `attached_messages`, [/responses/{id}/message](ref:responses_message), `message` event |
-| **Thread** | The conversation made of a participation, its reply and the private messages that follow. Its state is `open`, `closed` or `spam`. | conversation | `thread`, `state` |
+| **Thread** | The conversation made of a participation, its reply and the private messages that follow. | conversation | `thread` |
+| **State** | Where a participation stands in its processing: `open` (not processed yet), `closed` (replied, or marked as done because no reply is needed) or `spam` (marked as spam by a pro user). See [Participation states](/docs/a-response-at-once#participation-states). | status | `state` |
 | **Delegation** | A pro user hands a participation over to another point of sale, usually Customer Service, which then processes it. | ask for help | `delegated_to`, `delegated` event |
 | **Customer Service** | A point of sale set up for a remote customer service team, which processes the participations delegated to it, possibly from its own tool through the [Converse API](doc:create-your-interface). | remote Customer Service | |
 | **Event** | A notification sent by Goodays to your webhook URL when a participation is received, a private message arrives or a participation is delegated. | webhook, hook | `event_type`, [/events](ref:events_list) |
