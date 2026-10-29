@@ -80,7 +80,7 @@ A few tips:
 * **`use_workflows=true`**: keep it in the URL for this use case. Only send it with the value `true`: when you do not need it, leave it out of the URL rather than sending `use_workflows=false`.
 * **`place`**: send the point of sale the call is about, so that each branch can see the summaries of its own customers.
 * **`date`**: the date of the call, not the date of the sending.
-* **`message.type`**: the field is mandatory. Send `NoType`: nobody replies to the summaries, so they do not need a remark type. If you prefer to qualify them (`Idea`, `Praise`, `Problem` or `Question`), apply the same rule to all summaries.
+* **`message.type`**: the field is mandatory. You can derive it from the rating of the call, with the same rule for all summaries: for example `Problem` for a low rating and `Praise` for a high one. If you cannot, send `NoType`: nobody replies to the summaries, so they do not need a remark type.
 * **`user`**: `email` and `first_name` are mandatory to send a verbatim. If the end customer stayed anonymous, do not send the summary.
 * **`collect_uid`**: reuse the identifier of the call with a suffix, so that a summary can never be sent twice.
 * **`context`**: add the same custom parameters as for the survey answers (market, segment, region...), so that you can filter the summaries the same way.
