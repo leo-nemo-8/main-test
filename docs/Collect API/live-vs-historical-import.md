@@ -14,7 +14,7 @@ You can send participations to Goodays in two ways: as they happen (**live impor
 
 # Which endpoint should I use?
 
-{/* IMAGE A AJOUTER : uploader live-vs-historical-import.png puis remplacer ce commentaire par ![Live and historical import](<url ReadMe> "Live and historical import") */}
+![](https://files.readme.io/dea1f4378010756cf458d88dd7dfbff176048a5f5fdcd4f94719f77339bdcdb7-live-vs-historical-import.png)
 
 |  | Live import | Historical import |
 | --- | --- | --- |
