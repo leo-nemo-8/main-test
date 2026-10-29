@@ -29,7 +29,7 @@ Dunder Mifflin wants to analyze these summaries with the rest of its feedback. B
 
 ## The setup
 
-![](https://files.readme.io/cfb07501396f9f0f636eac0788a34e2af8a0ea4f72973e3995625d1e06069bf7-call-summary-two-sendings.png)
+![One phone call gives two sendings. The answers and verbatim go to the phone survey and reach the Inbox, where the branch replies. The call summary goes to a dedicated survey and only feeds statistics and analyses, with no Inbox and no reply.](https://files.readme.io/cfb07501396f9f0f636eac0788a34e2af8a0ea4f72973e3995625d1e06069bf7-call-summary-two-sendings.png)
 
 <br />
 

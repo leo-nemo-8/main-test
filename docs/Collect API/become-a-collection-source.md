@@ -12,7 +12,7 @@ next:
 ---
 The Collect API will allow you to become your own collection source by allowing you to send us the participations collected by your own tools!
 
-![](https://files.readme.io/9f9c9b08dc7e036558f4ab9e82460374c78bb1ddfb89e98ccd4f53c993d1cb40-collect-api-overview.png)
+![Your kiosks, mobile app, call center and other tools such as a CRM or website send their participations to the Collect API with POST /responses/live. Goodays then makes them available in the Inbox, statistics and analyses.](https://files.readme.io/9f9c9b08dc7e036558f4ab9e82460374c78bb1ddfb89e98ccd4f53c993d1cb40-collect-api-overview.png)
 
 > 👍 Going further
 >
@@ -53,7 +53,7 @@ Ask your Goodays project contact before sending this kind of content. See also [
 
 ## Push a participation
 
-![](https://files.readme.io/fa743c4c6ce3cee59da6555373f75ba00432ab8fb02b7943c0a7b7f83e8cfb96-prepare-the-payload.png)
+![To build the payload of POST /responses/live, GET /places gives the place, GET /surveys gives the survey, GET /surveys/{id} gives the question IDs of answers, and GET /configuration gives the context keys.](https://files.readme.io/fa743c4c6ce3cee59da6555373f75ba00432ab8fb02b7943c0a7b7f83e8cfb96-prepare-the-payload.png)
 
 In order to complete the payload to post a participation you must first recover the following Goodays data:
 

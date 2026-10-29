@@ -213,7 +213,7 @@ If not, an error will be returned in the response of the call, for example:
 >
 > Historical participations are queued and created a few minutes later. Your payload is checked when you send it (format, point of sale, survey, questions, `collect_uid`) and any error is returned right away. The "201" then confirms that the participation has been accepted in the queue, not that it is already created.
 
-![](https://files.readme.io/1c7a6159419710b3cacea9933457252d9cf085a564fb108c10f2588b2e1fafe6-historical-import-timeline.png)
+![Historical import in four steps: send the payload to /responses/historical, it is checked right away and errors are sent back, then it is queued and a 201 is returned, and the participation is created later: check it with a GET request.](https://files.readme.io/1c7a6159419710b3cacea9933457252d9cf085a564fb108c10f2588b2e1fafe6-historical-import-timeline.png)
 
 5. Check if everything is ok  
    A few minutes after your import, every participation you created with this method can be retrieved by calling the [/responses](ref:responses_list) endpoint with the `GET` method. You can add filters to this request to obtain the results for an end customer, a point of sale or a survey.  

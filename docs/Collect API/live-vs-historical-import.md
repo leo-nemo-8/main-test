@@ -14,7 +14,7 @@ You can send participations to Goodays in two ways: as they happen (**live impor
 
 # Which endpoint should I use?
 
-![](https://files.readme.io/dea1f4378010756cf458d88dd7dfbff176048a5f5fdcd4f94719f77339bdcdb7-live-vs-historical-import.png)
+![Live import with /responses/live: the participation is created right away (201 means recorded) and goes to the Inbox and statistics, or to statistics only if a dedicated survey is set up. Historical import with /responses/historical: the participation is queued (201 means accepted in the queue), created a few minutes later and feeds statistics only.](https://files.readme.io/dea1f4378010756cf458d88dd7dfbff176048a5f5fdcd4f94719f77339bdcdb7-live-vs-historical-import.png)
 
 |  | Live import | Historical import |
 | --- | --- | --- |
