@@ -1,6 +1,8 @@
 ---
 title: Analyze the verbatims of your other channels
-excerpt: Bring call summaries and other free texts into Goodays, without adding work for your pro users.
+excerpt: >-
+  Bring call summaries and other free texts into Goodays, without adding work
+  for your pro users.
 deprecated: false
 hidden: false
 metadata:
@@ -27,7 +29,9 @@ Dunder Mifflin wants to analyze these summaries with the rest of its feedback. B
 
 ## The setup
 
-{/* IMAGE A AJOUTER : uploader call-summary-two-sendings.png puis remplacer ce commentaire par ![One phone call, two sendings](<url ReadMe> "One phone call, two sendings") */}
+![](https://files.readme.io/cfb07501396f9f0f636eac0788a34e2af8a0ea4f72973e3995625d1e06069bf7-call-summary-two-sendings.png)
+
+<br />
 
 **1. A dedicated survey**
 
