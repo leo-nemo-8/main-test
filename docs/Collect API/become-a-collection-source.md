@@ -12,11 +12,19 @@ next:
 ---
 The Collect API will allow you to become your own collection source by allowing you to send us the participations collected by your own tools!
 
-![](https://files.readme.io/a2dc0e4-Collect_reviews.png "Collect reviews.png")
+{/* IMAGE A AJOUTER : uploader collect-api-overview.png puis remplacer ce commentaire par ![<alt>](<url ReadMe> "<alt>") */}
 
 > 👍 Going further
 >
-> Consult the [API Collect](/reference#responses_collect) for more.
+> Consult the [/responses/live](ref:responses_live) reference for more.
+
+> 📘 `/responses/collect` is now `/responses/live`
+>
+> The endpoint has a new, more explicit name: `POST /responses/live`. It takes exactly the same payload and behaves the same way.
+>
+> If you already use `POST /responses/collect`, nothing changes for you: it remains available and works as before. You can switch to `/responses/live` whenever it suits you.
+>
+> To import past participations instead, see [Live or historical import](doc:live-vs-historical-import).
 
 > 📘 Feel stucked?
 >
@@ -29,7 +37,13 @@ Our recommendation is to create the participation on the Goodays side as soon as
 
 This is very effective if you are using an application, kiosk or terminal that would not be compatible with the SDKs provided by default by Goodays.
 
-![](https://files.readme.io/23f7c68-Capture_decran_2020-10-01_a_15.56.06.png "Capture d’écran 2020-10-01 à 15.56.06.png")
+## How your participations are processed
+
+By default, a participation sent with the Collect API is processed like any participation collected by Goodays: it appears in the Inbox of the pro users, it can raise a dissatisfaction alert and it feeds your statistics.
+
+Some content is not meant to be answered, for example a summary written after a phone survey. For this kind of content, your Goodays project contact can set up a dedicated survey so that its participations only feed your statistics and analyses: they never enter the Inbox, raise no alert and send no notification. The payload stays the same, only the survey changes.
+
+Ask your Goodays project contact before sending this kind of content. See also [Analyze the verbatims of your other channels](doc:analyze-verbatims-from-other-channels).
 
 > ❗️
 >
@@ -38,6 +52,8 @@ This is very effective if you are using an application, kiosk or terminal that w
 # How to push the participations of my end customers
 
 ## Push a participation
+
+{/* IMAGE A AJOUTER : uploader prepare-the-payload.png puis remplacer ce commentaire par ![Prepare the payload](<url ReadMe> "Prepare the payload") */}
 
 In order to complete the payload to post a participation you must first recover the following Goodays data:
 
@@ -49,16 +65,16 @@ In order to complete the payload to post a participation you must first recover 
 And, of course, the data related to the end customer.
 
 You now have all the information you need to post a participation to Goodays!\
-For this you must use the [API Collect](/reference#responses_collect).
+For this you must use the [/responses/live](ref:responses_live) endpoint.
 
 > ❗️ Unique participation
 >
-> Be careful to push each participation of an end customer only once: the Collect API records each call you made without deduplication (see `collect_uid` below).
+> Be careful to push each participation of an end customer only once: without a `collect_uid`, the Collect API records every call you make, even if the same participation is sent twice. Use `collect_uid` (see below) to let Goodays reject duplicates.
 
 For our example, we will send the answer to the survey with the following information (see [prepare the data](become-a-collection-source#prepare-the-data) chapter):
 
 * End customer (the "*user*") : **Mr Miyagi**
-* Point of sale (the "*place*") : **VÉLO Antibes** (ID : *ABC123*)
+* Point of sale (the "*place*") : **Dunder Mifflin Scranton** (ID : *ABC123*)
 * Survey : **post\_visit** (ID : *mrY4WLpx9w*)
 * Custom parameters : **Order date** (key : *ordr\_dt*)
 
@@ -172,7 +188,11 @@ Description of the payload:
 
         See [The survey part](become-a-collection-source#the-survey-part).  
 
-        Note: An end customer is not forced to answer all questions, you can send a survey that is not completed in its totality.
+        Notes:
+
+        * An end customer is not forced to answer all questions, you can send a survey that is not completed in its totality.
+
+        * The list can be empty (`[]`) if you only send a verbatim (see [Send a verbatim only](become-a-collection-source#send-a-verbatim-only)).
       </td>
 
       <td>
@@ -198,6 +218,8 @@ Description of the payload:
 
         * A verbatim cannot be sent without a survey
 
+        * A verbatim cannot be sent without the `user` object
+
         * A verbatim must have all its attributes filled in
       </td>
 
@@ -218,7 +240,9 @@ Description of the payload:
 
         * transactional email: `TE`
         * transactional SMS: `TS`
-        * mobile: `MOB`*The value differs according to your collection perimeter: please ask your Goodays project contact for this information if it does not match the examples above.*
+        * mobile: `MOB`
+
+        *The value differs according to your collection perimeter: please ask your Goodays project contact for this information if it does not match the examples above.*
       </td>
 
       <td>
@@ -251,7 +275,7 @@ Description of the payload:
 The API Call:
 
 ```curl
-curl --location --request POST 'https://api.goodays.co/v2/responses/collect' \
+curl --location --request POST 'https://api.goodays.co/v2/responses/live' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd' \
 --data-raw '{
@@ -290,8 +314,8 @@ curl --location --request POST 'https://api.goodays.co/v2/responses/collect' \
 }'
 ```
 
-If the answer has been recorded, you will get a "*201: created*" back in the header.\
-If not, an error will be returned in the endpoint return, for example:
+The participation is created right away: if you get a "*201: created*" back in the header, it is recorded.\
+If not, the error is returned in the response of the call, for example:
 
 ```json
 {
@@ -496,7 +520,7 @@ You will obtain something like this:
         {
             "id": "MexGzQOn4K",
             "position": 6,
-            "title": "Would you recommend Buffalo Grill to others?",
+            "title": "Would you recommend Dunder Mifflin to others?",
             "enabled": true,
             "type": "nps",
             "enabled_at": "2019-04-04T17:50:06.674478+02:00",
@@ -507,8 +531,8 @@ You will obtain something like this:
             "sub_questions": []
         }
     ],
-    "places": "https://api.critizr.com/v2/surveys/kQvdJyo8Dg/places",
-    "responses": "https://api.critizr.com/v2/surveys/kQvdJyo8Dg/responses"
+    "places": "https://api.goodays.co/v2/surveys/mrY4WLpx9w/places",
+    "responses": "https://api.goodays.co/v2/surveys/mrY4WLpx9w/responses"
 }
 ```
 
@@ -596,14 +620,14 @@ You will obtain something like this:
 >
 > For the `user` object: if a value is optional you must leave the attribute with an empty value.
 >
-> But the `email` and `first_name` is always mandatory: if you don't have it you must be don't push the `user` object.
+> But `email` and `first_name` are always mandatory: if you don't have them, do not send the `user` object at all. In that case, you cannot send a verbatim either.
 
 # Examples
 
 ## Send survey scores only
 
 ```curl
-curl --location --request POST 'https://api.goodays.co/v2/responses/collect' \
+curl --location --request POST 'https://api.goodays.co/v2/responses/live' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd' \
 --data-raw '{
@@ -630,7 +654,7 @@ curl --location --request POST 'https://api.goodays.co/v2/responses/collect' \
     {"question": "5gd0vbRYxL", "value": 2},
     {"question": "OD82OVbJdW", "value": ["Tastes too bland"]},
     {"question": "Qr43JKNjdV", "value": 5},
-    {"question": "Qr43JKNjdV", "value": 1},
+    {"question": "MexGzQOn4K", "value": 10},
     {"question": "DYdkw7N3dM", "value": 1} //0 for no, 1 for yes
     ],
   "medium": "terminal",
@@ -641,7 +665,7 @@ curl --location --request POST 'https://api.goodays.co/v2/responses/collect' \
 ## Send a partially completed survey
 
 ```curl
-curl --location --request POST 'https://api.goodays.co/v2/responses/collect' \
+curl --location --request POST 'https://api.goodays.co/v2/responses/live' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd' \
 --data-raw '{
@@ -664,5 +688,37 @@ curl --location --request POST 'https://api.goodays.co/v2/responses/collect' \
     ],
   "medium": "terminal",
   "collect_uid": "16814802001BC123"
+}'
+```
+
+## Send a verbatim only
+
+A participation can contain a verbatim without any rating, for example a summary written by your call center after a phone survey. Send an empty `answers` list and the verbatim in `message`.
+
+To keep this content apart from the ratings of your survey, ask your Goodays project contact for a dedicated survey (see [How your participations are processed](become-a-collection-source#how-your-participations-are-processed)).
+
+```curl
+curl --location --request POST 'https://api.goodays.co/v2/responses/live' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: 1234abcd1234abcd1234abcd1234abcd' \
+--data-raw '{
+  "date": "2020-08-07T01:29:30.034195+02:00",
+  "user": {
+    "email": "daniel@larusso.com",
+    "first_name": "Daniel",
+    "last_name": "LaRusso",
+    "phone": "",
+    "crm_id": ""
+  },
+  "place": "ABC123",
+  "survey": "k8xWQ2Mo4Y",
+  "answers": [],
+  "message": {
+    "created_date": "2020-08-07T01:29:30.034195+02:00",
+    "type": "Praise",
+    "content": "The customer is very happy with the advice of the sales team and the delivery times."
+  },
+  "medium": "TE",
+  "collect_uid": "16814802001BC123_summary"
 }'
 ```

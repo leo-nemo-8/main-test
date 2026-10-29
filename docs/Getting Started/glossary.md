@@ -79,7 +79,7 @@ The `user` field does not designate the same person everywhere in the API:
 | Where | `user` means | Content |
 | --- | --- | --- |
 | A participation you read: [/responses](ref:responses_list), webhook events | The **end customer** | `email`, `first_name`, `last_name`, `opt_in` |
-| A participation you send: [/responses/collect](ref:responses_collect) | The **end customer** | `email`, `first_name`, `last_name`, `phone`, `crm_id` |
+| A participation you send: [/responses/live](ref:responses_live), [/responses/historical](ref:responses_historical) | The **end customer** | `email`, `first_name`, `last_name`, `phone`, `crm_id` |
 | An action on a participation: `/reply`, `/message`, `/call`, `/close`, `/spam` | The **pro user** who performs the action | The ID of a pro user from [/users](ref:users_list). Optional: when it is missing, the action is attributed to the pro user of the API token. |
 | [/users](ref:users_list), [/places/{id}/users](ref:places_users_list), the `pro_user` filter | A **pro user** | |
 

@@ -1,5 +1,7 @@
 - responses_list
 - responses_create
+- responses_live
+- responses_historical
 - responses_bulk
 - responses_collect
 - responses_read

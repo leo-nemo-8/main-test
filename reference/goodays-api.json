@@ -1428,7 +1428,9 @@
         },
         "tags": [
           "response"
-        ]
+        ],
+        "summary": "Import a past participation (legacy name of /responses/historical)",
+        "description": "Previous name of [/responses/historical](ref:responses_historical). It remains available and behaves exactly the same way: nothing changes for existing integrations."
       }
     },
     "/responses/bulk": {
@@ -1471,7 +1473,9 @@
         },
         "tags": [
           "response"
-        ]
+        ],
+        "summary": "Send a participation (legacy name of /responses/live)",
+        "description": "Previous name of [/responses/live](ref:responses_live). It remains available and behaves exactly the same way: nothing changes for existing integrations."
       }
     },
     "/responses/{id}": {
@@ -4177,6 +4181,70 @@
           "core"
         ]
       }
+    },
+    "/responses/live": {
+      "post": {
+        "operationId": "responses_live",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseCollect_write"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/levels_responses_collectData"
+        },
+        "tags": [
+          "response"
+        ],
+        "summary": "Send a participation (live import)",
+        "description": "Creates a participation right away, as soon as you collected it in your own tool (kiosk, app, call center...). The participation is processed like any participation collected by Goodays, unless its survey has been set up by your Goodays project contact to feed statistics and analyses only. A `201` means the participation is recorded.\n\nSee [Become a collection source](doc:become-a-collection-source) and [Live or historical import](doc:live-vs-historical-import).",
+        "parameters": [
+          {
+            "name": "use_workflows",
+            "in": "query",
+            "required": false,
+            "description": "Only send `use_workflows=true`, and only when your Goodays project contact asks you to. Otherwise, leave this parameter out of the URL: do not send `use_workflows=false`.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "/responses/historical": {
+      "post": {
+        "operationId": "responses_historical",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseBatchEntryCreate_write"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/levels_responses_collectData"
+        },
+        "tags": [
+          "response"
+        ],
+        "summary": "Import a past participation (historical import)",
+        "description": "Queues a past participation for import. The payload is checked when you send it; the participation is created a few minutes later and only feeds your statistics (no Inbox, no alert, no notification). A `201` means the participation is accepted in the queue.\n\nSee [Legacy retrieval](doc:legacy-retrieval) and [Live or historical import](doc:live-vs-historical-import)."
+      }
     }
   },
   "x-explorer-enabled": false,
@@ -4213,49 +4281,45 @@
               "type": "object",
               "properties": {
                 "date": {
-                  "description": "",
+                  "description": "Date of the participation of the end customer (ISO 8601, for example `2020-08-07T01:29:30+02:00`). Cannot be in the future.",
                   "type": "string"
                 },
                 "user": {
-                  "description": "",
+                  "description": "The end customer: `email`, `first_name` (both mandatory if the object is sent), `last_name`, `phone`, `crm_id`. Mandatory to send a verbatim.",
                   "type": "object",
                   "properties": {}
                 },
                 "context": {
-                  "description": "",
+                  "description": "Your custom parameters, as key/value pairs. Get the keys from [/configuration](ref:configuration_list).",
                   "type": "object",
                   "properties": {}
                 },
                 "place": {
-                  "description": "",
+                  "description": "Place ID or External ID of the point of sale.",
                   "type": "string"
                 },
                 "survey": {
-                  "description": "",
+                  "description": "Survey ID, from [/surveys](ref:surveys_list).",
                   "type": "string"
                 },
-                "drop_invalid_facultative_answers": {
-                  "description": "",
-                  "type": "boolean"
-                },
                 "answers": {
-                  "description": "",
+                  "description": "List of answers: `{\"question\": \"<question ID>\", \"value\": <value>}`. Can be empty when you only send a verbatim.",
                   "type": "array",
                   "items": {
                     "type": "string"
                   }
                 },
                 "medium": {
-                  "description": "",
+                  "description": "Collection channel of the participation, for example `TE` (transactional email), `TS` (transactional SMS) or `MOB` (mobile). Ask your Goodays project contact for yours.",
                   "type": "string"
                 },
                 "message": {
-                  "description": "",
+                  "description": "Verbatim of the end customer: `created_date`, `type` (`Idea`, `Praise`, `Problem`, `Question` or `NoType`) and `content`. Requires `user` and `survey`.",
                   "type": "object",
                   "properties": {}
                 },
                 "collect_uid": {
-                  "description": "",
+                  "description": "Your unique identifier for the participation. If it already exists for your account, the participation is rejected with a `409`.",
                   "type": "string"
                 }
               },
@@ -6715,9 +6779,6 @@
           "survey": {
             "type": "string"
           },
-          "drop_invalid_facultative_answers": {
-            "type": "boolean"
-          },
           "answers": {
             "type": "array",
             "items": {
@@ -6973,9 +7034,6 @@
           },
           "survey": {
             "type": "string"
-          },
-          "drop_invalid_facultative_answers": {
-            "type": "boolean"
           },
           "answers": {
             "type": "array",

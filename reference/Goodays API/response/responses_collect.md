@@ -1,5 +1,5 @@
 ---
-title: /responses/collect
+title: /responses/collect (legacy)
 excerpt: ''
 api:
   file: goodays-api.json
