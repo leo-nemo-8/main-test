@@ -38,6 +38,10 @@ Because it is a separate survey, the summaries:
 * do not change the scores of your phone survey,
 * can be filtered on their own in your statistics and analyses.
 
+> 🚧 Wait for the setup before your first call
+>
+> The setup is done by Goodays on this survey. Until your Goodays project contact confirms it is done, a summary sent to this survey is processed like any other participation: it enters the Inbox of your pro users and can raise alerts and notifications.
+
 **2. One call per summary**
 
 Send each summary with the [live import](doc:live-vs-historical-import), as a participation with a verbatim only: an empty `answers` list, and the summary in `message`.
@@ -63,7 +67,7 @@ curl --location --request POST 'https://api.goodays.co/v2/responses/live?use_wor
   "answers": [],
   "message": {
     "created_date": "2026-09-23T10:32:00+02:00",
-    "type": "Praise",
+    "type": "NoType",
     "content": "The customer is very satisfied with the branch. He highlights the quick quotes and the next-day delivery..."
   },
   "medium": "TE",
@@ -76,7 +80,7 @@ A few tips:
 * **`use_workflows=true`**: keep it in the URL for this use case. Only send it with the value `true`: when you do not need it, leave it out of the URL rather than sending `use_workflows=false`.
 * **`place`**: send the point of sale the call is about, so that each branch can see the summaries of its own customers.
 * **`date`**: the date of the call, not the date of the sending.
-* **`message.type`**: give the summary a remark type consistent with the rating of the call, for example `Problem` for a low rating and `Praise` for a high one. Apply the same rule to all summaries.
+* **`message.type`**: the field is mandatory. Send `NoType`: nobody replies to the summaries, so they do not need a remark type. If you prefer to qualify them (`Idea`, `Praise`, `Problem` or `Question`), apply the same rule to all summaries.
 * **`user`**: `email` and `first_name` are mandatory to send a verbatim. If the end customer stayed anonymous, do not send the summary.
 * **`collect_uid`**: reuse the identifier of the call with a suffix, so that a summary can never be sent twice.
 * **`context`**: add the same custom parameters as for the survey answers (market, segment, region...), so that you can filter the summaries the same way.

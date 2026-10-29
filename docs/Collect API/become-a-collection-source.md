@@ -26,7 +26,7 @@ The Collect API will allow you to become your own collection source by allowing 
 >
 > To import past participations instead, see [Live or historical import](doc:live-vs-historical-import).
 
-> 📘 Feel stucked?
+> 📘 Stuck?
 >
 > Need help with an error? Head to [Troubleshooting and errors](/docs/errors) for more information.
 
@@ -369,7 +369,7 @@ You will obtain something like this:
 ```
 
 Take the id corresponding to the survey you wish to push participations to.\
-Request the following endpoint : [`/surveys`](ref:surveys_list) with the "id" as parameter:
+Request the following endpoint : [`/surveys/{id}`](ref:surveys_read) with this id:
 
 ```curl surveys_read call
 curl --location --request GET 'https://api.goodays.co/v2/surveys/mrY4WLpx9w' \
@@ -688,6 +688,27 @@ curl --location --request POST 'https://api.goodays.co/v2/responses/live' \
     ],
   "medium": "terminal",
   "collect_uid": "16814802001BC123"
+}'
+```
+
+## Send an anonymous participation
+
+If you do not have the `email` and the `first_name` of the end customer, leave the `user` object out of the payload. An anonymous participation can contain answers, but no verbatim.
+
+```curl
+curl --location --request POST 'https://api.goodays.co/v2/responses/live' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: 1234abcd1234abcd1234abcd1234abcd' \
+--data-raw '{
+  "date": "2020-08-07T01:29:30.034195+02:00",
+  "place": "ABC123",
+  "survey": "mrY4WLpx9w",
+  "answers": [
+    {"question": "rY4WDG1px9", "value": 4},
+    {"question": "MexGzQOn4K", "value": 9}
+    ],
+  "medium": "terminal",
+  "collect_uid": "16814802002BC123"
 }'
 ```
 

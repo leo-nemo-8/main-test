@@ -10,50 +10,24 @@ metadata:
 next:
   description: ''
 ---
-**Congratulations**! You made the decision to change your CX partner and chose Goodays!
+You are moving to Goodays and your previous partner collected ratings, verbatims, end customer data and custom parameters. You can import this history into Goodays, so that your statistics and KPIs keep their continuity.
 
-Now that the decision has been made, the excitement shifts into questions and how-to meetings. You had a previous partner that collected ratings, user data and contextual information.  
-These precious data should not go to waste and you wonder if and how all this information could be transmitted to Goodays.  
-Well, another congratulations! You reached the right place to learn everything about legacy retrieval!
+Each past participation is sent with one API call. Historical participations only feed your statistics: they never enter the Inbox, raise no alert and send no notification (see [Live or historical import](doc:live-vs-historical-import)).
 
-## Why is your legacy data worth saving?
+## Before you start
 
-This question already answers a previous one: is your legacy data worth saving? The answer is obviously "**Yes**"!  
-We are in the Data Era so no information is too small or too "irrelevant" not to have its rightful place in your ecosystem.  
-Plus, it probably took some time to gather all this information.  
-Lastly and more importantly, these data are still valuable for their original purpose. They provide a history and ensure continuity for the KPIs you are following.
+* **Map your data.** Your legacy data will rarely match the Goodays format as is: match each legacy survey and question with a Goodays survey and question, and each legacy point of sale with a Goodays point of sale. This page assumes this transformation is done.
+* **Plan for volume.** The import is simple but can take time for a large history. Send a `collect_uid` with each participation so that you can resume an interrupted import safely.
+* **Test first.** Import a small sample, check it with your Goodays project contact, then send the rest.
 
-## How to - Basics
+## How to import your history
 
-The process is actually pretty simple. However, depending on the volume of your data, it may take some time.
-
-The simple part is telling the Goodays API to create new participations based on your previous data. It is a simple API call providing every information you want to have in Goodays.
-
-> 🚧 Warning
->
-> One part of this process can be tricky: there is no guarantee that the format of your legacy data will match the Goodays specifications without any transformation. Please make sure you handle the format differences properly.
-
-## Key takeaways
-
-In a word: yes, your legacy data can be integrated into Goodays!  
-The process is simple, but an analysis has to be done to detect potential format mismatches.
-
-## How to - Expert
-
-> 📘 Disclaimer
->
-> These steps only cover the part where you create valid new participations in Goodays. Any previous transformation job you might have to do before is taken for granted.
-
-The retrieval simply requires calling the [/responses/historical](ref:responses_historical) endpoint with the `POST` method and the correct payload.  
+Call the [/responses/historical](ref:responses_historical) endpoint with the `POST` method and the correct payload.  
 This payload contains the list of all the answers of a participation and, if any, the verbatim of the end customer. In order to create the list of answers, you need to get the surveys and their questions, to match the Goodays questions with the legacy answers.
 
 > 📘 `/responses` is now `/responses/historical`
 >
 > The endpoint has a new, more explicit name: `POST /responses/historical`. It takes exactly the same payload and behaves the same way. If you already use `POST /responses`, nothing changes for you: it remains available and works as before.
-
-> 📘 How historical participations are processed
->
-> Historical participations only feed your statistics: they never enter the Inbox, raise no alert and send no notification to your pro users or to your end customers. See [Live or historical import](doc:live-vs-historical-import).
 
 1. Get the surveys  
    Request the following endpoint: [/surveys](ref:surveys_list).  
@@ -231,7 +205,7 @@ If not, an error will be returned in the response of the call, for example:
 >
 > The `collect_uid` parameter identifies the participation in a unique way. This can be a string, a number, a date... You can, for example, concatenate an order ID, a reservation ID, a basket ID... with a timestamp. The most important thing is that this value must be unique.
 >
-> If the value of the `collect_uid` already exists, the participation is not recorded.
+> If the value of the `collect_uid` already exists, a `409` error is returned and the participation is not recorded.
 >
 > This parameter is not mandatory but strongly recommended: it lets you send the same file again safely if an import is interrupted.
 
