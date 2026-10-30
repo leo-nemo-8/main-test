@@ -51,7 +51,7 @@ Because it is a separate survey, the summaries:
 Send each summary with the [live import](doc:live-vs-historical-import), as a participation with a verbatim only: an empty `answers` list, and the summary in `message`.
 
 ```curl
-curl --location --request POST 'https://api.goodays.co/v2/responses/live?use_workflows=true' \
+curl --location --request POST 'https://api.goodays.co/v2/responses/live' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: 1234abcd1234abcd1234abcd1234abcd' \
 --data-raw '{
@@ -81,7 +81,6 @@ curl --location --request POST 'https://api.goodays.co/v2/responses/live?use_wor
 
 A few tips:
 
-* **`use_workflows=true`**: keep it in the URL for this use case. Only send it with the value `true`: when you do not need it, leave it out of the URL rather than sending `use_workflows=false`.
 * **`place`**: send the point of sale the call is about, so that each branch can see the summaries of its own customers.
 * **`date`**: the date of the call, not the date of the sending.
 * **`message.type`**: the field is mandatory. You can derive it from the rating of the call, with the same rule for all summaries: for example `Problem` for a low rating and `Praise` for a high one. If you cannot, send `NoType`: nobody replies to the summaries, so they do not need a remark type.

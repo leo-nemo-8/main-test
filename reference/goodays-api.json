@@ -4254,21 +4254,7 @@
           "response"
         ],
         "summary": "Send a participation (live import)",
-        "description": "Creates a participation right away, as soon as you collected it in your own tool (kiosk, app, call center...). The participation is processed like any participation collected by Goodays, unless its survey has been set up by your Goodays project contact to feed statistics and analyses only. A `201` means the participation is recorded.\n\nSee [Become a collection source](doc:become-a-collection-source) and [Live or historical import](doc:live-vs-historical-import).",
-        "parameters": [
-          {
-            "name": "use_workflows",
-            "in": "query",
-            "required": false,
-            "description": "Only send `use_workflows=true`, and only when your Goodays project contact asks you to. Otherwise, leave this parameter out of the URL: do not send `use_workflows=false`.",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "true"
-              ]
-            }
-          }
-        ]
+        "description": "Creates a participation right away, as soon as you collected it in your own tool (kiosk, app, call center...). The participation is processed like any participation collected by Goodays, unless its survey has been set up by your Goodays project contact to feed statistics and analyses only. A `201` means the participation is recorded.\n\nSee [Become a collection source](doc:become-a-collection-source) and [Live or historical import](doc:live-vs-historical-import)."
       }
     },
     "/responses/historical": {
