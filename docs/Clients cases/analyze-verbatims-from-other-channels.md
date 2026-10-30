@@ -14,6 +14,8 @@ next:
 ---
 Your end customers do not only talk to you through your Goodays surveys. Your call center writes a summary after each phone survey, your sales team logs what customers tell them, another tool collects comments...
 
+**FESTTTTTTTTT
+**
 These texts are often richer than a survey verbatim, but nobody is expected to reply to them. This case shows how to bring them into Goodays so that they feed your statistics and analyses, without filling the Inbox of your pro users.
 
 ## An example
